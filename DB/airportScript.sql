@@ -357,7 +357,8 @@ if object_id('Category', 'U') is null
 begin
     create table Category(
         id int identity(1,1) primary key,
-        Name varchar(20) not null check(Name IN ('Economic', 'Premium Economic', 'Business', 'First Class'))
+        Name varchar(20) not null check(Name IN ('Economic', 'Premium Economic', 'Business', 'First Class')),
+		price decimal(10,2),
     );
 end
 go

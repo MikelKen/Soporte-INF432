@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="DESKTOP-BQCTAU4.airportDataMart.server"
+  DTS:DTSID="{2C3DBC05-3839-4011-AE0A-3CB4899D76CB}"
+  DTS:CreationName="ADO.NET:System.Data.OleDb.OleDbConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=DESKTOP-BQCTAU4;User ID=server;Initial Catalog=airportDataMart;Provider=SQLOLEDB.1;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAJ52fG0Hn+kmZ0OFKk5wxvQAAAAACAAAAAAAQZgAAAAEAACAAAACzNHxB+TpnYRcy78NWemYINi90xl8P2DeD4e/Qk+2AugAAAAAOgAAAAAIAACAAAABbPaAYQAgHVApctnraRDOApvuEA2Cizjo0jgbeMtKL+YAAAAAAMvRyMXaamiz8fKWYmylM8lr0vPrzdSNK1vA7DGqJURrJbZ2SW4lGJgfest711LX+UVvuJHvdRkM0QZp+svWhulosH6rUmiSPkSr+c/fSoOuLVtelseOt2a5BePhjuDqoBXdiY/sCS4Wzb28rUbuc2oukTni2L25CwmHUH6/C+UAAAACX0SJ7eOo7xpQlpON9GwH2TJ4CK87yHlQuh0sy1W37nMCkXpV0GWNKaVcJpLoNmAHgVRRMkc8qPxfNTkmddJxy</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

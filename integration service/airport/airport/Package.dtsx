@@ -1,0 +1,1825 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/23/2024 1:25:39 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-BQCTAU4"
+  DTS:CreatorName="DESKTOP-BQCTAU4\usuario"
+  DTS:DTSID="{36005819-51FC-4BA7-8216-ABB3266135D4}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="41"
+  DTS:VersionGUID="{9407DAF3-3F1F-4F9D-9DE3-A1E8445EEFDA}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Customer"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{EECC2ED3-1D20-4348-BCCA-DAFF9456A59A}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Customer"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Customer\Cutomer airportMart"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+              description="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC."
+              name="Cutomer airportMart"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de destino."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">[dbo].[dimCustomer]</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas por lote. El valor predeterminado es 0, que utiliza el mismo tamaño que el búfer interno de SSIS. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica si se debe usar la interfaz SqlBulkCopy para mejorar el rendimiento de las operaciones de inserción masiva. No todos los proveedores admiten esta interfaz."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Customer\Cutomer airportMart.Connections[IDbConnection]"
+                  connectionManagerID="{9C1CB8DC-46DE-4D88-A6F2-B1BE0E0274E7}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-BQCTAU4.dataAirport]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Customer\Cutomer airportMart.Inputs[Entrada de destino de ADO NET]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de ADO NET">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Customer\Cutomer airportMart.Inputs[Entrada de destino de ADO NET].Columns[name]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="name"
+                      externalMetadataColumnId="Package\Customer\Cutomer airportMart.Inputs[Entrada de destino de ADO NET].ExternalColumns[name]"
+                      lineageId="Package\Customer\Read Customer airport.Outputs[Salida de origen de ADO NET].Columns[name]" />
+                    <inputColumn
+                      refId="Package\Customer\Cutomer airportMart.Inputs[Entrada de destino de ADO NET].Columns[type]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="type"
+                      externalMetadataColumnId="Package\Customer\Cutomer airportMart.Inputs[Entrada de destino de ADO NET].ExternalColumns[type]"
+                      lineageId="Package\Customer\Read Customer airport.Outputs[Salida de origen de ADO NET].Columns[type]" />
+                    <inputColumn
+                      refId="Package\Customer\Cutomer airportMart.Inputs[Entrada de destino de ADO NET].Columns[loyaltyPoints]"
+                      cachedDataType="i4"
+                      cachedName="loyaltyPoints"
+                      externalMetadataColumnId="Package\Customer\Cutomer airportMart.Inputs[Entrada de destino de ADO NET].ExternalColumns[loyaltyPoints]"
+                      lineageId="Package\Customer\Read Customer airport.Outputs[Salida de origen de ADO NET].Columns[loyaltyPoints]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Customer\Cutomer airportMart.Inputs[Entrada de destino de ADO NET].ExternalColumns[id]"
+                      dataType="i4"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\Customer\Cutomer airportMart.Inputs[Entrada de destino de ADO NET].ExternalColumns[name]"
+                      dataType="wstr"
+                      length="50"
+                      name="name" />
+                    <externalMetadataColumn
+                      refId="Package\Customer\Cutomer airportMart.Inputs[Entrada de destino de ADO NET].ExternalColumns[type]"
+                      dataType="wstr"
+                      length="50"
+                      name="type" />
+                    <externalMetadataColumn
+                      refId="Package\Customer\Cutomer airportMart.Inputs[Entrada de destino de ADO NET].ExternalColumns[loyaltyPoints]"
+                      dataType="i4"
+                      name="loyaltyPoints" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Customer\Cutomer airportMart.Outputs[Salida de error de destino de ADO NET]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de ADO NET"
+                  synchronousInputId="Package\Customer\Cutomer airportMart.Inputs[Entrada de destino de ADO NET]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Customer\Cutomer airportMart.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Customer\Cutomer airportMart.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Customer\Cutomer airportMart.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Customer\Cutomer airportMart.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Customer\Read Customer airport"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="Read Customer airport"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select Distinct per.Name as name,TypeCustomer as type, cus.Loyalty_Points as loyaltyPoints
+from Customer cus INNER JOIN Person per ON (cus.Person_ID = per.ID)</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Customer\Read Customer airport.Connections[IDbConnection]"
+                  connectionManagerID="{78C67E7C-13DC-42BE-BD51-59CB593F846A}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-BQCTAU4.airportScript]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Customer\Read Customer airport.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Customer\Read Customer airport.Outputs[Salida de origen de ADO NET].Columns[name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Customer\Read Customer airport.Outputs[Salida de origen de ADO NET].ExternalColumns[name]"
+                      length="50"
+                      lineageId="Package\Customer\Read Customer airport.Outputs[Salida de origen de ADO NET].Columns[name]"
+                      name="name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Customer\Read Customer airport.Outputs[Salida de origen de ADO NET].Columns[type]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Customer\Read Customer airport.Outputs[Salida de origen de ADO NET].ExternalColumns[type]"
+                      length="50"
+                      lineageId="Package\Customer\Read Customer airport.Outputs[Salida de origen de ADO NET].Columns[type]"
+                      name="type"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Customer\Read Customer airport.Outputs[Salida de origen de ADO NET].Columns[loyaltyPoints]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Customer\Read Customer airport.Outputs[Salida de origen de ADO NET].ExternalColumns[loyaltyPoints]"
+                      lineageId="Package\Customer\Read Customer airport.Outputs[Salida de origen de ADO NET].Columns[loyaltyPoints]"
+                      name="loyaltyPoints"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Customer\Read Customer airport.Outputs[Salida de origen de ADO NET].ExternalColumns[name]"
+                      dataType="wstr"
+                      length="50"
+                      name="name" />
+                    <externalMetadataColumn
+                      refId="Package\Customer\Read Customer airport.Outputs[Salida de origen de ADO NET].ExternalColumns[type]"
+                      dataType="wstr"
+                      length="50"
+                      name="type" />
+                    <externalMetadataColumn
+                      refId="Package\Customer\Read Customer airport.Outputs[Salida de origen de ADO NET].ExternalColumns[loyaltyPoints]"
+                      dataType="i4"
+                      name="loyaltyPoints" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Customer\Read Customer airport.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Customer\Read Customer airport.Outputs[Salida de error de origen de ADO NET].Columns[name]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Customer\Read Customer airport.Outputs[Salida de error de origen de ADO NET].Columns[name]"
+                      name="name" />
+                    <outputColumn
+                      refId="Package\Customer\Read Customer airport.Outputs[Salida de error de origen de ADO NET].Columns[type]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Customer\Read Customer airport.Outputs[Salida de error de origen de ADO NET].Columns[type]"
+                      name="type" />
+                    <outputColumn
+                      refId="Package\Customer\Read Customer airport.Outputs[Salida de error de origen de ADO NET].Columns[loyaltyPoints]"
+                      dataType="i4"
+                      lineageId="Package\Customer\Read Customer airport.Outputs[Salida de error de origen de ADO NET].Columns[loyaltyPoints]"
+                      name="loyaltyPoints" />
+                    <outputColumn
+                      refId="Package\Customer\Read Customer airport.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Customer\Read Customer airport.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Customer\Read Customer airport.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Customer\Read Customer airport.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Customer.Paths[Salida de origen de ADO NET]"
+              endId="Package\Customer\Cutomer airportMart.Inputs[Entrada de destino de ADO NET]"
+              name="Salida de origen de ADO NET"
+              startId="Package\Customer\Read Customer airport.Outputs[Salida de origen de ADO NET]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Payment"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{79EE039B-306B-4081-ACA2-6B9624D07FF7}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Payment"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Payment\Destino de ADO NET"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+              description="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC."
+              name="Destino de ADO NET"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de destino."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">[dbo].[dimPayment]</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas por lote. El valor predeterminado es 0, que utiliza el mismo tamaño que el búfer interno de SSIS. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica si se debe usar la interfaz SqlBulkCopy para mejorar el rendimiento de las operaciones de inserción masiva. No todos los proveedores admiten esta interfaz."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Payment\Destino de ADO NET.Connections[IDbConnection]"
+                  connectionManagerID="{9C1CB8DC-46DE-4D88-A6F2-B1BE0E0274E7}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-BQCTAU4.dataAirport]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Payment\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de ADO NET">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Payment\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[Amount]"
+                      cachedDataType="i4"
+                      cachedName="Amount"
+                      externalMetadataColumnId="Package\Payment\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[amount]"
+                      lineageId="Package\Payment\Read Payment.Outputs[Salida de origen de ADO NET].Columns[Amount]" />
+                    <inputColumn
+                      refId="Package\Payment\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[Currency]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="Currency"
+                      externalMetadataColumnId="Package\Payment\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[currency]"
+                      lineageId="Package\Payment\Read Payment.Outputs[Salida de origen de ADO NET].Columns[Currency]" />
+                    <inputColumn
+                      refId="Package\Payment\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[Name]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="Name"
+                      externalMetadataColumnId="Package\Payment\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[type]"
+                      lineageId="Package\Payment\Read Payment.Outputs[Salida de origen de ADO NET].Columns[Name]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Payment\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[id]"
+                      dataType="i4"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\Payment\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[type]"
+                      dataType="wstr"
+                      length="50"
+                      name="type" />
+                    <externalMetadataColumn
+                      refId="Package\Payment\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[amount]"
+                      dataType="numeric"
+                      name="amount"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Payment\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[currency]"
+                      dataType="wstr"
+                      length="50"
+                      name="currency" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Payment\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de ADO NET"
+                  synchronousInputId="Package\Payment\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Payment\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Payment\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Payment\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Payment\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Payment\Read Payment"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="Read Payment"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select distinct payt.Name, pay.Amount, pay.Currency
+from Payment pay INNER JOIN Payment_Type payt ON (pay.Payment_Type_ID=payt.ID)</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Payment\Read Payment.Connections[IDbConnection]"
+                  connectionManagerID="{78C67E7C-13DC-42BE-BD51-59CB593F846A}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-BQCTAU4.airportScript]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Payment\Read Payment.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Payment\Read Payment.Outputs[Salida de origen de ADO NET].Columns[Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Payment\Read Payment.Outputs[Salida de origen de ADO NET].ExternalColumns[Name]"
+                      length="40"
+                      lineageId="Package\Payment\Read Payment.Outputs[Salida de origen de ADO NET].Columns[Name]"
+                      name="Name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Payment\Read Payment.Outputs[Salida de origen de ADO NET].Columns[Amount]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Payment\Read Payment.Outputs[Salida de origen de ADO NET].ExternalColumns[Amount]"
+                      lineageId="Package\Payment\Read Payment.Outputs[Salida de origen de ADO NET].Columns[Amount]"
+                      name="Amount"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Payment\Read Payment.Outputs[Salida de origen de ADO NET].Columns[Currency]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Payment\Read Payment.Outputs[Salida de origen de ADO NET].ExternalColumns[Currency]"
+                      length="10"
+                      lineageId="Package\Payment\Read Payment.Outputs[Salida de origen de ADO NET].Columns[Currency]"
+                      name="Currency"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Payment\Read Payment.Outputs[Salida de origen de ADO NET].ExternalColumns[Name]"
+                      dataType="wstr"
+                      length="40"
+                      name="Name" />
+                    <externalMetadataColumn
+                      refId="Package\Payment\Read Payment.Outputs[Salida de origen de ADO NET].ExternalColumns[Amount]"
+                      dataType="i4"
+                      name="Amount" />
+                    <externalMetadataColumn
+                      refId="Package\Payment\Read Payment.Outputs[Salida de origen de ADO NET].ExternalColumns[Currency]"
+                      dataType="wstr"
+                      length="10"
+                      name="Currency" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Payment\Read Payment.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Payment\Read Payment.Outputs[Salida de error de origen de ADO NET].Columns[Name]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Payment\Read Payment.Outputs[Salida de error de origen de ADO NET].Columns[Name]"
+                      name="Name" />
+                    <outputColumn
+                      refId="Package\Payment\Read Payment.Outputs[Salida de error de origen de ADO NET].Columns[Amount]"
+                      dataType="i4"
+                      lineageId="Package\Payment\Read Payment.Outputs[Salida de error de origen de ADO NET].Columns[Amount]"
+                      name="Amount" />
+                    <outputColumn
+                      refId="Package\Payment\Read Payment.Outputs[Salida de error de origen de ADO NET].Columns[Currency]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Payment\Read Payment.Outputs[Salida de error de origen de ADO NET].Columns[Currency]"
+                      name="Currency" />
+                    <outputColumn
+                      refId="Package\Payment\Read Payment.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Payment\Read Payment.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Payment\Read Payment.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Payment\Read Payment.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Payment.Paths[Salida de origen de ADO NET]"
+              endId="Package\Payment\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]"
+              name="Salida de origen de ADO NET"
+              startId="Package\Payment\Read Payment.Outputs[Salida de origen de ADO NET]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Reservation"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{0DB74DFD-08F3-4C3B-A0B2-6B21B81EBCA1}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Reservation"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Reservation\Destino de ADO NET"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+              description="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC."
+              name="Destino de ADO NET"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de destino."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">[dbo].[facReservation]</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas por lote. El valor predeterminado es 0, que utiliza el mismo tamaño que el búfer interno de SSIS. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica si se debe usar la interfaz SqlBulkCopy para mejorar el rendimiento de las operaciones de inserción masiva. No todos los proveedores admiten esta interfaz."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Reservation\Destino de ADO NET.Connections[IDbConnection]"
+                  connectionManagerID="{FA1D1F5F-B851-4124-8501-AB218445924E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-BQCTAU4.airportData]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Reservation\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de ADO NET">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Reservation\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[customer_id]"
+                      cachedDataType="i4"
+                      cachedName="customer_id"
+                      externalMetadataColumnId="Package\Reservation\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[customer_id]"
+                      lineageId="Package\Reservation\Read Reservation.Outputs[Salida de origen de ADO NET].Columns[customer_id]" />
+                    <inputColumn
+                      refId="Package\Reservation\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[time_id]"
+                      cachedDataType="i4"
+                      cachedName="time_id"
+                      externalMetadataColumnId="Package\Reservation\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[time_id]"
+                      lineageId="Package\Reservation\Read Reservation.Outputs[Salida de origen de ADO NET].Columns[time_id]" />
+                    <inputColumn
+                      refId="Package\Reservation\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[payment_id]"
+                      cachedDataType="i4"
+                      cachedName="payment_id"
+                      externalMetadataColumnId="Package\Reservation\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[payment_id]"
+                      lineageId="Package\Reservation\Read Reservation.Outputs[Salida de origen de ADO NET].Columns[payment_id]" />
+                    <inputColumn
+                      refId="Package\Reservation\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[CanceledReservations]"
+                      cachedDataType="i4"
+                      cachedName="CanceledReservations"
+                      externalMetadataColumnId="Package\Reservation\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[cantReserveCancellation]"
+                      lineageId="Package\Reservation\Read Reservation.Outputs[Salida de origen de ADO NET].Columns[CanceledReservations]" />
+                    <inputColumn
+                      refId="Package\Reservation\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[ConfirmedReservations]"
+                      cachedDataType="i4"
+                      cachedName="ConfirmedReservations"
+                      externalMetadataColumnId="Package\Reservation\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[cantReserveConfirmed]"
+                      lineageId="Package\Reservation\Read Reservation.Outputs[Salida de origen de ADO NET].Columns[ConfirmedReservations]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Reservation\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[id]"
+                      dataType="i4"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\Reservation\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[time_id]"
+                      dataType="i4"
+                      name="time_id" />
+                    <externalMetadataColumn
+                      refId="Package\Reservation\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[customer_id]"
+                      dataType="i4"
+                      name="customer_id" />
+                    <externalMetadataColumn
+                      refId="Package\Reservation\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[payment_id]"
+                      dataType="i4"
+                      name="payment_id" />
+                    <externalMetadataColumn
+                      refId="Package\Reservation\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[cantReserveCancellation]"
+                      dataType="i4"
+                      name="cantReserveCancellation" />
+                    <externalMetadataColumn
+                      refId="Package\Reservation\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[cantReserveConfirmed]"
+                      dataType="i4"
+                      name="cantReserveConfirmed" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Reservation\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de ADO NET"
+                  synchronousInputId="Package\Reservation\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Reservation\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Reservation\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Reservation\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Reservation\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Reservation\Read Reservation"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="Read Reservation"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
+    c.id AS customer_id,
+    t.id AS time_id,
+    p.id AS payment_id,
+    SUM(CASE WHEN r.State = 1 THEN 1 ELSE 0 END) AS ConfirmedReservations,
+    SUM(CASE WHEN r.State = 0 THEN 1 ELSE 0 END) AS CanceledReservations,
+    CAST(SUM(CASE WHEN r.State = 1 THEN 1 ELSE 0 END) AS FLOAT) / COUNT(*) * 100 AS ConfirmedPercentage,
+    CAST(SUM(CASE WHEN r.State = 0 THEN 1 ELSE 0 END) AS FLOAT) / COUNT(*) * 100 AS CanceledPercentage
+FROM 
+    airportScript.dbo.Reserve r
+    INNER JOIN airportData.dbo.dimCustomer c ON r.Customer_ID = c.id
+    INNER JOIN airportData.dbo.dimTime t ON r.Reservation_Date = t.fecha
+    INNER JOIN airportData.dbo.dimPayment p ON r.Payment_ID = p.id
+GROUP BY 
+    c.id, t.id, p.id;</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Reservation\Read Reservation.Connections[IDbConnection]"
+                  connectionManagerID="{78C67E7C-13DC-42BE-BD51-59CB593F846A}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-BQCTAU4.airportScript]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Reservation\Read Reservation.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Reservation\Read Reservation.Outputs[Salida de origen de ADO NET].Columns[customer_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Reservation\Read Reservation.Outputs[Salida de origen de ADO NET].ExternalColumns[customer_id]"
+                      lineageId="Package\Reservation\Read Reservation.Outputs[Salida de origen de ADO NET].Columns[customer_id]"
+                      name="customer_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Reservation\Read Reservation.Outputs[Salida de origen de ADO NET].Columns[time_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Reservation\Read Reservation.Outputs[Salida de origen de ADO NET].ExternalColumns[time_id]"
+                      lineageId="Package\Reservation\Read Reservation.Outputs[Salida de origen de ADO NET].Columns[time_id]"
+                      name="time_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Reservation\Read Reservation.Outputs[Salida de origen de ADO NET].Columns[payment_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Reservation\Read Reservation.Outputs[Salida de origen de ADO NET].ExternalColumns[payment_id]"
+                      lineageId="Package\Reservation\Read Reservation.Outputs[Salida de origen de ADO NET].Columns[payment_id]"
+                      name="payment_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Reservation\Read Reservation.Outputs[Salida de origen de ADO NET].Columns[ConfirmedReservations]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Reservation\Read Reservation.Outputs[Salida de origen de ADO NET].ExternalColumns[ConfirmedReservations]"
+                      lineageId="Package\Reservation\Read Reservation.Outputs[Salida de origen de ADO NET].Columns[ConfirmedReservations]"
+                      name="ConfirmedReservations"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Reservation\Read Reservation.Outputs[Salida de origen de ADO NET].Columns[CanceledReservations]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Reservation\Read Reservation.Outputs[Salida de origen de ADO NET].ExternalColumns[CanceledReservations]"
+                      lineageId="Package\Reservation\Read Reservation.Outputs[Salida de origen de ADO NET].Columns[CanceledReservations]"
+                      name="CanceledReservations"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Reservation\Read Reservation.Outputs[Salida de origen de ADO NET].Columns[ConfirmedPercentage]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Reservation\Read Reservation.Outputs[Salida de origen de ADO NET].ExternalColumns[ConfirmedPercentage]"
+                      lineageId="Package\Reservation\Read Reservation.Outputs[Salida de origen de ADO NET].Columns[ConfirmedPercentage]"
+                      name="ConfirmedPercentage"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Reservation\Read Reservation.Outputs[Salida de origen de ADO NET].Columns[CanceledPercentage]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Reservation\Read Reservation.Outputs[Salida de origen de ADO NET].ExternalColumns[CanceledPercentage]"
+                      lineageId="Package\Reservation\Read Reservation.Outputs[Salida de origen de ADO NET].Columns[CanceledPercentage]"
+                      name="CanceledPercentage"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Reservation\Read Reservation.Outputs[Salida de origen de ADO NET].ExternalColumns[customer_id]"
+                      dataType="i4"
+                      name="customer_id" />
+                    <externalMetadataColumn
+                      refId="Package\Reservation\Read Reservation.Outputs[Salida de origen de ADO NET].ExternalColumns[time_id]"
+                      dataType="i4"
+                      name="time_id" />
+                    <externalMetadataColumn
+                      refId="Package\Reservation\Read Reservation.Outputs[Salida de origen de ADO NET].ExternalColumns[payment_id]"
+                      dataType="i4"
+                      name="payment_id" />
+                    <externalMetadataColumn
+                      refId="Package\Reservation\Read Reservation.Outputs[Salida de origen de ADO NET].ExternalColumns[ConfirmedReservations]"
+                      dataType="i4"
+                      name="ConfirmedReservations" />
+                    <externalMetadataColumn
+                      refId="Package\Reservation\Read Reservation.Outputs[Salida de origen de ADO NET].ExternalColumns[CanceledReservations]"
+                      dataType="i4"
+                      name="CanceledReservations" />
+                    <externalMetadataColumn
+                      refId="Package\Reservation\Read Reservation.Outputs[Salida de origen de ADO NET].ExternalColumns[ConfirmedPercentage]"
+                      dataType="r8"
+                      name="ConfirmedPercentage" />
+                    <externalMetadataColumn
+                      refId="Package\Reservation\Read Reservation.Outputs[Salida de origen de ADO NET].ExternalColumns[CanceledPercentage]"
+                      dataType="r8"
+                      name="CanceledPercentage" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Reservation\Read Reservation.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Reservation\Read Reservation.Outputs[Salida de error de origen de ADO NET].Columns[customer_id]"
+                      dataType="i4"
+                      lineageId="Package\Reservation\Read Reservation.Outputs[Salida de error de origen de ADO NET].Columns[customer_id]"
+                      name="customer_id" />
+                    <outputColumn
+                      refId="Package\Reservation\Read Reservation.Outputs[Salida de error de origen de ADO NET].Columns[time_id]"
+                      dataType="i4"
+                      lineageId="Package\Reservation\Read Reservation.Outputs[Salida de error de origen de ADO NET].Columns[time_id]"
+                      name="time_id" />
+                    <outputColumn
+                      refId="Package\Reservation\Read Reservation.Outputs[Salida de error de origen de ADO NET].Columns[payment_id]"
+                      dataType="i4"
+                      lineageId="Package\Reservation\Read Reservation.Outputs[Salida de error de origen de ADO NET].Columns[payment_id]"
+                      name="payment_id" />
+                    <outputColumn
+                      refId="Package\Reservation\Read Reservation.Outputs[Salida de error de origen de ADO NET].Columns[ConfirmedReservations]"
+                      dataType="i4"
+                      lineageId="Package\Reservation\Read Reservation.Outputs[Salida de error de origen de ADO NET].Columns[ConfirmedReservations]"
+                      name="ConfirmedReservations" />
+                    <outputColumn
+                      refId="Package\Reservation\Read Reservation.Outputs[Salida de error de origen de ADO NET].Columns[CanceledReservations]"
+                      dataType="i4"
+                      lineageId="Package\Reservation\Read Reservation.Outputs[Salida de error de origen de ADO NET].Columns[CanceledReservations]"
+                      name="CanceledReservations" />
+                    <outputColumn
+                      refId="Package\Reservation\Read Reservation.Outputs[Salida de error de origen de ADO NET].Columns[ConfirmedPercentage]"
+                      dataType="r8"
+                      lineageId="Package\Reservation\Read Reservation.Outputs[Salida de error de origen de ADO NET].Columns[ConfirmedPercentage]"
+                      name="ConfirmedPercentage" />
+                    <outputColumn
+                      refId="Package\Reservation\Read Reservation.Outputs[Salida de error de origen de ADO NET].Columns[CanceledPercentage]"
+                      dataType="r8"
+                      lineageId="Package\Reservation\Read Reservation.Outputs[Salida de error de origen de ADO NET].Columns[CanceledPercentage]"
+                      name="CanceledPercentage" />
+                    <outputColumn
+                      refId="Package\Reservation\Read Reservation.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Reservation\Read Reservation.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Reservation\Read Reservation.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Reservation\Read Reservation.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Reservation.Paths[Salida de origen de ADO NET]"
+              endId="Package\Reservation\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]"
+              name="Salida de origen de ADO NET"
+              startId="Package\Reservation\Read Reservation.Outputs[Salida de origen de ADO NET]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Ejecutar SQL"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{0A60EF5E-C0E0-49D1-A5F4-95F18CB4AB1B}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Ejecutar SQL"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{9C1CB8DC-46DE-4D88-A6F2-B1BE0E0274E7}"
+          SQLTask:SqlStatementSource="Delete from dimTime&#xA;Delete from dimCustomer&#xA;Delete from dimPayment&#xA;Delete from facReservation" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Time"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{B9D9C30A-1817-46B3-94D9-64D3642CED9F}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Time"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Time\Destino de ADO NET"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+              description="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC."
+              name="Destino de ADO NET"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de destino."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">[dbo].[dimTime]</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas por lote. El valor predeterminado es 0, que utiliza el mismo tamaño que el búfer interno de SSIS. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica si se debe usar la interfaz SqlBulkCopy para mejorar el rendimiento de las operaciones de inserción masiva. No todos los proveedores admiten esta interfaz."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Time\Destino de ADO NET.Connections[IDbConnection]"
+                  connectionManagerID="{FA1D1F5F-B851-4124-8501-AB218445924E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-BQCTAU4.airportData]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Time\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de ADO NET">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Time\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[fecha]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="fecha"
+                      externalMetadataColumnId="Package\Time\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[fecha]"
+                      lineageId="Package\Time\Read Time.Outputs[Salida de origen de ADO NET].Columns[fecha]" />
+                    <inputColumn
+                      refId="Package\Time\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[year]"
+                      cachedDataType="i4"
+                      cachedName="year"
+                      externalMetadataColumnId="Package\Time\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[year]"
+                      lineageId="Package\Time\Read Time.Outputs[Salida de origen de ADO NET].Columns[year]" />
+                    <inputColumn
+                      refId="Package\Time\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[month]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="month"
+                      externalMetadataColumnId="Package\Time\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[month]"
+                      lineageId="Package\Time\Read Time.Outputs[Salida de origen de ADO NET].Columns[month]" />
+                    <inputColumn
+                      refId="Package\Time\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[day]"
+                      cachedDataType="i4"
+                      cachedName="day"
+                      externalMetadataColumnId="Package\Time\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[day]"
+                      lineageId="Package\Time\Read Time.Outputs[Salida de origen de ADO NET].Columns[day]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Time\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[id]"
+                      dataType="i4"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\Time\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[fecha]"
+                      dataType="wstr"
+                      length="10"
+                      name="fecha" />
+                    <externalMetadataColumn
+                      refId="Package\Time\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[year]"
+                      dataType="i4"
+                      name="year" />
+                    <externalMetadataColumn
+                      refId="Package\Time\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[month]"
+                      dataType="wstr"
+                      length="50"
+                      name="month" />
+                    <externalMetadataColumn
+                      refId="Package\Time\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[day]"
+                      dataType="i4"
+                      name="day" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Time\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de ADO NET"
+                  synchronousInputId="Package\Time\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Time\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Time\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Time\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Time\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Time\Read Time"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="Read Time"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DISTINCT 
+    Reservation_Date AS fecha,
+    CONVERT(INT,DATEPART(YEAR, Reservation_Date)) AS year,
+    CONVERT(VARCHAR,DATEPART(MONTH, Reservation_Date)) AS month,
+    CONVERT(INT, DATEPART(DAY, Reservation_Date)) AS day
+FROM Reserve;</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Time\Read Time.Connections[IDbConnection]"
+                  connectionManagerID="{78C67E7C-13DC-42BE-BD51-59CB593F846A}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-BQCTAU4.airportScript]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Time\Read Time.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Time\Read Time.Outputs[Salida de origen de ADO NET].Columns[fecha]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Time\Read Time.Outputs[Salida de origen de ADO NET].ExternalColumns[fecha]"
+                      length="10"
+                      lineageId="Package\Time\Read Time.Outputs[Salida de origen de ADO NET].Columns[fecha]"
+                      name="fecha"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Time\Read Time.Outputs[Salida de origen de ADO NET].Columns[year]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Time\Read Time.Outputs[Salida de origen de ADO NET].ExternalColumns[year]"
+                      lineageId="Package\Time\Read Time.Outputs[Salida de origen de ADO NET].Columns[year]"
+                      name="year"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Time\Read Time.Outputs[Salida de origen de ADO NET].Columns[month]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Time\Read Time.Outputs[Salida de origen de ADO NET].ExternalColumns[month]"
+                      length="30"
+                      lineageId="Package\Time\Read Time.Outputs[Salida de origen de ADO NET].Columns[month]"
+                      name="month"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Time\Read Time.Outputs[Salida de origen de ADO NET].Columns[day]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Time\Read Time.Outputs[Salida de origen de ADO NET].ExternalColumns[day]"
+                      lineageId="Package\Time\Read Time.Outputs[Salida de origen de ADO NET].Columns[day]"
+                      name="day"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Time\Read Time.Outputs[Salida de origen de ADO NET].ExternalColumns[fecha]"
+                      dataType="wstr"
+                      length="10"
+                      name="fecha" />
+                    <externalMetadataColumn
+                      refId="Package\Time\Read Time.Outputs[Salida de origen de ADO NET].ExternalColumns[year]"
+                      dataType="i4"
+                      name="year" />
+                    <externalMetadataColumn
+                      refId="Package\Time\Read Time.Outputs[Salida de origen de ADO NET].ExternalColumns[month]"
+                      dataType="wstr"
+                      length="30"
+                      name="month" />
+                    <externalMetadataColumn
+                      refId="Package\Time\Read Time.Outputs[Salida de origen de ADO NET].ExternalColumns[day]"
+                      dataType="i4"
+                      name="day" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Time\Read Time.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Time\Read Time.Outputs[Salida de error de origen de ADO NET].Columns[fecha]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Time\Read Time.Outputs[Salida de error de origen de ADO NET].Columns[fecha]"
+                      name="fecha" />
+                    <outputColumn
+                      refId="Package\Time\Read Time.Outputs[Salida de error de origen de ADO NET].Columns[year]"
+                      dataType="i4"
+                      lineageId="Package\Time\Read Time.Outputs[Salida de error de origen de ADO NET].Columns[year]"
+                      name="year" />
+                    <outputColumn
+                      refId="Package\Time\Read Time.Outputs[Salida de error de origen de ADO NET].Columns[month]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Time\Read Time.Outputs[Salida de error de origen de ADO NET].Columns[month]"
+                      name="month" />
+                    <outputColumn
+                      refId="Package\Time\Read Time.Outputs[Salida de error de origen de ADO NET].Columns[day]"
+                      dataType="i4"
+                      lineageId="Package\Time\Read Time.Outputs[Salida de error de origen de ADO NET].Columns[day]"
+                      name="day" />
+                    <outputColumn
+                      refId="Package\Time\Read Time.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Time\Read Time.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Time\Read Time.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Time\Read Time.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Time.Paths[Salida de origen de ADO NET]"
+              endId="Package\Time\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]"
+              name="Salida de origen de ADO NET"
+              startId="Package\Time\Read Time.Outputs[Salida de origen de ADO NET]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción]"
+      DTS:CreationName=""
+      DTS:DTSID="{DD2BD963-19C7-4051-88B3-490A0D5591F1}"
+      DTS:From="Package\Tarea Ejecutar SQL"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción"
+      DTS:To="Package\Customer" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{55C07FE2-ABAB-4D94-B85E-5DE334AA7E5E}"
+      DTS:From="Package\Tarea Ejecutar SQL"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 1"
+      DTS:To="Package\Payment" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{1078F51B-6C7E-43D3-98FB-0E8D739C488C}"
+      DTS:From="Package\Tarea Ejecutar SQL"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 2"
+      DTS:To="Package\Time" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{30A998D9-A1F0-435B-978E-2059251C47DB}"
+      DTS:From="Package\Customer"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 3"
+      DTS:To="Package\Reservation" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{A57ECD76-3E0B-4402-8816-20D3861670D4}"
+      DTS:From="Package\Payment"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 4"
+      DTS:To="Package\Reservation" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{37477738-53AC-487D-ABA0-83710E102A1F}"
+      DTS:From="Package\Time"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 5"
+      DTS:To="Package\Reservation" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="127,42"
+          Id="Package\Customer"
+          TopLeft="75,130" />
+        <NodeLayout
+          Size="122,42"
+          Id="Package\Payment"
+          TopLeft="281,142" />
+        <NodeLayout
+          Size="138,42"
+          Id="Package\Reservation"
+          TopLeft="276,268" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Tarea Ejecutar SQL"
+          TopLeft="266,27" />
+        <NodeLayout
+          Size="104,42"
+          Id="Package\Time"
+          TopLeft="471,138" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción]"
+          TopLeft="312,69">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-173.5,61"
+              Start="0,0"
+              End="-173.5,53.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.9402985074627" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.9402985074627"
+                    Point2="0,20.9402985074627"
+                    Point3="-4,20.9402985074627" />
+                  <mssgle:LineSegment
+                    End="-169.5,20.9402985074627" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-169.5,20.9402985074627"
+                    Point2="-173.5,20.9402985074627"
+                    Point3="-173.5,24.9402985074627" />
+                  <mssgle:LineSegment
+                    End="-173.5,53.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 1]"
+          TopLeft="354,69">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-12,73"
+              Start="0,0"
+              End="-12,65.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32.5"
+                    Point2="0,36.5"
+                    Point3="-4,36.5" />
+                  <mssgle:LineSegment
+                    End="-8,36.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-8,36.5"
+                    Point2="-12,36.5"
+                    Point3="-12,40.5" />
+                  <mssgle:LineSegment
+                    End="-12,65.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 2]"
+          TopLeft="396,69">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="127,69"
+              Start="0,0"
+              End="127,61.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.6865671641791" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19.6865671641791"
+                    Point2="0,23.6865671641791"
+                    Point3="4,23.6865671641791" />
+                  <mssgle:LineSegment
+                    End="123,23.6865671641791" />
+                  <mssgle:CubicBezierSegment
+                    Point1="123,23.6865671641791"
+                    Point2="127,23.6865671641791"
+                    Point3="127,27.6865671641791" />
+                  <mssgle:LineSegment
+                    End="127,61.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 3]"
+          TopLeft="138.5,172">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="174,96"
+              Start="0,0"
+              End="174,88.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,58.7867298578199" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,58.7867298578199"
+                    Point2="0,62.7867298578199"
+                    Point3="4,62.7867298578199" />
+                  <mssgle:LineSegment
+                    End="170,62.7867298578199" />
+                  <mssgle:CubicBezierSegment
+                    Point1="170,62.7867298578199"
+                    Point2="174,62.7867298578199"
+                    Point3="174,66.7867298578199" />
+                  <mssgle:LineSegment
+                    End="174,88.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 4]"
+          TopLeft="343.5,184">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,84"
+              Start="0,0"
+              End="0,76.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,76.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 5]"
+          TopLeft="523,180">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-145.5,88"
+              Start="0,0"
+              End="-145.5,80.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.5545023696682" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,53.5545023696682"
+                    Point2="0,57.5545023696682"
+                    Point3="-4,57.5545023696682" />
+                  <mssgle:LineSegment
+                    End="-141.5,57.5545023696682" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-141.5,57.5545023696682"
+                    Point2="-145.5,57.5545023696682"
+                    Point3="-145.5,61.5545023696682" />
+                  <mssgle:LineSegment
+                    End="-145.5,80.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Customer">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="190,42"
+          Id="Package\Customer\Read Customer airport"
+          TopLeft="167,107" />
+        <NodeLayout
+          Size="177,42"
+          Id="Package\Customer\Cutomer airportMart"
+          TopLeft="152,218" />
+        <EdgeLayout
+          Id="Package\Customer.Paths[Salida de origen de ADO NET]"
+          TopLeft="262,149">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-21.5,69"
+              Start="0,0"
+              End="-21.5,61.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,30.5"
+                    Point2="0,34.5"
+                    Point3="-4,34.5" />
+                  <mssgle:LineSegment
+                    End="-17.5,34.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-17.5,34.5"
+                    Point2="-21.5,34.5"
+                    Point3="-21.5,38.5" />
+                  <mssgle:LineSegment
+                    End="-21.5,61.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Customer\Cutomer airportMart">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Customer\Read Customer airport">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Payment">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Payment\Read Payment"
+          TopLeft="119,97" />
+        <NodeLayout
+          Size="183,42"
+          Id="Package\Payment\Destino de ADO NET"
+          TopLeft="101,212" />
+        <EdgeLayout
+          Id="Package\Payment.Paths[Salida de origen de ADO NET]"
+          TopLeft="193.75,139">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,73"
+              Start="0,0"
+              End="0,65.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,65.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Payment\Destino de ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Payment\Read Payment">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Reservation">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="167,42"
+          Id="Package\Reservation\Read Reservation"
+          TopLeft="129,95" />
+        <NodeLayout
+          Size="183,42"
+          Id="Package\Reservation\Destino de ADO NET"
+          TopLeft="197,232" />
+        <EdgeLayout
+          Id="Package\Reservation.Paths[Salida de origen de ADO NET]"
+          TopLeft="212.5,137">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="76,95"
+              Start="0,0"
+              End="76,87.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,43.5"
+                    Point2="0,47.5"
+                    Point3="4,47.5" />
+                  <mssgle:LineSegment
+                    End="72,47.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="72,47.5"
+                    Point2="76,47.5"
+                    Point3="76,51.5" />
+                  <mssgle:LineSegment
+                    End="76,87.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Reservation\Destino de ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Reservation\Read Reservation">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Time">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="183,42"
+          Id="Package\Time\Destino de ADO NET"
+          TopLeft="143,195" />
+        <NodeLayout
+          Size="133,42"
+          Id="Package\Time\Read Time"
+          TopLeft="145,38" />
+        <EdgeLayout
+          Id="Package\Time.Paths[Salida de origen de ADO NET]"
+          TopLeft="211.5,80">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="23,115"
+              Start="0,0"
+              End="23,107.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,53.5"
+                    Point2="0,57.5"
+                    Point3="4,57.5" />
+                  <mssgle:LineSegment
+                    End="19,57.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="19,57.5"
+                    Point2="23,57.5"
+                    Point3="23,61.5" />
+                  <mssgle:LineSegment
+                    End="23,107.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Time\Destino de ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Time\Read Time">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

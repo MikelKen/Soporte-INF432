@@ -2,7 +2,7 @@ use airportScript;
 go
 --Procedure for country
 --Procedure for city
-IF OBJECT_ID('InsertCheck_In', 'P') IS NOT NULL
+IF OBJECT_ID('InsertCountry', 'P') IS NOT NULL
 BEGIN
     DROP PROCEDURE InsertCountry;
 END;
@@ -26,7 +26,7 @@ END;
 GO
 -----------------------------------------------------------------------
 --Procedure for city
-IF OBJECT_ID('InsertCheck_In', 'P') IS NOT NULL
+IF OBJECT_ID('InsertCity', 'P') IS NOT NULL
 BEGIN
     DROP PROCEDURE InsertCity;
 END;
@@ -50,7 +50,7 @@ GO
 
 -----------------------------------------------------------------------
 --Procedure for Airport
-IF OBJECT_ID('InsertCheck_In', 'P') IS NOT NULL
+IF OBJECT_ID('InsertAirport', 'P') IS NOT NULL
 BEGIN
     DROP PROCEDURE InsertAirport;
 END;
@@ -74,7 +74,7 @@ GO
 
 -----------------------------------------------------------------------
 --Procedure for PlanelModel
-IF OBJECT_ID('InsertCheck_In', 'P') IS NOT NULL
+IF OBJECT_ID('InsertPlanelModel', 'P') IS NOT NULL
 BEGIN
     DROP PROCEDURE InsertPlanelModel;
 END;
@@ -98,7 +98,7 @@ GO
 
 -----------------------------------------------------------------------
 --Procedure for Airplane
-IF OBJECT_ID('InsertCheck_In', 'P') IS NOT NULL
+IF OBJECT_ID('InsertAirplane', 'P') IS NOT NULL
 BEGIN
     DROP PROCEDURE InsertAirplane;
 END;
@@ -137,7 +137,7 @@ GO
 
 -----------------------------------------------------------------------
 --Procedure for FlightNumbers
-IF OBJECT_ID('InsertCheck_In', 'P') IS NOT NULL
+IF OBJECT_ID('InsertFlightNumbers', 'P') IS NOT NULL
 BEGIN
     DROP PROCEDURE InsertFlightNumbers;
 END;
@@ -177,7 +177,7 @@ GO
 
 --=====================================================================
 --Procedure for Seat
-IF OBJECT_ID('InsertCheck_In', 'P') IS NOT NULL
+IF OBJECT_ID('InsertSeats', 'P') IS NOT NULL
 BEGIN
     DROP PROCEDURE InsertSeats;
 END;
@@ -224,7 +224,7 @@ GO
 
 --===================================================================
 --Procedure for Airline
-IF OBJECT_ID('InsertCheck_In', 'P') IS NOT NULL
+IF OBJECT_ID('InsertAirline', 'P') IS NOT NULL
 BEGIN
     DROP PROCEDURE InsertAirline;
 END;
@@ -257,7 +257,7 @@ GO
 --===================================================================
 
 --Procedure for Flight
-IF OBJECT_ID('InsertCheck_In', 'P') IS NOT NULL
+IF OBJECT_ID('InsertFlights', 'P') IS NOT NULL
 BEGIN
     DROP PROCEDURE InsertFlights;
 END;
@@ -310,7 +310,7 @@ GO
 
 --============================================================================
 --Procedure for Available_Seat
-IF OBJECT_ID('InsertCheck_In', 'P') IS NOT NULL
+IF OBJECT_ID('InsertAvailable_Seat', 'P') IS NOT NULL
 BEGIN
     DROP PROCEDURE InsertAvailable_Seat;
 END;
@@ -349,7 +349,7 @@ GO
 
 --=============================================================================
 --Procedure for Passenger_Type
-IF OBJECT_ID('InsertCheck_In', 'P') IS NOT NULL
+IF OBJECT_ID('InsertPassenger_Type', 'P') IS NOT NULL
 BEGIN
     DROP PROCEDURE InsertPassenger_Type;
 END;
@@ -373,7 +373,7 @@ GO
 
 --======================================================================
 -- Crear el procedimiento para cargar datos desde el CSV
-IF OBJECT_ID('InsertCheck_In', 'P') IS NOT NULL
+IF OBJECT_ID('LoadPersonDataFrom', 'P') IS NOT NULL
 BEGIN
     DROP PROCEDURE LoadPersonDataFrom;
 END;
@@ -399,10 +399,9 @@ BEGIN
 END;
 GO
 
-
 --Procedure for Person
 
-IF OBJECT_ID('InsertCheck_In', 'P') IS NOT NULL
+IF OBJECT_ID('InsertDataFromTempToPerson', 'P') IS NOT NULL
 BEGIN
     DROP PROCEDURE InsertDataFromTempToPerson;
 END;
@@ -461,7 +460,7 @@ GO
 
 --=============================================================================
 --Procedure for Passenger
-IF OBJECT_ID('InsertCheck_In', 'P') IS NOT NULL
+IF OBJECT_ID('InsertPassengers', 'P') IS NOT NULL
 BEGIN
     DROP PROCEDURE InsertPassengers;
 END;
@@ -497,7 +496,7 @@ GO
 
 --=============================================================================
 --Procedure for Customer
-IF OBJECT_ID('InsertCheck_In', 'P') IS NOT NULL
+IF OBJECT_ID('InsertCustomer', 'P') IS NOT NULL
 BEGIN
     DROP PROCEDURE InsertCustomer;
 END;
@@ -537,7 +536,7 @@ GO
 
 --=============================================================================
 --Procedure for Crew_Member
-IF OBJECT_ID('InsertCheck_In', 'P') IS NOT NULL
+IF OBJECT_ID('InsertCrew_Member', 'P') IS NOT NULL
 BEGIN
     DROP PROCEDURE InsertCrew_Member;
 END;
@@ -570,7 +569,7 @@ END;
 GO
 --============================================================================
 --Procedure for Crew_Rol
-IF OBJECT_ID('InsertCheck_In', 'P') IS NOT NULL
+IF OBJECT_ID('InsertCrew_Rol', 'P') IS NOT NULL
 BEGIN
     DROP PROCEDURE InsertCrew_Rol;
 END;
@@ -594,7 +593,7 @@ GO
 
 --=============================================================================
 --Procedure for Crew_Assigment
-IF OBJECT_ID('InsertCheck_In', 'P') IS NOT NULL
+IF OBJECT_ID('InsertCrewAssignments', 'P') IS NOT NULL
 BEGIN
     DROP PROCEDURE InsertCrewAssignments;
 END;
@@ -632,7 +631,7 @@ GO
 --=============================================================================
 
 --Procedure for Frequent_Flyer_Card
-IF OBJECT_ID('InsertCheck_In', 'P') IS NOT NULL
+IF OBJECT_ID('InsertFrequentFlyerCards', 'P') IS NOT NULL
 BEGIN
     DROP PROCEDURE InsertFrequentFlyerCards;
 END;
@@ -669,7 +668,7 @@ GO
 
 --=============================================================================
 --Procedure for Flight_Cancellation
-IF OBJECT_ID('InsertCheck_In', 'P') IS NOT NULL
+IF OBJECT_ID('InsertFlightCancellations', 'P') IS NOT NULL
 BEGIN
     DROP PROCEDURE InsertFlightCancellations;
 END;
@@ -711,7 +710,7 @@ GO
 
 --=============================================================================
 --Procedure for Flight_Reprograming
-IF OBJECT_ID('InsertCheck_In', 'P') IS NOT NULL
+IF OBJECT_ID('InsertFlightReprogramings', 'P') IS NOT NULL
 BEGIN
     DROP PROCEDURE InsertFlightReprogramings;
 END;
@@ -747,7 +746,7 @@ GO
 
 --=============================================================================
 --Procedure for Payment_Type
-IF OBJECT_ID('InsertCheck_In', 'P') IS NOT NULL
+IF OBJECT_ID('InsertPayment_Type', 'P') IS NOT NULL
 BEGIN
     DROP PROCEDURE InsertPayment_Type;
 END;
@@ -769,7 +768,7 @@ GO
 
 --=============================================================================
 --Procedure for Payment
-IF OBJECT_ID('InsertCheck_In', 'P') IS NOT NULL
+IF OBJECT_ID('InsertPayments', 'P') IS NOT NULL
 BEGIN
     DROP PROCEDURE InsertPayments;
 END;
@@ -807,7 +806,7 @@ GO
 
 --=============================================================================
 --Procedure for Document_Type
-IF OBJECT_ID('InsertCheck_In', 'P') IS NOT NULL
+IF OBJECT_ID('InsertDocument_Type', 'P') IS NOT NULL
 BEGIN
     DROP PROCEDURE InsertDocument_Type;
 END;
@@ -831,7 +830,7 @@ END;
 GO
 --=============================================================================
 --Procedure for Document
-IF OBJECT_ID('InsertCheck_In', 'P') IS NOT NULL
+IF OBJECT_ID('InsertDocuments', 'P') IS NOT NULL
 BEGIN
     DROP PROCEDURE InsertDocuments;
 END;
@@ -869,7 +868,7 @@ GO
 
 --=============================================================================
 --Procedure for Category
-IF OBJECT_ID('InsertCheck_In', 'P') IS NOT NULL
+IF OBJECT_ID('InsertCategory', 'P') IS NOT NULL
 BEGIN
     DROP PROCEDURE InsertCategory;
 END;
@@ -890,7 +889,7 @@ END;
 GO
 --=============================================================================
 --Procedure for Ticket
-IF OBJECT_ID('InsertCheck_In', 'P') IS NOT NULL
+IF OBJECT_ID('InsertTickets', 'P') IS NOT NULL
 BEGIN
     DROP PROCEDURE InsertTickets;
 END;
@@ -930,7 +929,7 @@ GO
 
 --=============================================================================
 --Procedure for Reserve
-IF OBJECT_ID('InsertCheck_In', 'P') IS NOT NULL
+IF OBJECT_ID('InsertReserves', 'P') IS NOT NULL
 BEGIN
     DROP PROCEDURE InsertReserves;
 END;
@@ -982,7 +981,7 @@ GO
 
 --=============================================================================
 --Procedure for Confirmation
-IF OBJECT_ID('InsertCheck_In', 'P') IS NOT NULL
+IF OBJECT_ID('InsertConfirmation', 'P') IS NOT NULL
 BEGIN
     DROP PROCEDURE InsertConfirmation;
 END;
@@ -1015,7 +1014,7 @@ END;
 GO
 --==========================================================================
 --Procedure for Cancellation
-IF OBJECT_ID('InsertCheck_In', 'P') IS NOT NULL
+IF OBJECT_ID('InsertCancellations', 'P') IS NOT NULL
 BEGIN
     DROP PROCEDURE InsertCancellations;
 END;
@@ -1061,7 +1060,7 @@ GO
 
 --=============================================================================
 --Procedure for Coupon
-IF OBJECT_ID('InsertCheck_In', 'P') IS NOT NULL
+IF OBJECT_ID('InsertCoupons', 'P') IS NOT NULL
 BEGIN
     DROP PROCEDURE InsertCoupons;
 END;
@@ -1111,7 +1110,7 @@ GO
 
 --=============================================================================
 --Procedure for Boarding_Pass
-IF OBJECT_ID('InsertCheck_In', 'P') IS NOT NULL
+IF OBJECT_ID('InsertBoardingPasses', 'P') IS NOT NULL
 BEGIN
     DROP PROCEDURE InsertBoardingPasses;
 END;
@@ -1146,7 +1145,7 @@ GO
 --=============================================================================
 --Procedure for Pieces_of_Luggage
 
-IF OBJECT_ID('InsertCheck_In', 'P') IS NOT NULL
+IF OBJECT_ID('InsertPiecesOfLuggage', 'P') IS NOT NULL
 BEGIN
     DROP PROCEDURE InsertPiecesOfLuggage;
 END;
@@ -1196,7 +1195,7 @@ GO
 
 --=============================================================================
 --Procedure for Baggage_Check_In
-IF OBJECT_ID('InsertCheck_In', 'P') IS NOT NULL
+IF OBJECT_ID('InsertBaggageCheckIns', 'P') IS NOT NULL
 BEGIN
     DROP PROCEDURE InsertBaggageCheckIns;
 END;

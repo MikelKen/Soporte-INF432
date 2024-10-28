@@ -1,7 +1,7 @@
 
 --Insert date country
 EXEC InsertCountry;
-
+select * from Country
 --Insert date City
 EXEC InsertCity;
 
@@ -57,7 +57,7 @@ EXEC InsertFrequentFlyerCards @NumberOfRows = 200;
 
 --Insert date Flight_Cancellation
 EXEC InsertFlightCancellations @NumberOfRows = 50;
-
+select * from Flight_Cancellation
 --Insert date Flight_Reprograming
 EXEC InsertFlightReprogramings @NumberOfRows = 40;
 
@@ -116,10 +116,53 @@ EXEC InsertCheck_In @NumberOfRows = 750;
 
 
 
+/*
+select * from Country
+select * from City
+select * from Airport
+select * from Plane_Model
+select * from Airplane
+select * from Flight_Number
+select * from Seat
+select * from Airline
+select * from Flight
+select * from Available_Seat
+select * from Passenger_Type
+select * from Person
+--
+select * from TempPersonData
+drop table TempPersonData
+--
+select * from Passenger
+select * from Customer
+select * from Crew_Member
+select * from Crew_Rol
+select * from Crew_Assigment
+select * from Frequent_Flyer_Card
+select * from Flight_Cancellation
+select * from Flight_Reprograming
+select * from Payment_Type
+select * from Payment
+select * from Document_Type
+select * from Document
+select * from Category
+select * from Ticket
+select * from Reserve
+select * from Confirmation
+select * from Cancellation
+select * from Coupon
+select * from Boarding_Pass
+select * from Pieces_of_Luggage
+select * from Baggage_Check_In
+select * from Check_In
+
+*/
 
 
 
+select * from dimPassenger
 
+truncate table dimPassenger
 
 
 -- Insertar 20 aviones aleatorios

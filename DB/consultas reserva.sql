@@ -108,18 +108,35 @@ GROUP BY
 
 /**CONSULTA PARA TICKET**/
 --category
-select distinct c.Name
+select c.Name
 from Category c
 
+select c.id as id_category, c.name as name, c.price as price
+from Category c
+
+SELECT con.name AS constraint_name
+FROM sys.check_constraints AS con
+JOIN sys.tables AS t ON con.parent_object_id = t.object_id
+WHERE t.name = 'Category';
+
+ALTER TABLE Category
+DROP CONSTRAINT CK__Category__Name__208CD6FA;
+
+
 --document
-select distinct dt.Name
+select  dt.Name as name, d.id as id_Document
 from Document d INNER JOIN Document_Type dt ON (d.Document_Type_ID=dt.ID)
 
 --passenger
-select distinct p.Name AS name, pt.Name as type
+select  p.Name AS name, pt.Name as type
 from Person p INNER JOIN Passenger ps ON (p.ID = ps.Person_ID)
 			  INNER JOIN Passenger_Type pt ON (ps.Passenger_Type_ID = pt.ID)
 
+select p.Name AS name,p.ID as id_passenger, pt.Name as type
+from Person p INNER JOIN Passenger ps ON (p.ID = ps.Person_ID)
+			  INNER JOIN Passenger_Type pt ON (ps.Passenger_Type_ID = pt.ID)
+order by p.ID
+			  select * from Passenger
 -- Ticket
 SELECT 
     Passenger_ID,
@@ -135,9 +152,10 @@ GROUP BY
 
 
 SELECT 
+	t.Number as ticketNumber,
     dc.id AS category_id,
     dp.id AS passenger_id,
-    dd.id AS document_id,
+    d.id AS document_id,
     COUNT(t.Ticketing_Code) AS cantidadTickets,
     (COUNT(t.Ticketing_Code) * 100.0 / (SELECT COUNT(*) FROM Ticket)) AS porcentajeTickets
 FROM 
@@ -148,7 +166,8 @@ FROM
     INNER JOIN Person p ON ps.Person_ID = p.ID
     INNER JOIN ticketMart.dbo.dimPassenger dp ON p.Name = dp.name
     INNER JOIN Document d ON t.Document_ID = d.id
-    INNER JOIN Document_Type dt ON d.Document_Type_ID = dt.ID
-    INNER JOIN ticketMart.dbo.dimDocument dd ON dt.Name = dd.type
 GROUP BY 
-    dc.id, dp.id, dd.id;
+    dc.id, dp.id, d.id, t.Number;
+
+
+	select * from Ticket where Number=79355

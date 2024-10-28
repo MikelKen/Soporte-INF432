@@ -65,7 +65,7 @@ begin
     create table Airplane(
         Registration_Number int identity(1,1) primary key,
         Begin_of_Operation date not null check (Begin_of_Operation <= GETDATE()),
-        Status varchar(15) Default 'Active' check (Status IN ('Active', 'Inactive', 'Maintenance')),
+        Status varchar(15) Default 'Active' not null check (Status IN ('Active', 'Inactive', 'Maintenance')),
         Plane_Model_ID int null,
         foreign key (Plane_Model_ID) references Plane_Model(ID) ON DELETE SET NULL
     );
@@ -96,9 +96,9 @@ if object_id('Seat', 'U') is null
 begin
     create table Seat(
         ID int identity(1,1) primary key,
-        Size varchar(10) default 'Medium' check (Size IN ('Small', 'Medium', 'Large')),
+        Size varchar(10) default 'Medium'not null check (Size IN ('Small', 'Medium', 'Large')),
         Number int not null unique check (Number > 0),
-        Location varchar(30) check (Location IN ('Window','Aisle','Middle','Left','Right')),
+        Location varchar(30) not null check (Location IN ('Window','Aisle','Middle','Left','Right')),
         Plane_Model_ID int not null,
         foreign key (Plane_Model_ID) references Plane_Model(ID) ON DELETE NO ACTION
     );
@@ -129,7 +129,7 @@ begin
         Gate tinyint not null check (Gate BETWEEN 1 AND 255),
         Check_In_Counter bit not null,
 		DepartureTime dateTime not null,  -- Fecha y hora de salida
-		ArrivalTime dateTime,  --Fecha y hora de llegada 
+		ArrivalTime dateTime not null,  --Fecha y hora de llegada 
         Flight_Number_id int not null,
 		Plane_ID int not null,
 		Airline_ID int not null,
@@ -176,7 +176,7 @@ begin
         Name varchar(50) not null unique check (len(Name) > 5),
 		Phone varchar(20) not null,
 		Email varchar(50) not null check (len(Email) > 10),
-		Type varchar(50)  default 'Passenger' check (
+		Type varchar(50)  default 'Passenger' not null check (
             Type like '%Passenger%' or 
             Type like '%Crew Member%' or 
             Type like '%Customer%' or
@@ -209,7 +209,7 @@ begin
         ID int identity(1,1) primary key,
         Loyalty_Points int not null,
 		Person_ID int not null,
-		TypeCustomer Varchar(50) check (TypeCustomer IN ('Natural Customer ','Legal Customer')),
+		TypeCustomer Varchar(50) not null check (TypeCustomer IN ('Natural Customer ','Legal Customer')),
 		foreign key (Person_ID) references Person(ID) ON DELETE NO ACTION,
     );
 end
@@ -363,6 +363,16 @@ begin
 end
 go
 
+/*
+SELECT con.name AS constraint_name
+FROM sys.check_constraints AS con
+JOIN sys.tables AS t ON con.parent_object_id = t.object_id
+WHERE t.name = 'Category';
+
+ALTER TABLE Category
+DROP CONSTRAINT NombreDelCheckConstraint;
+
+*/
 ---------------------------------------------------------------------
 
 if object_id('Ticket', 'U') is null
@@ -472,7 +482,7 @@ begin
 		Length decimal(5,2) not null, -- Largo en cm
         Width decimal(5,2) not null,  -- Ancho en cm
         Height decimal(5,2) not null, -- Alto en cm
-		BaggageType varchar(50) check (BaggageType in ('Maleta','Bolsa de mano', 'Equipaje Deportivo')),
+		BaggageType varchar(50) not null check (BaggageType in ('Maleta','Bolsa de mano', 'Equipaje Deportivo')),
 		ExtraWeight decimal(10,2),
 		Coupon_ID int not null,
 		foreign key (Coupon_ID) references Coupon(ID)
@@ -510,8 +520,7 @@ go
 
 
 
-
-
+select * from Category
 
 
 

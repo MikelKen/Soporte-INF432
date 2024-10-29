@@ -1,10 +1,10 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\DCDS\\Documents\\GitHub\\Soporte-INF432\\integration service\\hechoTicket\\",
+  "WorkspaceRootPath": "C:\\Users\\DCDS\\Desktop\\hechoAerolinea\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E6A0FB3F-D54F-4174-A3F2-8A54B0EA6191}|hechoTicket\\hechoTicket.dtproj|C:\\Users\\DCDS\\Documents\\GitHub\\Soporte-INF432\\integration service\\hechoTicket\\hechoTicket\\Package.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design",
-      "RelativeMoniker": "D:0:0:{E6A0FB3F-D54F-4174-A3F2-8A54B0EA6191}|hechoTicket\\hechoTicket.dtproj|solutionrelative:hechoTicket\\Package.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design"
+      "AbsoluteMoniker": "D:0:0:{3F91DB2D-EBAC-4D27-93E8-03F16F6E77E7}|hechoAerolinea\\hechoAerolinea.dtproj|C:\\Users\\DCDS\\Desktop\\hechoAerolinea\\hechoAerolinea\\Package.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design",
+      "RelativeMoniker": "D:0:0:{3F91DB2D-EBAC-4D27-93E8-03F16F6E77E7}|hechoAerolinea\\hechoAerolinea.dtproj|solutionrelative:hechoAerolinea\\Package.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design"
     }
   ],
   "DocumentGroupContainers": [
@@ -20,12 +20,12 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Package.dtsx [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\DCDS\\Documents\\GitHub\\Soporte-INF432\\integration service\\hechoTicket\\hechoTicket\\Package.dtsx",
-              "RelativeDocumentMoniker": "hechoTicket\\Package.dtsx",
-              "ToolTip": "C:\\Users\\DCDS\\Documents\\GitHub\\Soporte-INF432\\integration service\\hechoTicket\\hechoTicket\\Package.dtsx [Dise\u00F1o]",
-              "RelativeToolTip": "hechoTicket\\Package.dtsx [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\DCDS\\Desktop\\hechoAerolinea\\hechoAerolinea\\Package.dtsx",
+              "RelativeDocumentMoniker": "hechoAerolinea\\Package.dtsx",
+              "ToolTip": "C:\\Users\\DCDS\\Desktop\\hechoAerolinea\\hechoAerolinea\\Package.dtsx [Dise\u00F1o]",
+              "RelativeToolTip": "hechoAerolinea\\Package.dtsx [Dise\u00F1o]",
               "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFTSURBVDhPY2QAgqUbD/8H0bjAu49fGG7fvZ8\u002BqTFrFlQIAv7/h\u002BgDGfDv71\u002BcePKi7f9NPZP/59VPSwNrQAJMUJogaK0pZDh\u002B6uxMdEOINqC6pR9MgwwBM6CABUqDQcWCa1AWA0NHghac//k9G0NcZAiYvWj5GjANAxgu\u002BC2rAcYwAGJz6NkxZEe7QUVQAYYBrI9vgDEMwPhffkEFsAFCsfDp\u002B9//D98jYgOqDQwIBiLI5vc/GBjefP/PwMLGARVFABQDQIEGwyCArPnNdwaGf1iSG85ARNb8\u002BhsDwweQAb\u002BBAmgAZyAia371lYHh7MnrDI9/yzA4hhQwlM29/J/BeCbYPSjpABT3MJvf//jP8BZoK4j95TfE7SD5hy\u002B\u002BMFy5846hCyyCZMDUpbugLFxABq75zPU3UDGoAaDchp7C0AHI6TDNyAaAszNRAOpnFHA2nREAjMTvHMVXB8cAAAAASUVORK5CYII=",
-              "WhenOpened": "2024-10-27T18:53:43.7Z",
+              "WhenOpened": "2024-10-29T18:41:24.84Z",
               "EditorCaption": " [Dise\u00F1o]"
             }
           ]

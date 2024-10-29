@@ -1,0 +1,3865 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/29/2024 1:49:53 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="Y2KTORREZ"
+  DTS:CreatorName="Y2KTORREZ\DCDS"
+  DTS:DTSID="{07F57B38-E078-487C-8F36-03FAA7D71D0A}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="3082"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{5AF76DF3-44A4-43E6-BD1C-60F8A52045F2}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Customer"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarea Flujo de datos"
+      DTS:DTSID="{0F3AB71A-DFF6-4CB3-90AC-658E33959530}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Customer"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Customer\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="División condicional;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Enruta filas de datos a diferentes salidas según el contenido de los datos. Se usan condiciones (expresiones de SSIS) para especificar las filas que se van a enrutar. Por ejemplo, se usa para separar los registros que deben limpiarse de los registros listos para ser cargados o para enrutar solamente un subconjunto de registros."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Customer\Conditional Split.Inputs[Entrada de división condicional]"
+                  description="Entrada en la transformación División condicional"
+                  name="Entrada de división condicional">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Customer\Conditional Split.Outputs[Salida predeterminada de división condicional]"
+                  description="Salida predeterminada de la transformación División condicional"
+                  exclusionGroup="1"
+                  name="Salida predeterminada de división condicional"
+                  synchronousInputId="Package\Customer\Conditional Split.Inputs[Entrada de división condicional]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Customer\Conditional Split.Outputs[Salida de error de división condicional]"
+                  description="Salida de error de la transformación División condicional"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de división condicional"
+                  synchronousInputId="Package\Customer\Conditional Split.Inputs[Entrada de división condicional]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Customer\Conditional Split.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Customer\Conditional Split.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Customer\Conditional Split.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Customer\Conditional Split.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Customer\Destino de ADO NET"
+              componentClassID="Microsoft.SSISODBCDst"
+              contactInfo="Destino de ODBC;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Destino de ODBC"
+              name="Destino de ADO NET"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla que debe recuperarse."
+                  expressionType="Notify"
+                  name="TableName"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas recuperadas por lote."
+                  expressionType="Notify"
+                  name="BatchSize">1000</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de filas insertadas en la misma transacción."
+                  expressionType="Notify"
+                  name="TransactionSize">1000</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determina la asignación del tamaño de los fragmentos de las columnas LOB"
+                  expressionType="Notify"
+                  name="LobChunkSize">32768</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos que se debe esperar para que una instrucción SQL se ejecute antes de volver a la aplicación."
+                  expressionType="Notify"
+                  name="StatementTimeout">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Página de códigos que se usará cuando la información de la página de códigos no esté disponible en el origen de datos."
+                  expressionType="Notify"
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Int32"
+                  description="Método usado para insertar datos. Los valores posibles son &quot;Batch&quot; o &quot;Row by row&quot;."
+                  expressionType="Notify"
+                  name="InsertMethod">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Tipo de datos ODBC C para el enlace de datos numéricos."
+                  expressionType="Notify"
+                  name="BindNumericAs">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determina la manera en la que el componente enlazará columnas de tipos de cadena byte o multibyte (es decir, SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). Las opciones son Unicode (SQL_C_WCHAR) y ANSI (SQL_C_CHAR)."
+                  expressionType="Notify"
+                  name="BindCharColumnsAs">0</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Customer\Destino de ADO NET.Connections[ODBCConnection]"
+                  description="Conexión de runtime de ODBC usada para acceder a la base de datos."
+                  name="ODBCConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Customer\Destino de ADO NET.Inputs[Entrada de destino de ODBC]"
+                  errorOrTruncationOperation="Insertar"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de ODBC"
+                  truncationRowDisposition="FailComponent">
+                  <externalMetadataColumns
+                    isUsed="True" />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Customer\Destino de ADO NET.Outputs[Salida de error de destino de ODBC]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de ODBC"
+                  synchronousInputId="Package\Customer\Destino de ADO NET.Inputs[Entrada de destino de ODBC]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Customer\Destino de ADO NET.Outputs[Salida de error de destino de ODBC].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Customer\Destino de ADO NET.Outputs[Salida de error de destino de ODBC].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Customer\Destino de ADO NET.Outputs[Salida de error de destino de ODBC].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Customer\Destino de ADO NET.Outputs[Salida de error de destino de ODBC].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Customer\Merge Join"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Combinación de mezcla;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Combina dos flujos de datos ordenados en uno solo mediante la combinación FULL, LEFT o INNER. Se recomienda esta transformación cuando se pueden ordenar los flujos de datos en sus orígenes."
+              name="Merge Join"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el tipo de combinación que se debe realizar."
+                  name="JoinType"
+                  typeConverter="JoinType">2</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número de columnas de la clave de ordenación."
+                  name="NumKeyColumns">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si los valores NULL se tratan como valores iguales."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indica la cantidad máxima solicitada de búferes por entrada antes del bloqueo."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Customer\Merge Join.Inputs[Entrada izquierda de combinación de mezcla]"
+                  hasSideEffects="true"
+                  name="Entrada izquierda de combinación de mezcla">
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Customer\Merge Join.Inputs[Entrada derecha de combinación de mezcla]"
+                  hasSideEffects="true"
+                  name="Entrada derecha de combinación de mezcla">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Customer\Merge Join.Outputs[Salida de combinación de mezcla]"
+                  name="Salida de combinación de mezcla">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Customer\Origen_Customer_Mart"
+              componentClassID="Microsoft.SSISODBCSrc"
+              contactInfo="Origen ODBC;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Origen ODBC"
+              name="Origen_Customer_Mart"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla que debe recuperarse."
+                  expressionType="Notify"
+                  name="TableName"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas recuperadas por lote."
+                  expressionType="Notify"
+                  name="BatchSize">1000</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determina la asignación del tamaño de los fragmentos de las columnas LOB"
+                  expressionType="Notify"
+                  name="LobChunkSize">32768</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determina la manera en la que el componente expone las columnas CHAR. Si es False, las columnas CHAR se exponen como cadenas byte o multibyte (DT_STR); si es True, las columnas CHAR se exponen como cadenas de tipo ancho (DT_WSTR)."
+                  expressionType="Notify"
+                  name="ExposeCharColumnsAsUnicode">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos que se debe esperar para que una instrucción SQL se ejecute antes de volver a la aplicación."
+                  expressionType="Notify"
+                  name="StatementTimeout">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Página de códigos que se usará cuando la información de la página de códigos no esté disponible en el origen de datos."
+                  expressionType="Notify"
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Int32"
+                  description="Método usado para recuperar datos."
+                  expressionType="Notify"
+                  name="FetchMethod">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Tipo de datos ODBC C para el enlace de datos numéricos."
+                  expressionType="Notify"
+                  name="BindNumericAs">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determina la manera en la que el componente enlazará columnas de tipos de cadena byte o multibyte (es decir, SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). Las opciones son Unicode (SQL_C_WCHAR) y ANSI (SQL_C_CHAR)."
+                  expressionType="Notify"
+                  name="BindCharColumnsAs">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Modo usado para obtener acceso a la base de datos."
+                  expressionType="Notify"
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Customer\Origen_Customer_Mart.Connections[ODBCConnection]"
+                  description="Conexión de runtime de ODBC usada para acceder a la base de datos."
+                  name="ODBCConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Customer\Origen_Customer_Mart.Outputs[Salida de origen de ODBC]"
+                  errorRowDisposition="FailComponent"
+                  name="Salida de origen de ODBC"
+                  truncationRowDisposition="FailComponent">
+                  <externalMetadataColumns
+                    isUsed="True" />
+                </output>
+                <output
+                  refId="Package\Customer\Origen_Customer_Mart.Outputs[Salida de error de origen de ODBC]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ODBC">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Customer\Origen_Customer_Mart.Outputs[Salida de error de origen de ODBC].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Customer\Origen_Customer_Mart.Outputs[Salida de error de origen de ODBC].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Customer\Origen_Customer_Mart.Outputs[Salida de error de origen de ODBC].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Customer\Origen_Customer_Mart.Outputs[Salida de error de origen de ODBC].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Customer\Origin_Customer"
+              componentClassID="Microsoft.SSISODBCSrc"
+              contactInfo="Origen ODBC;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Origen ODBC"
+              name="Origin_Customer"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla que debe recuperarse."
+                  expressionType="Notify"
+                  name="TableName"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas recuperadas por lote."
+                  expressionType="Notify"
+                  name="BatchSize">1000</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determina la asignación del tamaño de los fragmentos de las columnas LOB"
+                  expressionType="Notify"
+                  name="LobChunkSize">32768</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determina la manera en la que el componente expone las columnas CHAR. Si es False, las columnas CHAR se exponen como cadenas byte o multibyte (DT_STR); si es True, las columnas CHAR se exponen como cadenas de tipo ancho (DT_WSTR)."
+                  expressionType="Notify"
+                  name="ExposeCharColumnsAsUnicode">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos que se debe esperar para que una instrucción SQL se ejecute antes de volver a la aplicación."
+                  expressionType="Notify"
+                  name="StatementTimeout">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Página de códigos que se usará cuando la información de la página de códigos no esté disponible en el origen de datos."
+                  expressionType="Notify"
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Int32"
+                  description="Método usado para recuperar datos."
+                  expressionType="Notify"
+                  name="FetchMethod">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Tipo de datos ODBC C para el enlace de datos numéricos."
+                  expressionType="Notify"
+                  name="BindNumericAs">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determina la manera en la que el componente enlazará columnas de tipos de cadena byte o multibyte (es decir, SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). Las opciones son Unicode (SQL_C_WCHAR) y ANSI (SQL_C_CHAR)."
+                  expressionType="Notify"
+                  name="BindCharColumnsAs">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Modo usado para obtener acceso a la base de datos."
+                  expressionType="Notify"
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Customer\Origin_Customer.Connections[ODBCConnection]"
+                  description="Conexión de runtime de ODBC usada para acceder a la base de datos."
+                  name="ODBCConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Customer\Origin_Customer.Outputs[Salida de origen de ODBC]"
+                  errorRowDisposition="FailComponent"
+                  name="Salida de origen de ODBC"
+                  truncationRowDisposition="FailComponent">
+                  <externalMetadataColumns
+                    isUsed="True" />
+                </output>
+                <output
+                  refId="Package\Customer\Origin_Customer.Outputs[Salida de error de origen de ODBC]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ODBC">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Customer\Origin_Customer.Outputs[Salida de error de origen de ODBC].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Customer\Origin_Customer.Outputs[Salida de error de origen de ODBC].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Customer\Origin_Customer.Outputs[Salida de error de origen de ODBC].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Customer\Origin_Customer.Outputs[Salida de error de origen de ODBC].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Customer\Sort1"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Ordenar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Ordena los datos de entrada de manera ascendente o descendente cuando no es posible ordenarlos en su origen. Por ejemplo, se ordenan los datos de ventas por 'id. de cliente' antes de que se escriban en un archivo plano y se entreguen a otro departamento. Nota: no se recomienda realizar esta transformación para grandes flujos de datos."
+              name="Sort1"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si la transformación Ordenar quita filas con valores de ordenación duplicados."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número máximo de subprocesos que se deben usar para la ordenación."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Customer\Sort1.Inputs[Entrada de ordenación]"
+                  name="Entrada de ordenación">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Customer\Sort1.Outputs[Salida de ordenación]"
+                  isSorted="true"
+                  name="Salida de ordenación">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Customer\Sort2"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Ordenar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Ordena los datos de entrada de manera ascendente o descendente cuando no es posible ordenarlos en su origen. Por ejemplo, se ordenan los datos de ventas por 'id. de cliente' antes de que se escriban en un archivo plano y se entreguen a otro departamento. Nota: no se recomienda realizar esta transformación para grandes flujos de datos."
+              name="Sort2"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si la transformación Ordenar quita filas con valores de ordenación duplicados."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número máximo de subprocesos que se deben usar para la ordenación."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Customer\Sort2.Inputs[Entrada de ordenación]"
+                  name="Entrada de ordenación">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Customer\Sort2.Outputs[Salida de ordenación]"
+                  isSorted="true"
+                  name="Salida de ordenación">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Customer.Paths[Salida de combinación de mezcla]"
+              endId="Package\Customer\Conditional Split.Inputs[Entrada de división condicional]"
+              name="Salida de combinación de mezcla"
+              startId="Package\Customer\Merge Join.Outputs[Salida de combinación de mezcla]" />
+            <path
+              refId="Package\Customer.Paths[Salida de ordenación]"
+              endId="Package\Customer\Merge Join.Inputs[Entrada izquierda de combinación de mezcla]"
+              name="Salida de ordenación"
+              startId="Package\Customer\Sort1.Outputs[Salida de ordenación]" />
+            <path
+              refId="Package\Customer.Paths[Salida de ordenación1]"
+              endId="Package\Customer\Merge Join.Inputs[Entrada derecha de combinación de mezcla]"
+              name="Salida de ordenación"
+              startId="Package\Customer\Sort2.Outputs[Salida de ordenación]" />
+            <path
+              refId="Package\Customer.Paths[Salida de origen de ODBC]"
+              endId="Package\Customer\Sort1.Inputs[Entrada de ordenación]"
+              name="Salida de origen de ODBC"
+              startId="Package\Customer\Origin_Customer.Outputs[Salida de origen de ODBC]" />
+            <path
+              refId="Package\Customer.Paths[Salida de origen de ODBC1]"
+              endId="Package\Customer\Sort2.Inputs[Entrada de ordenación]"
+              name="Salida de origen de ODBC"
+              startId="Package\Customer\Origen_Customer_Mart.Outputs[Salida de origen de ODBC]" />
+            <path
+              refId="Package\Customer.Paths[Salida predeterminada de división condicional]"
+              endId="Package\Customer\Destino de ADO NET.Inputs[Entrada de destino de ODBC]"
+              name="Salida predeterminada de división condicional"
+              startId="Package\Customer\Conditional Split.Outputs[Salida predeterminada de división condicional]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Payment"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarea Flujo de datos"
+      DTS:DTSID="{61838D0F-A402-46C1-919C-D432E1B3D752}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Payment"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Payment\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="División condicional;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Enruta filas de datos a diferentes salidas según el contenido de los datos. Se usan condiciones (expresiones de SSIS) para especificar las filas que se van a enrutar. Por ejemplo, se usa para separar los registros que deben limpiarse de los registros listos para ser cargados o para enrutar solamente un subconjunto de registros."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Payment\Conditional Split.Inputs[Entrada de división condicional]"
+                  description="Entrada en la transformación División condicional"
+                  name="Entrada de división condicional">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Payment\Conditional Split.Outputs[Salida predeterminada de división condicional]"
+                  description="Salida predeterminada de la transformación División condicional"
+                  exclusionGroup="1"
+                  name="Salida predeterminada de división condicional"
+                  synchronousInputId="Package\Payment\Conditional Split.Inputs[Entrada de división condicional]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Payment\Conditional Split.Outputs[Salida de error de división condicional]"
+                  description="Salida de error de la transformación División condicional"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de división condicional"
+                  synchronousInputId="Package\Payment\Conditional Split.Inputs[Entrada de división condicional]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Payment\Conditional Split.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Payment\Conditional Split.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Payment\Conditional Split.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Payment\Conditional Split.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Payment\Destino de ADO NET"
+              componentClassID="Microsoft.SSISODBCDst"
+              contactInfo="Destino de ODBC;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Destino de ODBC"
+              name="Destino de ADO NET"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla que debe recuperarse."
+                  expressionType="Notify"
+                  name="TableName"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas recuperadas por lote."
+                  expressionType="Notify"
+                  name="BatchSize">1000</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de filas insertadas en la misma transacción."
+                  expressionType="Notify"
+                  name="TransactionSize">1000</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determina la asignación del tamaño de los fragmentos de las columnas LOB"
+                  expressionType="Notify"
+                  name="LobChunkSize">32768</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos que se debe esperar para que una instrucción SQL se ejecute antes de volver a la aplicación."
+                  expressionType="Notify"
+                  name="StatementTimeout">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Página de códigos que se usará cuando la información de la página de códigos no esté disponible en el origen de datos."
+                  expressionType="Notify"
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Int32"
+                  description="Método usado para insertar datos. Los valores posibles son &quot;Batch&quot; o &quot;Row by row&quot;."
+                  expressionType="Notify"
+                  name="InsertMethod">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Tipo de datos ODBC C para el enlace de datos numéricos."
+                  expressionType="Notify"
+                  name="BindNumericAs">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determina la manera en la que el componente enlazará columnas de tipos de cadena byte o multibyte (es decir, SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). Las opciones son Unicode (SQL_C_WCHAR) y ANSI (SQL_C_CHAR)."
+                  expressionType="Notify"
+                  name="BindCharColumnsAs">0</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Payment\Destino de ADO NET.Connections[ODBCConnection]"
+                  description="Conexión de runtime de ODBC usada para acceder a la base de datos."
+                  name="ODBCConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Payment\Destino de ADO NET.Inputs[Entrada de destino de ODBC]"
+                  errorOrTruncationOperation="Insertar"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de ODBC"
+                  truncationRowDisposition="FailComponent">
+                  <externalMetadataColumns
+                    isUsed="True" />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Payment\Destino de ADO NET.Outputs[Salida de error de destino de ODBC]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de ODBC"
+                  synchronousInputId="Package\Payment\Destino de ADO NET.Inputs[Entrada de destino de ODBC]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Payment\Destino de ADO NET.Outputs[Salida de error de destino de ODBC].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Payment\Destino de ADO NET.Outputs[Salida de error de destino de ODBC].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Payment\Destino de ADO NET.Outputs[Salida de error de destino de ODBC].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Payment\Destino de ADO NET.Outputs[Salida de error de destino de ODBC].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Payment\Merge Join"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Combinación de mezcla;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Combina dos flujos de datos ordenados en uno solo mediante la combinación FULL, LEFT o INNER. Se recomienda esta transformación cuando se pueden ordenar los flujos de datos en sus orígenes."
+              name="Merge Join"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el tipo de combinación que se debe realizar."
+                  name="JoinType"
+                  typeConverter="JoinType">2</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número de columnas de la clave de ordenación."
+                  name="NumKeyColumns">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si los valores NULL se tratan como valores iguales."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indica la cantidad máxima solicitada de búferes por entrada antes del bloqueo."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Payment\Merge Join.Inputs[Entrada izquierda de combinación de mezcla]"
+                  hasSideEffects="true"
+                  name="Entrada izquierda de combinación de mezcla">
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Payment\Merge Join.Inputs[Entrada derecha de combinación de mezcla]"
+                  hasSideEffects="true"
+                  name="Entrada derecha de combinación de mezcla">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Payment\Merge Join.Outputs[Salida de combinación de mezcla]"
+                  name="Salida de combinación de mezcla">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Payment\Origen_Payment_Mart"
+              componentClassID="Microsoft.SSISODBCSrc"
+              contactInfo="Origen ODBC;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Origen ODBC"
+              name="Origen_Payment_Mart"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla que debe recuperarse."
+                  expressionType="Notify"
+                  name="TableName"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas recuperadas por lote."
+                  expressionType="Notify"
+                  name="BatchSize">1000</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determina la asignación del tamaño de los fragmentos de las columnas LOB"
+                  expressionType="Notify"
+                  name="LobChunkSize">32768</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determina la manera en la que el componente expone las columnas CHAR. Si es False, las columnas CHAR se exponen como cadenas byte o multibyte (DT_STR); si es True, las columnas CHAR se exponen como cadenas de tipo ancho (DT_WSTR)."
+                  expressionType="Notify"
+                  name="ExposeCharColumnsAsUnicode">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos que se debe esperar para que una instrucción SQL se ejecute antes de volver a la aplicación."
+                  expressionType="Notify"
+                  name="StatementTimeout">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Página de códigos que se usará cuando la información de la página de códigos no esté disponible en el origen de datos."
+                  expressionType="Notify"
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Int32"
+                  description="Método usado para recuperar datos."
+                  expressionType="Notify"
+                  name="FetchMethod">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Tipo de datos ODBC C para el enlace de datos numéricos."
+                  expressionType="Notify"
+                  name="BindNumericAs">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determina la manera en la que el componente enlazará columnas de tipos de cadena byte o multibyte (es decir, SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). Las opciones son Unicode (SQL_C_WCHAR) y ANSI (SQL_C_CHAR)."
+                  expressionType="Notify"
+                  name="BindCharColumnsAs">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Modo usado para obtener acceso a la base de datos."
+                  expressionType="Notify"
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Payment\Origen_Payment_Mart.Connections[ODBCConnection]"
+                  description="Conexión de runtime de ODBC usada para acceder a la base de datos."
+                  name="ODBCConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Payment\Origen_Payment_Mart.Outputs[Salida de origen de ODBC]"
+                  errorRowDisposition="FailComponent"
+                  name="Salida de origen de ODBC"
+                  truncationRowDisposition="FailComponent">
+                  <externalMetadataColumns
+                    isUsed="True" />
+                </output>
+                <output
+                  refId="Package\Payment\Origen_Payment_Mart.Outputs[Salida de error de origen de ODBC]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ODBC">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Payment\Origen_Payment_Mart.Outputs[Salida de error de origen de ODBC].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Payment\Origen_Payment_Mart.Outputs[Salida de error de origen de ODBC].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Payment\Origen_Payment_Mart.Outputs[Salida de error de origen de ODBC].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Payment\Origen_Payment_Mart.Outputs[Salida de error de origen de ODBC].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Payment\Origin_Payment"
+              componentClassID="Microsoft.SSISODBCSrc"
+              contactInfo="Origen ODBC;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Origen ODBC"
+              name="Origin_Payment"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla que debe recuperarse."
+                  expressionType="Notify"
+                  name="TableName"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas recuperadas por lote."
+                  expressionType="Notify"
+                  name="BatchSize">1000</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determina la asignación del tamaño de los fragmentos de las columnas LOB"
+                  expressionType="Notify"
+                  name="LobChunkSize">32768</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determina la manera en la que el componente expone las columnas CHAR. Si es False, las columnas CHAR se exponen como cadenas byte o multibyte (DT_STR); si es True, las columnas CHAR se exponen como cadenas de tipo ancho (DT_WSTR)."
+                  expressionType="Notify"
+                  name="ExposeCharColumnsAsUnicode">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos que se debe esperar para que una instrucción SQL se ejecute antes de volver a la aplicación."
+                  expressionType="Notify"
+                  name="StatementTimeout">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Página de códigos que se usará cuando la información de la página de códigos no esté disponible en el origen de datos."
+                  expressionType="Notify"
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Int32"
+                  description="Método usado para recuperar datos."
+                  expressionType="Notify"
+                  name="FetchMethod">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Tipo de datos ODBC C para el enlace de datos numéricos."
+                  expressionType="Notify"
+                  name="BindNumericAs">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determina la manera en la que el componente enlazará columnas de tipos de cadena byte o multibyte (es decir, SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). Las opciones son Unicode (SQL_C_WCHAR) y ANSI (SQL_C_CHAR)."
+                  expressionType="Notify"
+                  name="BindCharColumnsAs">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Modo usado para obtener acceso a la base de datos."
+                  expressionType="Notify"
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Payment\Origin_Payment.Connections[ODBCConnection]"
+                  description="Conexión de runtime de ODBC usada para acceder a la base de datos."
+                  name="ODBCConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Payment\Origin_Payment.Outputs[Salida de origen de ODBC]"
+                  errorRowDisposition="FailComponent"
+                  name="Salida de origen de ODBC"
+                  truncationRowDisposition="FailComponent">
+                  <externalMetadataColumns
+                    isUsed="True" />
+                </output>
+                <output
+                  refId="Package\Payment\Origin_Payment.Outputs[Salida de error de origen de ODBC]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ODBC">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Payment\Origin_Payment.Outputs[Salida de error de origen de ODBC].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Payment\Origin_Payment.Outputs[Salida de error de origen de ODBC].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Payment\Origin_Payment.Outputs[Salida de error de origen de ODBC].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Payment\Origin_Payment.Outputs[Salida de error de origen de ODBC].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Payment\Sort1"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Ordenar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Ordena los datos de entrada de manera ascendente o descendente cuando no es posible ordenarlos en su origen. Por ejemplo, se ordenan los datos de ventas por 'id. de cliente' antes de que se escriban en un archivo plano y se entreguen a otro departamento. Nota: no se recomienda realizar esta transformación para grandes flujos de datos."
+              name="Sort1"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si la transformación Ordenar quita filas con valores de ordenación duplicados."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número máximo de subprocesos que se deben usar para la ordenación."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Payment\Sort1.Inputs[Entrada de ordenación]"
+                  name="Entrada de ordenación">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Payment\Sort1.Outputs[Salida de ordenación]"
+                  isSorted="true"
+                  name="Salida de ordenación">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Payment\Sort2"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Ordenar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Ordena los datos de entrada de manera ascendente o descendente cuando no es posible ordenarlos en su origen. Por ejemplo, se ordenan los datos de ventas por 'id. de cliente' antes de que se escriban en un archivo plano y se entreguen a otro departamento. Nota: no se recomienda realizar esta transformación para grandes flujos de datos."
+              name="Sort2"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si la transformación Ordenar quita filas con valores de ordenación duplicados."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número máximo de subprocesos que se deben usar para la ordenación."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Payment\Sort2.Inputs[Entrada de ordenación]"
+                  name="Entrada de ordenación">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Payment\Sort2.Outputs[Salida de ordenación]"
+                  isSorted="true"
+                  name="Salida de ordenación">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Payment.Paths[Salida de combinación de mezcla]"
+              endId="Package\Payment\Conditional Split.Inputs[Entrada de división condicional]"
+              name="Salida de combinación de mezcla"
+              startId="Package\Payment\Merge Join.Outputs[Salida de combinación de mezcla]" />
+            <path
+              refId="Package\Payment.Paths[Salida de ordenación]"
+              endId="Package\Payment\Merge Join.Inputs[Entrada izquierda de combinación de mezcla]"
+              name="Salida de ordenación"
+              startId="Package\Payment\Sort1.Outputs[Salida de ordenación]" />
+            <path
+              refId="Package\Payment.Paths[Salida de ordenación1]"
+              endId="Package\Payment\Merge Join.Inputs[Entrada derecha de combinación de mezcla]"
+              name="Salida de ordenación"
+              startId="Package\Payment\Sort2.Outputs[Salida de ordenación]" />
+            <path
+              refId="Package\Payment.Paths[Salida de origen de ODBC]"
+              endId="Package\Payment\Sort1.Inputs[Entrada de ordenación]"
+              name="Salida de origen de ODBC"
+              startId="Package\Payment\Origin_Payment.Outputs[Salida de origen de ODBC]" />
+            <path
+              refId="Package\Payment.Paths[Salida de origen de ODBC1]"
+              endId="Package\Payment\Sort2.Inputs[Entrada de ordenación]"
+              name="Salida de origen de ODBC"
+              startId="Package\Payment\Origen_Payment_Mart.Outputs[Salida de origen de ODBC]" />
+            <path
+              refId="Package\Payment.Paths[Salida predeterminada de división condicional]"
+              endId="Package\Payment\Destino de ADO NET.Inputs[Entrada de destino de ODBC]"
+              name="Salida predeterminada de división condicional"
+              startId="Package\Payment\Conditional Split.Outputs[Salida predeterminada de división condicional]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Reserve"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarea Flujo de datos"
+      DTS:DTSID="{6F89DB98-46CD-45B9-915A-C151245D37FF}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Reserve"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Reserve\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="División condicional;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Enruta filas de datos a diferentes salidas según el contenido de los datos. Se usan condiciones (expresiones de SSIS) para especificar las filas que se van a enrutar. Por ejemplo, se usa para separar los registros que deben limpiarse de los registros listos para ser cargados o para enrutar solamente un subconjunto de registros."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Reserve\Conditional Split.Inputs[Entrada de división condicional]"
+                  description="Entrada en la transformación División condicional"
+                  name="Entrada de división condicional">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Reserve\Conditional Split.Outputs[Salida predeterminada de división condicional]"
+                  description="Salida predeterminada de la transformación División condicional"
+                  exclusionGroup="1"
+                  name="Salida predeterminada de división condicional"
+                  synchronousInputId="Package\Reserve\Conditional Split.Inputs[Entrada de división condicional]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Reserve\Conditional Split.Outputs[Salida de error de división condicional]"
+                  description="Salida de error de la transformación División condicional"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de división condicional"
+                  synchronousInputId="Package\Reserve\Conditional Split.Inputs[Entrada de división condicional]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Reserve\Conditional Split.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Reserve\Conditional Split.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Reserve\Conditional Split.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Reserve\Conditional Split.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Reserve\Destino de ADO NET"
+              componentClassID="Microsoft.SSISODBCDst"
+              contactInfo="Destino de ODBC;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Destino de ODBC"
+              name="Destino de ADO NET"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla que debe recuperarse."
+                  expressionType="Notify"
+                  name="TableName"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas recuperadas por lote."
+                  expressionType="Notify"
+                  name="BatchSize">1000</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de filas insertadas en la misma transacción."
+                  expressionType="Notify"
+                  name="TransactionSize">1000</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determina la asignación del tamaño de los fragmentos de las columnas LOB"
+                  expressionType="Notify"
+                  name="LobChunkSize">32768</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos que se debe esperar para que una instrucción SQL se ejecute antes de volver a la aplicación."
+                  expressionType="Notify"
+                  name="StatementTimeout">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Página de códigos que se usará cuando la información de la página de códigos no esté disponible en el origen de datos."
+                  expressionType="Notify"
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Int32"
+                  description="Método usado para insertar datos. Los valores posibles son &quot;Batch&quot; o &quot;Row by row&quot;."
+                  expressionType="Notify"
+                  name="InsertMethod">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Tipo de datos ODBC C para el enlace de datos numéricos."
+                  expressionType="Notify"
+                  name="BindNumericAs">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determina la manera en la que el componente enlazará columnas de tipos de cadena byte o multibyte (es decir, SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). Las opciones son Unicode (SQL_C_WCHAR) y ANSI (SQL_C_CHAR)."
+                  expressionType="Notify"
+                  name="BindCharColumnsAs">0</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Reserve\Destino de ADO NET.Connections[ODBCConnection]"
+                  description="Conexión de runtime de ODBC usada para acceder a la base de datos."
+                  name="ODBCConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Reserve\Destino de ADO NET.Inputs[Entrada de destino de ODBC]"
+                  errorOrTruncationOperation="Insertar"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de ODBC"
+                  truncationRowDisposition="FailComponent">
+                  <externalMetadataColumns
+                    isUsed="True" />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Reserve\Destino de ADO NET.Outputs[Salida de error de destino de ODBC]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de ODBC"
+                  synchronousInputId="Package\Reserve\Destino de ADO NET.Inputs[Entrada de destino de ODBC]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Reserve\Destino de ADO NET.Outputs[Salida de error de destino de ODBC].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Reserve\Destino de ADO NET.Outputs[Salida de error de destino de ODBC].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Reserve\Destino de ADO NET.Outputs[Salida de error de destino de ODBC].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Reserve\Destino de ADO NET.Outputs[Salida de error de destino de ODBC].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Reserve\Merge Join"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Combinación de mezcla;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Combina dos flujos de datos ordenados en uno solo mediante la combinación FULL, LEFT o INNER. Se recomienda esta transformación cuando se pueden ordenar los flujos de datos en sus orígenes."
+              name="Merge Join"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el tipo de combinación que se debe realizar."
+                  name="JoinType"
+                  typeConverter="JoinType">2</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número de columnas de la clave de ordenación."
+                  name="NumKeyColumns">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si los valores NULL se tratan como valores iguales."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indica la cantidad máxima solicitada de búferes por entrada antes del bloqueo."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Reserve\Merge Join.Inputs[Entrada izquierda de combinación de mezcla]"
+                  hasSideEffects="true"
+                  name="Entrada izquierda de combinación de mezcla">
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Reserve\Merge Join.Inputs[Entrada derecha de combinación de mezcla]"
+                  hasSideEffects="true"
+                  name="Entrada derecha de combinación de mezcla">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Reserve\Merge Join.Outputs[Salida de combinación de mezcla]"
+                  name="Salida de combinación de mezcla">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Reserve\Origen_Reserve_Mart"
+              componentClassID="Microsoft.SSISODBCSrc"
+              contactInfo="Origen ODBC;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Origen ODBC"
+              name="Origen_Reserve_Mart"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla que debe recuperarse."
+                  expressionType="Notify"
+                  name="TableName"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas recuperadas por lote."
+                  expressionType="Notify"
+                  name="BatchSize">1000</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determina la asignación del tamaño de los fragmentos de las columnas LOB"
+                  expressionType="Notify"
+                  name="LobChunkSize">32768</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determina la manera en la que el componente expone las columnas CHAR. Si es False, las columnas CHAR se exponen como cadenas byte o multibyte (DT_STR); si es True, las columnas CHAR se exponen como cadenas de tipo ancho (DT_WSTR)."
+                  expressionType="Notify"
+                  name="ExposeCharColumnsAsUnicode">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos que se debe esperar para que una instrucción SQL se ejecute antes de volver a la aplicación."
+                  expressionType="Notify"
+                  name="StatementTimeout">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Página de códigos que se usará cuando la información de la página de códigos no esté disponible en el origen de datos."
+                  expressionType="Notify"
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Int32"
+                  description="Método usado para recuperar datos."
+                  expressionType="Notify"
+                  name="FetchMethod">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Tipo de datos ODBC C para el enlace de datos numéricos."
+                  expressionType="Notify"
+                  name="BindNumericAs">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determina la manera en la que el componente enlazará columnas de tipos de cadena byte o multibyte (es decir, SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). Las opciones son Unicode (SQL_C_WCHAR) y ANSI (SQL_C_CHAR)."
+                  expressionType="Notify"
+                  name="BindCharColumnsAs">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Modo usado para obtener acceso a la base de datos."
+                  expressionType="Notify"
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Reserve\Origen_Reserve_Mart.Connections[ODBCConnection]"
+                  description="Conexión de runtime de ODBC usada para acceder a la base de datos."
+                  name="ODBCConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Reserve\Origen_Reserve_Mart.Outputs[Salida de origen de ODBC]"
+                  errorRowDisposition="FailComponent"
+                  name="Salida de origen de ODBC"
+                  truncationRowDisposition="FailComponent">
+                  <externalMetadataColumns
+                    isUsed="True" />
+                </output>
+                <output
+                  refId="Package\Reserve\Origen_Reserve_Mart.Outputs[Salida de error de origen de ODBC]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ODBC">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Reserve\Origen_Reserve_Mart.Outputs[Salida de error de origen de ODBC].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Reserve\Origen_Reserve_Mart.Outputs[Salida de error de origen de ODBC].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Reserve\Origen_Reserve_Mart.Outputs[Salida de error de origen de ODBC].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Reserve\Origen_Reserve_Mart.Outputs[Salida de error de origen de ODBC].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Reserve\Origin_Reserve"
+              componentClassID="Microsoft.SSISODBCSrc"
+              contactInfo="Origen ODBC;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Origen ODBC"
+              name="Origin_Reserve"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla que debe recuperarse."
+                  expressionType="Notify"
+                  name="TableName"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas recuperadas por lote."
+                  expressionType="Notify"
+                  name="BatchSize">1000</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determina la asignación del tamaño de los fragmentos de las columnas LOB"
+                  expressionType="Notify"
+                  name="LobChunkSize">32768</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determina la manera en la que el componente expone las columnas CHAR. Si es False, las columnas CHAR se exponen como cadenas byte o multibyte (DT_STR); si es True, las columnas CHAR se exponen como cadenas de tipo ancho (DT_WSTR)."
+                  expressionType="Notify"
+                  name="ExposeCharColumnsAsUnicode">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos que se debe esperar para que una instrucción SQL se ejecute antes de volver a la aplicación."
+                  expressionType="Notify"
+                  name="StatementTimeout">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Página de códigos que se usará cuando la información de la página de códigos no esté disponible en el origen de datos."
+                  expressionType="Notify"
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Int32"
+                  description="Método usado para recuperar datos."
+                  expressionType="Notify"
+                  name="FetchMethod">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Tipo de datos ODBC C para el enlace de datos numéricos."
+                  expressionType="Notify"
+                  name="BindNumericAs">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determina la manera en la que el componente enlazará columnas de tipos de cadena byte o multibyte (es decir, SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). Las opciones son Unicode (SQL_C_WCHAR) y ANSI (SQL_C_CHAR)."
+                  expressionType="Notify"
+                  name="BindCharColumnsAs">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Modo usado para obtener acceso a la base de datos."
+                  expressionType="Notify"
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Reserve\Origin_Reserve.Connections[ODBCConnection]"
+                  description="Conexión de runtime de ODBC usada para acceder a la base de datos."
+                  name="ODBCConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Reserve\Origin_Reserve.Outputs[Salida de origen de ODBC]"
+                  errorRowDisposition="FailComponent"
+                  name="Salida de origen de ODBC"
+                  truncationRowDisposition="FailComponent">
+                  <externalMetadataColumns
+                    isUsed="True" />
+                </output>
+                <output
+                  refId="Package\Reserve\Origin_Reserve.Outputs[Salida de error de origen de ODBC]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ODBC">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Reserve\Origin_Reserve.Outputs[Salida de error de origen de ODBC].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Reserve\Origin_Reserve.Outputs[Salida de error de origen de ODBC].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Reserve\Origin_Reserve.Outputs[Salida de error de origen de ODBC].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Reserve\Origin_Reserve.Outputs[Salida de error de origen de ODBC].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Reserve\Sort1"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Ordenar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Ordena los datos de entrada de manera ascendente o descendente cuando no es posible ordenarlos en su origen. Por ejemplo, se ordenan los datos de ventas por 'id. de cliente' antes de que se escriban en un archivo plano y se entreguen a otro departamento. Nota: no se recomienda realizar esta transformación para grandes flujos de datos."
+              name="Sort1"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si la transformación Ordenar quita filas con valores de ordenación duplicados."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número máximo de subprocesos que se deben usar para la ordenación."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Reserve\Sort1.Inputs[Entrada de ordenación]"
+                  name="Entrada de ordenación">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Reserve\Sort1.Outputs[Salida de ordenación]"
+                  isSorted="true"
+                  name="Salida de ordenación">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Reserve\Sort2"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Ordenar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Ordena los datos de entrada de manera ascendente o descendente cuando no es posible ordenarlos en su origen. Por ejemplo, se ordenan los datos de ventas por 'id. de cliente' antes de que se escriban en un archivo plano y se entreguen a otro departamento. Nota: no se recomienda realizar esta transformación para grandes flujos de datos."
+              name="Sort2"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si la transformación Ordenar quita filas con valores de ordenación duplicados."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número máximo de subprocesos que se deben usar para la ordenación."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Reserve\Sort2.Inputs[Entrada de ordenación]"
+                  name="Entrada de ordenación">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Reserve\Sort2.Outputs[Salida de ordenación]"
+                  isSorted="true"
+                  name="Salida de ordenación">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Reserve.Paths[Salida de combinación de mezcla]"
+              endId="Package\Reserve\Conditional Split.Inputs[Entrada de división condicional]"
+              name="Salida de combinación de mezcla"
+              startId="Package\Reserve\Merge Join.Outputs[Salida de combinación de mezcla]" />
+            <path
+              refId="Package\Reserve.Paths[Salida de ordenación]"
+              endId="Package\Reserve\Merge Join.Inputs[Entrada izquierda de combinación de mezcla]"
+              name="Salida de ordenación"
+              startId="Package\Reserve\Sort1.Outputs[Salida de ordenación]" />
+            <path
+              refId="Package\Reserve.Paths[Salida de ordenación1]"
+              endId="Package\Reserve\Merge Join.Inputs[Entrada derecha de combinación de mezcla]"
+              name="Salida de ordenación"
+              startId="Package\Reserve\Sort2.Outputs[Salida de ordenación]" />
+            <path
+              refId="Package\Reserve.Paths[Salida de origen de ODBC]"
+              endId="Package\Reserve\Sort1.Inputs[Entrada de ordenación]"
+              name="Salida de origen de ODBC"
+              startId="Package\Reserve\Origin_Reserve.Outputs[Salida de origen de ODBC]" />
+            <path
+              refId="Package\Reserve.Paths[Salida de origen de ODBC1]"
+              endId="Package\Reserve\Sort2.Inputs[Entrada de ordenación]"
+              name="Salida de origen de ODBC"
+              startId="Package\Reserve\Origen_Reserve_Mart.Outputs[Salida de origen de ODBC]" />
+            <path
+              refId="Package\Reserve.Paths[Salida predeterminada de división condicional]"
+              endId="Package\Reserve\Destino de ADO NET.Inputs[Entrada de destino de ODBC]"
+              name="Salida predeterminada de división condicional"
+              startId="Package\Reserve\Conditional Split.Outputs[Salida predeterminada de división condicional]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Ticket"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarea Flujo de datos"
+      DTS:DTSID="{47DAFF6A-1D5D-4F0F-BBE8-21FEA0AA7431}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Ticket"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Ticket\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="División condicional;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Enruta filas de datos a diferentes salidas según el contenido de los datos. Se usan condiciones (expresiones de SSIS) para especificar las filas que se van a enrutar. Por ejemplo, se usa para separar los registros que deben limpiarse de los registros listos para ser cargados o para enrutar solamente un subconjunto de registros."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Ticket\Conditional Split.Inputs[Entrada de división condicional]"
+                  description="Entrada en la transformación División condicional"
+                  name="Entrada de división condicional">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Ticket\Conditional Split.Outputs[Salida predeterminada de división condicional]"
+                  description="Salida predeterminada de la transformación División condicional"
+                  exclusionGroup="1"
+                  name="Salida predeterminada de división condicional"
+                  synchronousInputId="Package\Ticket\Conditional Split.Inputs[Entrada de división condicional]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Ticket\Conditional Split.Outputs[Salida de error de división condicional]"
+                  description="Salida de error de la transformación División condicional"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de división condicional"
+                  synchronousInputId="Package\Ticket\Conditional Split.Inputs[Entrada de división condicional]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Ticket\Conditional Split.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Ticket\Conditional Split.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Ticket\Conditional Split.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Ticket\Conditional Split.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Ticket\Destino de ADO NET"
+              componentClassID="Microsoft.SSISODBCDst"
+              contactInfo="Destino de ODBC;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Destino de ODBC"
+              name="Destino de ADO NET"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla que debe recuperarse."
+                  expressionType="Notify"
+                  name="TableName"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas recuperadas por lote."
+                  expressionType="Notify"
+                  name="BatchSize">1000</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de filas insertadas en la misma transacción."
+                  expressionType="Notify"
+                  name="TransactionSize">1000</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determina la asignación del tamaño de los fragmentos de las columnas LOB"
+                  expressionType="Notify"
+                  name="LobChunkSize">32768</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos que se debe esperar para que una instrucción SQL se ejecute antes de volver a la aplicación."
+                  expressionType="Notify"
+                  name="StatementTimeout">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Página de códigos que se usará cuando la información de la página de códigos no esté disponible en el origen de datos."
+                  expressionType="Notify"
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Int32"
+                  description="Método usado para insertar datos. Los valores posibles son &quot;Batch&quot; o &quot;Row by row&quot;."
+                  expressionType="Notify"
+                  name="InsertMethod">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Tipo de datos ODBC C para el enlace de datos numéricos."
+                  expressionType="Notify"
+                  name="BindNumericAs">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determina la manera en la que el componente enlazará columnas de tipos de cadena byte o multibyte (es decir, SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). Las opciones son Unicode (SQL_C_WCHAR) y ANSI (SQL_C_CHAR)."
+                  expressionType="Notify"
+                  name="BindCharColumnsAs">0</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Ticket\Destino de ADO NET.Connections[ODBCConnection]"
+                  description="Conexión de runtime de ODBC usada para acceder a la base de datos."
+                  name="ODBCConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Ticket\Destino de ADO NET.Inputs[Entrada de destino de ODBC]"
+                  errorOrTruncationOperation="Insertar"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de ODBC"
+                  truncationRowDisposition="FailComponent">
+                  <externalMetadataColumns
+                    isUsed="True" />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Ticket\Destino de ADO NET.Outputs[Salida de error de destino de ODBC]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de ODBC"
+                  synchronousInputId="Package\Ticket\Destino de ADO NET.Inputs[Entrada de destino de ODBC]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Ticket\Destino de ADO NET.Outputs[Salida de error de destino de ODBC].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Ticket\Destino de ADO NET.Outputs[Salida de error de destino de ODBC].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Ticket\Destino de ADO NET.Outputs[Salida de error de destino de ODBC].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Ticket\Destino de ADO NET.Outputs[Salida de error de destino de ODBC].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Ticket\Merge Join"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Combinación de mezcla;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Combina dos flujos de datos ordenados en uno solo mediante la combinación FULL, LEFT o INNER. Se recomienda esta transformación cuando se pueden ordenar los flujos de datos en sus orígenes."
+              name="Merge Join"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el tipo de combinación que se debe realizar."
+                  name="JoinType"
+                  typeConverter="JoinType">2</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número de columnas de la clave de ordenación."
+                  name="NumKeyColumns">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si los valores NULL se tratan como valores iguales."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indica la cantidad máxima solicitada de búferes por entrada antes del bloqueo."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Ticket\Merge Join.Inputs[Entrada izquierda de combinación de mezcla]"
+                  hasSideEffects="true"
+                  name="Entrada izquierda de combinación de mezcla">
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Ticket\Merge Join.Inputs[Entrada derecha de combinación de mezcla]"
+                  hasSideEffects="true"
+                  name="Entrada derecha de combinación de mezcla">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Ticket\Merge Join.Outputs[Salida de combinación de mezcla]"
+                  name="Salida de combinación de mezcla">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Ticket\Origen_Ticket_Mart"
+              componentClassID="Microsoft.SSISODBCSrc"
+              contactInfo="Origen ODBC;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Origen ODBC"
+              name="Origen_Ticket_Mart"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla que debe recuperarse."
+                  expressionType="Notify"
+                  name="TableName"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas recuperadas por lote."
+                  expressionType="Notify"
+                  name="BatchSize">1000</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determina la asignación del tamaño de los fragmentos de las columnas LOB"
+                  expressionType="Notify"
+                  name="LobChunkSize">32768</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determina la manera en la que el componente expone las columnas CHAR. Si es False, las columnas CHAR se exponen como cadenas byte o multibyte (DT_STR); si es True, las columnas CHAR se exponen como cadenas de tipo ancho (DT_WSTR)."
+                  expressionType="Notify"
+                  name="ExposeCharColumnsAsUnicode">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos que se debe esperar para que una instrucción SQL se ejecute antes de volver a la aplicación."
+                  expressionType="Notify"
+                  name="StatementTimeout">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Página de códigos que se usará cuando la información de la página de códigos no esté disponible en el origen de datos."
+                  expressionType="Notify"
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Int32"
+                  description="Método usado para recuperar datos."
+                  expressionType="Notify"
+                  name="FetchMethod">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Tipo de datos ODBC C para el enlace de datos numéricos."
+                  expressionType="Notify"
+                  name="BindNumericAs">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determina la manera en la que el componente enlazará columnas de tipos de cadena byte o multibyte (es decir, SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). Las opciones son Unicode (SQL_C_WCHAR) y ANSI (SQL_C_CHAR)."
+                  expressionType="Notify"
+                  name="BindCharColumnsAs">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Modo usado para obtener acceso a la base de datos."
+                  expressionType="Notify"
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Ticket\Origen_Ticket_Mart.Connections[ODBCConnection]"
+                  description="Conexión de runtime de ODBC usada para acceder a la base de datos."
+                  name="ODBCConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Ticket\Origen_Ticket_Mart.Outputs[Salida de origen de ODBC]"
+                  errorRowDisposition="FailComponent"
+                  name="Salida de origen de ODBC"
+                  truncationRowDisposition="FailComponent">
+                  <externalMetadataColumns
+                    isUsed="True" />
+                </output>
+                <output
+                  refId="Package\Ticket\Origen_Ticket_Mart.Outputs[Salida de error de origen de ODBC]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ODBC">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Ticket\Origen_Ticket_Mart.Outputs[Salida de error de origen de ODBC].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Ticket\Origen_Ticket_Mart.Outputs[Salida de error de origen de ODBC].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Ticket\Origen_Ticket_Mart.Outputs[Salida de error de origen de ODBC].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Ticket\Origen_Ticket_Mart.Outputs[Salida de error de origen de ODBC].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Ticket\Origin_Ticket"
+              componentClassID="Microsoft.SSISODBCSrc"
+              contactInfo="Origen ODBC;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Origen ODBC"
+              name="Origin_Ticket"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla que debe recuperarse."
+                  expressionType="Notify"
+                  name="TableName"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas recuperadas por lote."
+                  expressionType="Notify"
+                  name="BatchSize">1000</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determina la asignación del tamaño de los fragmentos de las columnas LOB"
+                  expressionType="Notify"
+                  name="LobChunkSize">32768</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determina la manera en la que el componente expone las columnas CHAR. Si es False, las columnas CHAR se exponen como cadenas byte o multibyte (DT_STR); si es True, las columnas CHAR se exponen como cadenas de tipo ancho (DT_WSTR)."
+                  expressionType="Notify"
+                  name="ExposeCharColumnsAsUnicode">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos que se debe esperar para que una instrucción SQL se ejecute antes de volver a la aplicación."
+                  expressionType="Notify"
+                  name="StatementTimeout">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Página de códigos que se usará cuando la información de la página de códigos no esté disponible en el origen de datos."
+                  expressionType="Notify"
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Int32"
+                  description="Método usado para recuperar datos."
+                  expressionType="Notify"
+                  name="FetchMethod">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Tipo de datos ODBC C para el enlace de datos numéricos."
+                  expressionType="Notify"
+                  name="BindNumericAs">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determina la manera en la que el componente enlazará columnas de tipos de cadena byte o multibyte (es decir, SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). Las opciones son Unicode (SQL_C_WCHAR) y ANSI (SQL_C_CHAR)."
+                  expressionType="Notify"
+                  name="BindCharColumnsAs">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Modo usado para obtener acceso a la base de datos."
+                  expressionType="Notify"
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Ticket\Origin_Ticket.Connections[ODBCConnection]"
+                  description="Conexión de runtime de ODBC usada para acceder a la base de datos."
+                  name="ODBCConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Ticket\Origin_Ticket.Outputs[Salida de origen de ODBC]"
+                  errorRowDisposition="FailComponent"
+                  name="Salida de origen de ODBC"
+                  truncationRowDisposition="FailComponent">
+                  <externalMetadataColumns
+                    isUsed="True" />
+                </output>
+                <output
+                  refId="Package\Ticket\Origin_Ticket.Outputs[Salida de error de origen de ODBC]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ODBC">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Ticket\Origin_Ticket.Outputs[Salida de error de origen de ODBC].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Ticket\Origin_Ticket.Outputs[Salida de error de origen de ODBC].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Ticket\Origin_Ticket.Outputs[Salida de error de origen de ODBC].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Ticket\Origin_Ticket.Outputs[Salida de error de origen de ODBC].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Ticket\Sort1"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Ordenar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Ordena los datos de entrada de manera ascendente o descendente cuando no es posible ordenarlos en su origen. Por ejemplo, se ordenan los datos de ventas por 'id. de cliente' antes de que se escriban en un archivo plano y se entreguen a otro departamento. Nota: no se recomienda realizar esta transformación para grandes flujos de datos."
+              name="Sort1"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si la transformación Ordenar quita filas con valores de ordenación duplicados."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número máximo de subprocesos que se deben usar para la ordenación."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Ticket\Sort1.Inputs[Entrada de ordenación]"
+                  name="Entrada de ordenación">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Ticket\Sort1.Outputs[Salida de ordenación]"
+                  isSorted="true"
+                  name="Salida de ordenación">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Ticket\Sort2"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Ordenar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Ordena los datos de entrada de manera ascendente o descendente cuando no es posible ordenarlos en su origen. Por ejemplo, se ordenan los datos de ventas por 'id. de cliente' antes de que se escriban en un archivo plano y se entreguen a otro departamento. Nota: no se recomienda realizar esta transformación para grandes flujos de datos."
+              name="Sort2"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si la transformación Ordenar quita filas con valores de ordenación duplicados."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número máximo de subprocesos que se deben usar para la ordenación."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Ticket\Sort2.Inputs[Entrada de ordenación]"
+                  name="Entrada de ordenación">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Ticket\Sort2.Outputs[Salida de ordenación]"
+                  isSorted="true"
+                  name="Salida de ordenación">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Ticket.Paths[Salida de combinación de mezcla]"
+              endId="Package\Ticket\Conditional Split.Inputs[Entrada de división condicional]"
+              name="Salida de combinación de mezcla"
+              startId="Package\Ticket\Merge Join.Outputs[Salida de combinación de mezcla]" />
+            <path
+              refId="Package\Ticket.Paths[Salida de ordenación]"
+              endId="Package\Ticket\Merge Join.Inputs[Entrada izquierda de combinación de mezcla]"
+              name="Salida de ordenación"
+              startId="Package\Ticket\Sort1.Outputs[Salida de ordenación]" />
+            <path
+              refId="Package\Ticket.Paths[Salida de ordenación1]"
+              endId="Package\Ticket\Merge Join.Inputs[Entrada derecha de combinación de mezcla]"
+              name="Salida de ordenación"
+              startId="Package\Ticket\Sort2.Outputs[Salida de ordenación]" />
+            <path
+              refId="Package\Ticket.Paths[Salida de origen de ODBC]"
+              endId="Package\Ticket\Sort1.Inputs[Entrada de ordenación]"
+              name="Salida de origen de ODBC"
+              startId="Package\Ticket\Origin_Ticket.Outputs[Salida de origen de ODBC]" />
+            <path
+              refId="Package\Ticket.Paths[Salida de origen de ODBC1]"
+              endId="Package\Ticket\Sort2.Inputs[Entrada de ordenación]"
+              name="Salida de origen de ODBC"
+              startId="Package\Ticket\Origen_Ticket_Mart.Outputs[Salida de origen de ODBC]" />
+            <path
+              refId="Package\Ticket.Paths[Salida predeterminada de división condicional]"
+              endId="Package\Ticket\Destino de ADO NET.Inputs[Entrada de destino de ODBC]"
+              name="Salida predeterminada de división condicional"
+              startId="Package\Ticket\Conditional Split.Outputs[Salida predeterminada de división condicional]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Time"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarea Flujo de datos"
+      DTS:DTSID="{EDE847AF-E97A-4339-987A-72DB608EEC73}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Time"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Time\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="División condicional;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Enruta filas de datos a diferentes salidas según el contenido de los datos. Se usan condiciones (expresiones de SSIS) para especificar las filas que se van a enrutar. Por ejemplo, se usa para separar los registros que deben limpiarse de los registros listos para ser cargados o para enrutar solamente un subconjunto de registros."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Time\Conditional Split.Inputs[Entrada de división condicional]"
+                  description="Entrada en la transformación División condicional"
+                  name="Entrada de división condicional">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Time\Conditional Split.Outputs[Salida predeterminada de división condicional]"
+                  description="Salida predeterminada de la transformación División condicional"
+                  exclusionGroup="1"
+                  name="Salida predeterminada de división condicional"
+                  synchronousInputId="Package\Time\Conditional Split.Inputs[Entrada de división condicional]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Time\Conditional Split.Outputs[Salida de error de división condicional]"
+                  description="Salida de error de la transformación División condicional"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de división condicional"
+                  synchronousInputId="Package\Time\Conditional Split.Inputs[Entrada de división condicional]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Time\Conditional Split.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Time\Conditional Split.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Time\Conditional Split.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Time\Conditional Split.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Time\Destino de ADO NET"
+              componentClassID="Microsoft.SSISODBCDst"
+              contactInfo="Destino de ODBC;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Destino de ODBC"
+              name="Destino de ADO NET"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla que debe recuperarse."
+                  expressionType="Notify"
+                  name="TableName"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas recuperadas por lote."
+                  expressionType="Notify"
+                  name="BatchSize">1000</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de filas insertadas en la misma transacción."
+                  expressionType="Notify"
+                  name="TransactionSize">1000</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determina la asignación del tamaño de los fragmentos de las columnas LOB"
+                  expressionType="Notify"
+                  name="LobChunkSize">32768</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos que se debe esperar para que una instrucción SQL se ejecute antes de volver a la aplicación."
+                  expressionType="Notify"
+                  name="StatementTimeout">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Página de códigos que se usará cuando la información de la página de códigos no esté disponible en el origen de datos."
+                  expressionType="Notify"
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Int32"
+                  description="Método usado para insertar datos. Los valores posibles son &quot;Batch&quot; o &quot;Row by row&quot;."
+                  expressionType="Notify"
+                  name="InsertMethod">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Tipo de datos ODBC C para el enlace de datos numéricos."
+                  expressionType="Notify"
+                  name="BindNumericAs">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determina la manera en la que el componente enlazará columnas de tipos de cadena byte o multibyte (es decir, SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). Las opciones son Unicode (SQL_C_WCHAR) y ANSI (SQL_C_CHAR)."
+                  expressionType="Notify"
+                  name="BindCharColumnsAs">0</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Time\Destino de ADO NET.Connections[ODBCConnection]"
+                  description="Conexión de runtime de ODBC usada para acceder a la base de datos."
+                  name="ODBCConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Time\Destino de ADO NET.Inputs[Entrada de destino de ODBC]"
+                  errorOrTruncationOperation="Insertar"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de ODBC"
+                  truncationRowDisposition="FailComponent">
+                  <externalMetadataColumns
+                    isUsed="True" />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Time\Destino de ADO NET.Outputs[Salida de error de destino de ODBC]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de ODBC"
+                  synchronousInputId="Package\Time\Destino de ADO NET.Inputs[Entrada de destino de ODBC]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Time\Destino de ADO NET.Outputs[Salida de error de destino de ODBC].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Time\Destino de ADO NET.Outputs[Salida de error de destino de ODBC].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Time\Destino de ADO NET.Outputs[Salida de error de destino de ODBC].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Time\Destino de ADO NET.Outputs[Salida de error de destino de ODBC].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Time\Merge Join"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Combinación de mezcla;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Combina dos flujos de datos ordenados en uno solo mediante la combinación FULL, LEFT o INNER. Se recomienda esta transformación cuando se pueden ordenar los flujos de datos en sus orígenes."
+              name="Merge Join"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el tipo de combinación que se debe realizar."
+                  name="JoinType"
+                  typeConverter="JoinType">2</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número de columnas de la clave de ordenación."
+                  name="NumKeyColumns">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si los valores NULL se tratan como valores iguales."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indica la cantidad máxima solicitada de búferes por entrada antes del bloqueo."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Time\Merge Join.Inputs[Entrada izquierda de combinación de mezcla]"
+                  hasSideEffects="true"
+                  name="Entrada izquierda de combinación de mezcla">
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Time\Merge Join.Inputs[Entrada derecha de combinación de mezcla]"
+                  hasSideEffects="true"
+                  name="Entrada derecha de combinación de mezcla">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Time\Merge Join.Outputs[Salida de combinación de mezcla]"
+                  name="Salida de combinación de mezcla">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Time\Origen_Time_Mart"
+              componentClassID="Microsoft.SSISODBCSrc"
+              contactInfo="Origen ODBC;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Origen ODBC"
+              name="Origen_Time_Mart"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla que debe recuperarse."
+                  expressionType="Notify"
+                  name="TableName"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas recuperadas por lote."
+                  expressionType="Notify"
+                  name="BatchSize">1000</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determina la asignación del tamaño de los fragmentos de las columnas LOB"
+                  expressionType="Notify"
+                  name="LobChunkSize">32768</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determina la manera en la que el componente expone las columnas CHAR. Si es False, las columnas CHAR se exponen como cadenas byte o multibyte (DT_STR); si es True, las columnas CHAR se exponen como cadenas de tipo ancho (DT_WSTR)."
+                  expressionType="Notify"
+                  name="ExposeCharColumnsAsUnicode">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos que se debe esperar para que una instrucción SQL se ejecute antes de volver a la aplicación."
+                  expressionType="Notify"
+                  name="StatementTimeout">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Página de códigos que se usará cuando la información de la página de códigos no esté disponible en el origen de datos."
+                  expressionType="Notify"
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Int32"
+                  description="Método usado para recuperar datos."
+                  expressionType="Notify"
+                  name="FetchMethod">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Tipo de datos ODBC C para el enlace de datos numéricos."
+                  expressionType="Notify"
+                  name="BindNumericAs">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determina la manera en la que el componente enlazará columnas de tipos de cadena byte o multibyte (es decir, SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). Las opciones son Unicode (SQL_C_WCHAR) y ANSI (SQL_C_CHAR)."
+                  expressionType="Notify"
+                  name="BindCharColumnsAs">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Modo usado para obtener acceso a la base de datos."
+                  expressionType="Notify"
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Time\Origen_Time_Mart.Connections[ODBCConnection]"
+                  description="Conexión de runtime de ODBC usada para acceder a la base de datos."
+                  name="ODBCConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Time\Origen_Time_Mart.Outputs[Salida de origen de ODBC]"
+                  errorRowDisposition="FailComponent"
+                  name="Salida de origen de ODBC"
+                  truncationRowDisposition="FailComponent">
+                  <externalMetadataColumns
+                    isUsed="True" />
+                </output>
+                <output
+                  refId="Package\Time\Origen_Time_Mart.Outputs[Salida de error de origen de ODBC]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ODBC">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Time\Origen_Time_Mart.Outputs[Salida de error de origen de ODBC].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Time\Origen_Time_Mart.Outputs[Salida de error de origen de ODBC].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Time\Origen_Time_Mart.Outputs[Salida de error de origen de ODBC].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Time\Origen_Time_Mart.Outputs[Salida de error de origen de ODBC].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Time\Origin_Time"
+              componentClassID="Microsoft.SSISODBCSrc"
+              contactInfo="Origen ODBC;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Origen ODBC"
+              name="Origin_Time"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla que debe recuperarse."
+                  expressionType="Notify"
+                  name="TableName"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas recuperadas por lote."
+                  expressionType="Notify"
+                  name="BatchSize">1000</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determina la asignación del tamaño de los fragmentos de las columnas LOB"
+                  expressionType="Notify"
+                  name="LobChunkSize">32768</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determina la manera en la que el componente expone las columnas CHAR. Si es False, las columnas CHAR se exponen como cadenas byte o multibyte (DT_STR); si es True, las columnas CHAR se exponen como cadenas de tipo ancho (DT_WSTR)."
+                  expressionType="Notify"
+                  name="ExposeCharColumnsAsUnicode">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos que se debe esperar para que una instrucción SQL se ejecute antes de volver a la aplicación."
+                  expressionType="Notify"
+                  name="StatementTimeout">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Página de códigos que se usará cuando la información de la página de códigos no esté disponible en el origen de datos."
+                  expressionType="Notify"
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Int32"
+                  description="Método usado para recuperar datos."
+                  expressionType="Notify"
+                  name="FetchMethod">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Tipo de datos ODBC C para el enlace de datos numéricos."
+                  expressionType="Notify"
+                  name="BindNumericAs">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determina la manera en la que el componente enlazará columnas de tipos de cadena byte o multibyte (es decir, SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). Las opciones son Unicode (SQL_C_WCHAR) y ANSI (SQL_C_CHAR)."
+                  expressionType="Notify"
+                  name="BindCharColumnsAs">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Modo usado para obtener acceso a la base de datos."
+                  expressionType="Notify"
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Time\Origin_Time.Connections[ODBCConnection]"
+                  description="Conexión de runtime de ODBC usada para acceder a la base de datos."
+                  name="ODBCConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Time\Origin_Time.Outputs[Salida de origen de ODBC]"
+                  errorRowDisposition="FailComponent"
+                  name="Salida de origen de ODBC"
+                  truncationRowDisposition="FailComponent">
+                  <externalMetadataColumns
+                    isUsed="True" />
+                </output>
+                <output
+                  refId="Package\Time\Origin_Time.Outputs[Salida de error de origen de ODBC]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ODBC">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Time\Origin_Time.Outputs[Salida de error de origen de ODBC].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Time\Origin_Time.Outputs[Salida de error de origen de ODBC].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Time\Origin_Time.Outputs[Salida de error de origen de ODBC].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Time\Origin_Time.Outputs[Salida de error de origen de ODBC].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Time\Sort1"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Ordenar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Ordena los datos de entrada de manera ascendente o descendente cuando no es posible ordenarlos en su origen. Por ejemplo, se ordenan los datos de ventas por 'id. de cliente' antes de que se escriban en un archivo plano y se entreguen a otro departamento. Nota: no se recomienda realizar esta transformación para grandes flujos de datos."
+              name="Sort1"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si la transformación Ordenar quita filas con valores de ordenación duplicados."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número máximo de subprocesos que se deben usar para la ordenación."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Time\Sort1.Inputs[Entrada de ordenación]"
+                  name="Entrada de ordenación">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Time\Sort1.Outputs[Salida de ordenación]"
+                  isSorted="true"
+                  name="Salida de ordenación">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Time\Sort2"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Ordenar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Ordena los datos de entrada de manera ascendente o descendente cuando no es posible ordenarlos en su origen. Por ejemplo, se ordenan los datos de ventas por 'id. de cliente' antes de que se escriban en un archivo plano y se entreguen a otro departamento. Nota: no se recomienda realizar esta transformación para grandes flujos de datos."
+              name="Sort2"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si la transformación Ordenar quita filas con valores de ordenación duplicados."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número máximo de subprocesos que se deben usar para la ordenación."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Time\Sort2.Inputs[Entrada de ordenación]"
+                  name="Entrada de ordenación">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Time\Sort2.Outputs[Salida de ordenación]"
+                  isSorted="true"
+                  name="Salida de ordenación">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Time.Paths[Salida de combinación de mezcla]"
+              endId="Package\Time\Conditional Split.Inputs[Entrada de división condicional]"
+              name="Salida de combinación de mezcla"
+              startId="Package\Time\Merge Join.Outputs[Salida de combinación de mezcla]" />
+            <path
+              refId="Package\Time.Paths[Salida de ordenación]"
+              endId="Package\Time\Merge Join.Inputs[Entrada izquierda de combinación de mezcla]"
+              name="Salida de ordenación"
+              startId="Package\Time\Sort1.Outputs[Salida de ordenación]" />
+            <path
+              refId="Package\Time.Paths[Salida de ordenación1]"
+              endId="Package\Time\Merge Join.Inputs[Entrada derecha de combinación de mezcla]"
+              name="Salida de ordenación"
+              startId="Package\Time\Sort2.Outputs[Salida de ordenación]" />
+            <path
+              refId="Package\Time.Paths[Salida de origen de ODBC]"
+              endId="Package\Time\Sort1.Inputs[Entrada de ordenación]"
+              name="Salida de origen de ODBC"
+              startId="Package\Time\Origin_Time.Outputs[Salida de origen de ODBC]" />
+            <path
+              refId="Package\Time.Paths[Salida de origen de ODBC1]"
+              endId="Package\Time\Sort2.Inputs[Entrada de ordenación]"
+              name="Salida de origen de ODBC"
+              startId="Package\Time\Origen_Time_Mart.Outputs[Salida de origen de ODBC]" />
+            <path
+              refId="Package\Time.Paths[Salida predeterminada de división condicional]"
+              endId="Package\Time\Destino de ADO NET.Inputs[Entrada de destino de ODBC]"
+              name="Salida predeterminada de división condicional"
+              startId="Package\Time\Conditional Split.Outputs[Salida predeterminada de división condicional]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción]"
+      DTS:CreationName=""
+      DTS:DTSID="{B8CB969D-1217-4129-92E1-36B87712F788}"
+      DTS:From="Package\Time"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción"
+      DTS:To="Package\Reserve" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{9286934D-FBD2-46ED-9109-628D359BD894}"
+      DTS:From="Package\Customer"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 1"
+      DTS:To="Package\Reserve" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{FF45FA80-35C5-428D-896D-AC24B4FE8E9F}"
+      DTS:From="Package\Payment"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 2"
+      DTS:To="Package\Reserve" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{BAE63D4F-6811-4360-A3BB-455B064A8099}"
+      DTS:From="Package\Ticket"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 3"
+      DTS:To="Package\Reserve" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="102,42"
+          Id="Package\Time"
+          TopLeft="147.5,116.166666666667" />
+        <NodeLayout
+          Size="124,42"
+          Id="Package\Customer"
+          TopLeft="271,114.333333333333" />
+        <NodeLayout
+          Size="120,42"
+          Id="Package\Payment"
+          TopLeft="420,113" />
+        <NodeLayout
+          Size="116,42"
+          Id="Package\Reserve"
+          TopLeft="332,225" />
+        <NodeLayout
+          Size="107,42"
+          Id="Package\Ticket"
+          TopLeft="595,113" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción]"
+          TopLeft="198.5,158.166666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="170.5,66.8333333333333"
+              Start="0,0"
+              End="170.5,59.3333333333333">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.4166666666667" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,29.4166666666667"
+                    Point2="0,33.4166666666667"
+                    Point3="4,33.4166666666667" />
+                  <mssgle:LineSegment
+                    End="166.5,33.4166666666667" />
+                  <mssgle:CubicBezierSegment
+                    Point1="166.5,33.4166666666667"
+                    Point2="170.5,33.4166666666667"
+                    Point3="170.5,37.4166666666667" />
+                  <mssgle:LineSegment
+                    End="170.5,59.3333333333333" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 1]"
+          TopLeft="333,156.333333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="47,68.6666666666667"
+              Start="0,0"
+              End="47,61.1666666666667">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.639455782313" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,36.639455782313"
+                    Point2="0,40.639455782313"
+                    Point3="4,40.639455782313" />
+                  <mssgle:LineSegment
+                    End="43,40.639455782313" />
+                  <mssgle:CubicBezierSegment
+                    Point1="43,40.639455782313"
+                    Point2="47,40.639455782313"
+                    Point3="47,44.639455782313" />
+                  <mssgle:LineSegment
+                    End="47,61.1666666666667" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 2]"
+          TopLeft="480,155">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-63,70"
+              Start="0,0"
+              End="-63,62.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.1179775280899" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,36.1179775280899"
+                    Point2="0,40.1179775280899"
+                    Point3="-4,40.1179775280899" />
+                  <mssgle:LineSegment
+                    End="-59,40.1179775280899" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-59,40.1179775280899"
+                    Point2="-63,40.1179775280899"
+                    Point3="-63,44.1179775280899" />
+                  <mssgle:LineSegment
+                    End="-63,62.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 3]"
+          TopLeft="648.5,155">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-226.1,70"
+              Start="0,0"
+              End="-226.1,62.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.0645933014354" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.0645933014354"
+                    Point2="0,35.0645933014354"
+                    Point3="-4,35.0645933014354" />
+                  <mssgle:LineSegment
+                    End="-222.1,35.0645933014354" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-222.1,35.0645933014354"
+                    Point2="-226.1,35.0645933014354"
+                    Point3="-226.1,39.0645933014354" />
+                  <mssgle:LineSegment
+                    End="-226.1,62.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Time">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,42"
+          Id="Package\Time\Origin_Time"
+          TopLeft="147,63" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Time\Destino de ADO NET"
+          TopLeft="310,437" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\Time\Origen_Time_Mart"
+          TopLeft="467,67" />
+        <NodeLayout
+          Size="104,42"
+          Id="Package\Time\Sort1"
+          TopLeft="158,163" />
+        <NodeLayout
+          Size="104,42"
+          Id="Package\Time\Sort2"
+          TopLeft="496,163" />
+        <EdgeLayout
+          Id="Package\Time.Paths[Salida de origen de ODBC]"
+          TopLeft="212.5,105">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,58"
+              Start="0,0"
+              End="0,50.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Time.Paths[Salida de origen de ODBC1]"
+          TopLeft="549,109">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,54"
+              Start="0,0"
+              End="0,46.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="130,42"
+          Id="Package\Time\Merge Join"
+          TopLeft="325,280" />
+        <EdgeLayout
+          Id="Package\Time.Paths[Salida de ordenación]"
+          TopLeft="210,205">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="159.666666666667,75"
+              Start="0,0"
+              End="159.666666666667,67.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.4528875379939" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40.4528875379939"
+                    Point2="0,44.4528875379939"
+                    Point3="4,44.4528875379939" />
+                  <mssgle:LineSegment
+                    End="155.666666666667,44.4528875379939" />
+                  <mssgle:CubicBezierSegment
+                    Point1="155.666666666667,44.4528875379939"
+                    Point2="159.666666666667,44.4528875379939"
+                    Point3="159.666666666667,48.4528875379939" />
+                  <mssgle:LineSegment
+                    End="159.666666666667,67.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Time.Paths[Salida de ordenación1]"
+          TopLeft="548,205">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-137.666666666667,75"
+              Start="0,0"
+              End="-137.666666666667,67.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.4528875379939" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40.4528875379939"
+                    Point2="0,44.4528875379939"
+                    Point3="-4,44.4528875379939" />
+                  <mssgle:LineSegment
+                    End="-133.666666666667,44.4528875379939" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-133.666666666667,44.4528875379939"
+                    Point2="-137.666666666667,44.4528875379939"
+                    Point3="-137.666666666667,48.4528875379939" />
+                  <mssgle:LineSegment
+                    End="-137.666666666667,67.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Time\Conditional Split"
+          TopLeft="316,360" />
+        <EdgeLayout
+          Id="Package\Time.Paths[Salida de combinación de mezcla]"
+          TopLeft="391.75,322">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38"
+              Start="0,0"
+              End="0,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Time.Paths[Salida predeterminada de división condicional]"
+          TopLeft="395.75,402">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35"
+              Start="0,0"
+              End="0,27.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\Customer">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="158,42"
+          Id="Package\Customer\Origin_Customer"
+          TopLeft="112,45" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Customer\Destino de ADO NET"
+          TopLeft="275,419" />
+        <NodeLayout
+          Size="188,42"
+          Id="Package\Customer\Origen_Customer_Mart"
+          TopLeft="432,49" />
+        <NodeLayout
+          Size="104,42"
+          Id="Package\Customer\Sort1"
+          TopLeft="123,145" />
+        <NodeLayout
+          Size="104,42"
+          Id="Package\Customer\Sort2"
+          TopLeft="461,145" />
+        <NodeLayout
+          Size="130,42"
+          Id="Package\Customer\Merge Join"
+          TopLeft="290,262" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Customer\Conditional Split"
+          TopLeft="281,342" />
+        <EdgeLayout
+          Id="Package\Customer.Paths[Salida de origen de ODBC]"
+          TopLeft="191,87">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-16,58"
+              Start="0,0"
+              End="-16,50.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25"
+                    Point2="0,29"
+                    Point3="-4,29" />
+                  <mssgle:LineSegment
+                    End="-12,29" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-12,29"
+                    Point2="-16,29"
+                    Point3="-16,33" />
+                  <mssgle:LineSegment
+                    End="-16,50.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Customer.Paths[Salida de origen de ODBC1]"
+          TopLeft="526,91">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-13,54"
+              Start="0,0"
+              End="-13,46.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23"
+                    Point2="0,27"
+                    Point3="-4,27" />
+                  <mssgle:LineSegment
+                    End="-9,27" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-9,27"
+                    Point2="-13,27"
+                    Point3="-13,31" />
+                  <mssgle:LineSegment
+                    End="-13,46.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Customer.Paths[Salida de ordenación]"
+          TopLeft="175,187">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="159.666666666667,75"
+              Start="0,0"
+              End="159.666666666667,67.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.4528875379939" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40.4528875379939"
+                    Point2="0,44.4528875379939"
+                    Point3="4,44.4528875379939" />
+                  <mssgle:LineSegment
+                    End="155.666666666667,44.4528875379939" />
+                  <mssgle:CubicBezierSegment
+                    Point1="155.666666666667,44.4528875379939"
+                    Point2="159.666666666667,44.4528875379939"
+                    Point3="159.666666666667,48.4528875379939" />
+                  <mssgle:LineSegment
+                    End="159.666666666667,67.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Customer.Paths[Salida de ordenación1]"
+          TopLeft="513,187">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-137.666666666667,75"
+              Start="0,0"
+              End="-137.666666666667,67.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.4528875379939" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40.4528875379939"
+                    Point2="0,44.4528875379939"
+                    Point3="-4,44.4528875379939" />
+                  <mssgle:LineSegment
+                    End="-133.666666666667,44.4528875379939" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-133.666666666667,44.4528875379939"
+                    Point2="-137.666666666667,44.4528875379939"
+                    Point3="-137.666666666667,48.4528875379939" />
+                  <mssgle:LineSegment
+                    End="-137.666666666667,67.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Customer.Paths[Salida de combinación de mezcla]"
+          TopLeft="356.75,304">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38"
+              Start="0,0"
+              End="0,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Customer.Paths[Salida predeterminada de división condicional]"
+          TopLeft="360.75,384">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35"
+              Start="0,0"
+              End="0,27.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\Payment">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Payment\Origin_Payment"
+          TopLeft="49,58" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Payment\Destino de ADO NET"
+          TopLeft="223,434" />
+        <NodeLayout
+          Size="184,42"
+          Id="Package\Payment\Origen_Payment_Mart"
+          TopLeft="370,59" />
+        <NodeLayout
+          Size="104,42"
+          Id="Package\Payment\Sort1"
+          TopLeft="71,160" />
+        <NodeLayout
+          Size="104,42"
+          Id="Package\Payment\Sort2"
+          TopLeft="409,160" />
+        <NodeLayout
+          Size="130,42"
+          Id="Package\Payment\Merge Join"
+          TopLeft="238,277" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Payment\Conditional Split"
+          TopLeft="229,357" />
+        <EdgeLayout
+          Id="Package\Payment.Paths[Salida de origen de ODBC]"
+          TopLeft="124.5,100">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Payment.Paths[Salida de origen de ODBC1]"
+          TopLeft="461.5,101">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59"
+              Start="0,0"
+              End="0,51.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Payment.Paths[Salida de ordenación]"
+          TopLeft="123,202">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="159.666666666667,75"
+              Start="0,0"
+              End="159.666666666667,67.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.4528875379939" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40.4528875379939"
+                    Point2="0,44.4528875379939"
+                    Point3="4,44.4528875379939" />
+                  <mssgle:LineSegment
+                    End="155.666666666667,44.4528875379939" />
+                  <mssgle:CubicBezierSegment
+                    Point1="155.666666666667,44.4528875379939"
+                    Point2="159.666666666667,44.4528875379939"
+                    Point3="159.666666666667,48.4528875379939" />
+                  <mssgle:LineSegment
+                    End="159.666666666667,67.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Payment.Paths[Salida de ordenación1]"
+          TopLeft="461,202">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-137.666666666667,75"
+              Start="0,0"
+              End="-137.666666666667,67.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.4528875379939" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40.4528875379939"
+                    Point2="0,44.4528875379939"
+                    Point3="-4,44.4528875379939" />
+                  <mssgle:LineSegment
+                    End="-133.666666666667,44.4528875379939" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-133.666666666667,44.4528875379939"
+                    Point2="-137.666666666667,44.4528875379939"
+                    Point3="-137.666666666667,48.4528875379939" />
+                  <mssgle:LineSegment
+                    End="-137.666666666667,67.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Payment.Paths[Salida de combinación de mezcla]"
+          TopLeft="304.75,319">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38"
+              Start="0,0"
+              End="0,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Payment.Paths[Salida predeterminada de división condicional]"
+          TopLeft="308.75,399">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35"
+              Start="0,0"
+              End="0,27.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\Reserve">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Reserve\Origin_Reserve"
+          TopLeft="60,60" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Reserve\Destino de ADO NET"
+          TopLeft="223,434" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\Reserve\Origen_Reserve_Mart"
+          TopLeft="380,64" />
+        <NodeLayout
+          Size="104,42"
+          Id="Package\Reserve\Sort1"
+          TopLeft="71,160" />
+        <NodeLayout
+          Size="104,42"
+          Id="Package\Reserve\Sort2"
+          TopLeft="409,160" />
+        <NodeLayout
+          Size="130,42"
+          Id="Package\Reserve\Merge Join"
+          TopLeft="238,277" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Reserve\Conditional Split"
+          TopLeft="229,357" />
+        <EdgeLayout
+          Id="Package\Reserve.Paths[Salida de origen de ODBC]"
+          TopLeft="135,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-12,58"
+              Start="0,0"
+              End="-12,50.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25"
+                    Point2="0,29"
+                    Point3="-4,29" />
+                  <mssgle:LineSegment
+                    End="-8,29" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-8,29"
+                    Point2="-12,29"
+                    Point3="-12,33" />
+                  <mssgle:LineSegment
+                    End="-12,50.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Reserve.Paths[Salida de origen de ODBC1]"
+          TopLeft="470.5,106">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-9.5,54"
+              Start="0,0"
+              End="-9.5,46.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23"
+                    Point2="0,27"
+                    Point3="-4,27" />
+                  <mssgle:LineSegment
+                    End="-5.5,27" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-5.5,27"
+                    Point2="-9.5,27"
+                    Point3="-9.5,31" />
+                  <mssgle:LineSegment
+                    End="-9.5,46.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Reserve.Paths[Salida de ordenación]"
+          TopLeft="123,202">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="159.666666666667,75"
+              Start="0,0"
+              End="159.666666666667,67.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.4528875379939" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40.4528875379939"
+                    Point2="0,44.4528875379939"
+                    Point3="4,44.4528875379939" />
+                  <mssgle:LineSegment
+                    End="155.666666666667,44.4528875379939" />
+                  <mssgle:CubicBezierSegment
+                    Point1="155.666666666667,44.4528875379939"
+                    Point2="159.666666666667,44.4528875379939"
+                    Point3="159.666666666667,48.4528875379939" />
+                  <mssgle:LineSegment
+                    End="159.666666666667,67.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Reserve.Paths[Salida de ordenación1]"
+          TopLeft="461,202">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-137.666666666667,75"
+              Start="0,0"
+              End="-137.666666666667,67.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.4528875379939" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40.4528875379939"
+                    Point2="0,44.4528875379939"
+                    Point3="-4,44.4528875379939" />
+                  <mssgle:LineSegment
+                    End="-133.666666666667,44.4528875379939" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-133.666666666667,44.4528875379939"
+                    Point2="-137.666666666667,44.4528875379939"
+                    Point3="-137.666666666667,48.4528875379939" />
+                  <mssgle:LineSegment
+                    End="-137.666666666667,67.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Reserve.Paths[Salida de combinación de mezcla]"
+          TopLeft="304.75,319">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38"
+              Start="0,0"
+              End="0,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Reserve.Paths[Salida predeterminada de división condicional]"
+          TopLeft="308.75,399">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35"
+              Start="0,0"
+              End="0,27.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\Ticket">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="141,42"
+          Id="Package\Ticket\Origin_Ticket"
+          TopLeft="60,60" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Ticket\Destino de ADO NET"
+          TopLeft="223,434" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Ticket\Origen_Ticket_Mart"
+          TopLeft="380,64" />
+        <NodeLayout
+          Size="104,42"
+          Id="Package\Ticket\Sort1"
+          TopLeft="71,160" />
+        <NodeLayout
+          Size="104,42"
+          Id="Package\Ticket\Sort2"
+          TopLeft="409,160" />
+        <NodeLayout
+          Size="130,42"
+          Id="Package\Ticket\Merge Join"
+          TopLeft="238,277" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Ticket\Conditional Split"
+          TopLeft="229,357" />
+        <EdgeLayout
+          Id="Package\Ticket.Paths[Salida de origen de ODBC]"
+          TopLeft="126.75,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,58"
+              Start="0,0"
+              End="0,50.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Ticket.Paths[Salida de origen de ODBC1]"
+          TopLeft="463.25,106">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,54"
+              Start="0,0"
+              End="0,46.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Ticket.Paths[Salida de ordenación]"
+          TopLeft="123,202">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="159.666666666667,75"
+              Start="0,0"
+              End="159.666666666667,67.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.4528875379939" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40.4528875379939"
+                    Point2="0,44.4528875379939"
+                    Point3="4,44.4528875379939" />
+                  <mssgle:LineSegment
+                    End="155.666666666667,44.4528875379939" />
+                  <mssgle:CubicBezierSegment
+                    Point1="155.666666666667,44.4528875379939"
+                    Point2="159.666666666667,44.4528875379939"
+                    Point3="159.666666666667,48.4528875379939" />
+                  <mssgle:LineSegment
+                    End="159.666666666667,67.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Ticket.Paths[Salida de ordenación1]"
+          TopLeft="461,202">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-137.666666666667,75"
+              Start="0,0"
+              End="-137.666666666667,67.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.4528875379939" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40.4528875379939"
+                    Point2="0,44.4528875379939"
+                    Point3="-4,44.4528875379939" />
+                  <mssgle:LineSegment
+                    End="-133.666666666667,44.4528875379939" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-133.666666666667,44.4528875379939"
+                    Point2="-137.666666666667,44.4528875379939"
+                    Point3="-137.666666666667,48.4528875379939" />
+                  <mssgle:LineSegment
+                    End="-137.666666666667,67.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Ticket.Paths[Salida de combinación de mezcla]"
+          TopLeft="304.75,319">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38"
+              Start="0,0"
+              End="0,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Ticket.Paths[Salida predeterminada de división condicional]"
+          TopLeft="308.75,399">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35"
+              Start="0,0"
+              End="0,27.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

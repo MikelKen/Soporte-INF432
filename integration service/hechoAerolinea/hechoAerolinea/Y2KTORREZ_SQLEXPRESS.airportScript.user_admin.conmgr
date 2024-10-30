@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0"?>
 <DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:ObjectName="Y2KTORREZ_SQLEXPRESS.airportScript.user_admin"
-  DTS:DTSID="{2CDF06C7-5C27-4588-8F2B-7B947944D513}"
+  DTS:DTSID="{63BC2F04-3354-41AC-B3FF-2E37E7571409}"
   DTS:CreationName="ADO.NET:System.Data.OleDb.OleDbConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
   <DTS:ObjectData>
     <DTS:ConnectionManager
       DTS:ConnectionString="Data Source=Y2KTORREZ\SQLEXPRESS;User ID=user_admin;Initial Catalog=airportScript;Provider=SQLOLEDB.1;">
       <DTS:Password
         DTS:Name="Password"
-        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAPA70RInXAUa6fkL1n2rtTQAAAAACAAAAAAAQZgAAAAEAACAAAADke6pohPSAiyhPQ6+9vbSehpvmC73mdwzs6dAFXWSPEQAAAAAOgAAAAAIAACAAAAAHnZqR1RBF1g3kF6qH30vwhM/wZX8sjVIUm93UR0J2NIAAAABkpfk9khPw6jY7eGrOuc1fIqmX4q6MR8Qne4HyimhMmbzAaqf1VxbDhgYikrplOvmaOQrb14WX8ix8VAH9kn9uGVT2iZvY1I7fkercyMRc/1ZjYeESh13O3WUYqlCW3QoGq+NO0IZ++x2YLUnQNUWaU2C51No/6FOlccoVfM0IFUAAAABcWAxQ7VHeRsll7vo+BNFcGdyDbcQXrE+yCzOUlgLnn2M+CmWvUXIzUDvhrBZzQSLxffKIYvGMMqTk752z7HI+</DTS:Password>
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAPA70RInXAUa6fkL1n2rtTQAAAAACAAAAAAAQZgAAAAEAACAAAAAA66rp0v+BMmG6pJKaWBlK2OLdC1JaV9y1ei7Tu4RALgAAAAAOgAAAAAIAACAAAACCzSPFeU3ToNA+kbAUI0AtOWbCi343sl6LWpy5FrAwtIAAAAD0Xx7yGWkica5YUht65wJjNBjNNNa6Dg7M81V14lq8iVE4EdJqJhGYMEub8CHnR0dcIDXveAe6gpDA3HN5I+DTgkhInzhpIXCELHfmuSkkM3LIreiV09LGmaWvzTwnyX4k/wV5ve2Gxs2+dim6hM1Niv2QMvfywrxBZcbQtP3X40AAAAAV3WaeFT7/WrH2yPVTN58hWS1mKqfYvEYvkhA8q/Mz8YnPESdtrEMRozWmlLYPKWMyzLM7KFKiEFC4awKGv83F</DTS:Password>
     </DTS:ConnectionManager>
   </DTS:ObjectData>
 </DTS:ConnectionManager>

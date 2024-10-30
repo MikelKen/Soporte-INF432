@@ -11,8 +11,8 @@
   DTS:LocaleID="3082"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="16"
-  DTS:VersionGUID="{0ED986E2-818A-4845-B717-BD10D6D6C932}">
+  DTS:VersionBuild="19"
+  DTS:VersionGUID="{AA77989E-D138-45A2-A23F-1379598AEA69}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -202,8 +202,8 @@
               <connections>
                 <connection
                   refId="Package\AirplaneModel\Destino de ADO NET.Connections[IDbConnection]"
-                  connectionManagerID="{0D9D93EC-A865-4720-A194-DF5CA3E5CFEF}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-BQCTAU4.martAeroline]"
+                  connectionManagerID="{98EED897-A473-4C15-AF7A-24E483AFD352}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Y2KTORREZ_SQLEXPRESS.martAeroline.user_admin]"
                   description="Administrador de conexiones administrado"
                   name="IDbConnection" />
               </connections>
@@ -416,8 +416,8 @@ from Airplane a LEFT JOIN Plane_Model pm on a.Plane_Model_ID = pm.ID</property>
               <connections>
                 <connection
                   refId="Package\AirplaneModel\Origen AirPlaneModel.Connections[IDbConnection]"
-                  connectionManagerID="{621F6BAB-C6C6-4205-B4A0-C12FFB335078}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-BQCTAU4.airportScript]"
+                  connectionManagerID="{63BC2F04-3354-41AC-B3FF-2E37E7571409}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Y2KTORREZ_SQLEXPRESS.airportScript.user_admin]"
                   description="Administrador de conexiones administrado"
                   name="IDbConnection" />
               </connections>
@@ -555,8 +555,8 @@ from dimAirplane</property>
               <connections>
                 <connection
                   refId="Package\AirplaneModel\Origen AirPlaneModel_Mart.Connections[IDbConnection]"
-                  connectionManagerID="{0D9D93EC-A865-4720-A194-DF5CA3E5CFEF}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-BQCTAU4.martAeroline]"
+                  connectionManagerID="{98EED897-A473-4C15-AF7A-24E483AFD352}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Y2KTORREZ_SQLEXPRESS.martAeroline.user_admin]"
                   description="Administrador de conexiones administrado"
                   name="IDbConnection" />
               </connections>
@@ -984,8 +984,8 @@ from dimAirplane</property>
               <connections>
                 <connection
                   refId="Package\Flight\Destino de ADO NET.Connections[IDbConnection]"
-                  connectionManagerID="{0D9D93EC-A865-4720-A194-DF5CA3E5CFEF}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-BQCTAU4.martAeroline]"
+                  connectionManagerID="{98EED897-A473-4C15-AF7A-24E483AFD352}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Y2KTORREZ_SQLEXPRESS.martAeroline.user_admin]"
                   description="Administrador de conexiones administrado"
                   name="IDbConnection" />
               </connections>
@@ -1214,8 +1214,8 @@ from Flight f LEFT JOIN Flight_Cancellation fc ON f.ID = fc.Flight_ID</property>
               <connections>
                 <connection
                   refId="Package\Flight\Orig Flith.Connections[IDbConnection]"
-                  connectionManagerID="{621F6BAB-C6C6-4205-B4A0-C12FFB335078}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-BQCTAU4.airportScript]"
+                  connectionManagerID="{63BC2F04-3354-41AC-B3FF-2E37E7571409}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Y2KTORREZ_SQLEXPRESS.airportScript.user_admin]"
                   description="Administrador de conexiones administrado"
                   name="IDbConnection" />
               </connections>
@@ -1332,8 +1332,8 @@ from dimFlith</property>
               <connections>
                 <connection
                   refId="Package\Flight\Orig Flith Mart.Connections[IDbConnection]"
-                  connectionManagerID="{0D9D93EC-A865-4720-A194-DF5CA3E5CFEF}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-BQCTAU4.martAeroline]"
+                  connectionManagerID="{98EED897-A473-4C15-AF7A-24E483AFD352}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Y2KTORREZ_SQLEXPRESS.martAeroline.user_admin]"
                   description="Administrador de conexiones administrado"
                   name="IDbConnection" />
               </connections>
@@ -1606,7 +1606,7 @@ from dimFlith</property>
         <NodeLayout
           Size="145,42"
           Id="Package\AirplaneModel"
-          TopLeft="363,44.6666666666667" />
+          TopLeft="361,46.6666666666667" />
         <NodeLayout
           Size="105,42"
           Id="Package\Flight"
@@ -1620,14 +1620,6 @@ from dimFlith</property>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="171,42"
-          Id="Package\AirplaneModel\División condicional"
-          TopLeft="213,364" />
-        <NodeLayout
-          Size="207,42"
-          Id="Package\AirplaneModel\Origen AirPlaneModel_Mart"
-          TopLeft="360,67" />
-        <NodeLayout
           Size="104,42"
           Id="Package\AirplaneModel\Sort2"
           TopLeft="409,160" />
@@ -1636,9 +1628,13 @@ from dimFlith</property>
           Id="Package\AirplaneModel\Sort1"
           TopLeft="71,160" />
         <NodeLayout
-          Size="180,42"
-          Id="Package\AirplaneModel\Origen AirPlaneModel"
-          TopLeft="36,69" />
+          Size="171,42"
+          Id="Package\AirplaneModel\División condicional"
+          TopLeft="213,364" />
+        <NodeLayout
+          Size="207,42"
+          Id="Package\AirplaneModel\Origen AirPlaneModel_Mart"
+          TopLeft="360,67" />
         <NodeLayout
           Size="176,42"
           Id="Package\AirplaneModel\Destino de ADO NET"
@@ -1647,6 +1643,34 @@ from dimFlith</property>
           Size="190,42"
           Id="Package\AirplaneModel\Combinación de mezcla"
           TopLeft="207,263" />
+        <NodeLayout
+          Size="180,42"
+          Id="Package\AirplaneModel\Origen AirPlaneModel"
+          TopLeft="36,69" />
+        <EdgeLayout
+          Id="Package\AirplaneModel.Paths[new register]"
+          TopLeft="298.25,406">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59"
+              Start="0,0"
+              End="0,51.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-28.0103125,20.0576171875,56.020625,11.384765625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\AirplaneModel.Paths[Salida de origen de ADO NET1]"
           TopLeft="124.5,111">
@@ -1781,43 +1805,11 @@ from dimFlith</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <EdgeLayout
-          Id="Package\AirplaneModel.Paths[new register]"
-          TopLeft="298.25,406">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,59"
-              Start="0,0"
-              End="0,51.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,51.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-28.0103125,20.0576171875,56.020625,11.384765625"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
     design-time-name="Package\AirplaneModel\Origen AirPlaneModel_Mart">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\AirplaneModel\Origen AirPlaneModel">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1832,23 +1824,27 @@ from dimFlith</property>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\AirplaneModel\Origen AirPlaneModel">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\Flight">
     <LayoutInfo>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="122,42"
-          Id="Package\Flight\Orig Flith"
-          TopLeft="64.2727272727273,77.7272727272728" />
-        <NodeLayout
-          Size="147,42"
-          Id="Package\Flight\Orig Flith Mart"
-          TopLeft="392,75" />
-        <NodeLayout
           Size="176,42"
           Id="Package\Flight\Destino de ADO NET"
           TopLeft="217.818181818182,448.727272727273" />
+        <NodeLayout
+          Size="130,42"
+          Id="Package\Flight\Merge Join"
+          TopLeft="237,254" />
         <NodeLayout
           Size="104,42"
           Id="Package\Flight\Sort1"
@@ -1858,9 +1854,13 @@ from dimFlith</property>
           Id="Package\Flight\Sort2"
           TopLeft="409,160" />
         <NodeLayout
-          Size="130,42"
-          Id="Package\Flight\Merge Join"
-          TopLeft="237,254" />
+          Size="122,42"
+          Id="Package\Flight\Orig Flith"
+          TopLeft="64.2727272727273,77.7272727272728" />
+        <NodeLayout
+          Size="147,42"
+          Id="Package\Flight\Orig Flith Mart"
+          TopLeft="392,75" />
         <NodeLayout
           Size="155,42"
           Id="Package\Flight\Conditional Split"
@@ -1997,7 +1997,7 @@ from dimFlith</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-28.0103125,15.4212535511364,56.020625,11.384765625"
+              BoundingBox="-28.0103125,15.4212535511363,56.020625,11.384765625"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -2027,6 +2027,14 @@ from dimFlith</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
+    design-time-name="Package\Flight\Destino de ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
     design-time-name="Package\Flight\Orig Flith">
     <Properties>
       <Property>
@@ -2036,14 +2044,6 @@ from dimFlith</property>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Flight\Orig Flith Mart">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Flight\Destino de ADO NET">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

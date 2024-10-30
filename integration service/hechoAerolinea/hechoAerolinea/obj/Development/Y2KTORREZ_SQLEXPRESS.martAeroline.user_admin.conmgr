@@ -1,10 +1,14 @@
 <?xml version="1.0"?>
 <DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:ObjectName="Y2KTORREZ_SQLEXPRESS.martAeroline.user_admin"
-  DTS:DTSID="{E42D6C9F-23A9-4175-8A71-5DF99C7340E8}"
+  DTS:DTSID="{98EED897-A473-4C15-AF7A-24E483AFD352}"
   DTS:CreationName="ADO.NET:System.Data.OleDb.OleDbConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
   <DTS:ObjectData>
     <DTS:ConnectionManager
-      DTS:ConnectionString="Data Source=Y2KTORREZ\SQLEXPRESS;User ID=user_admin;Initial Catalog=martAeroline;Provider=SQLOLEDB.1;" />
+      DTS:ConnectionString="Data Source=Y2KTORREZ\SQLEXPRESS;User ID=user_admin;Initial Catalog=martAeroline;Provider=SQLOLEDB.1;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAPA70RInXAUa6fkL1n2rtTQAAAAACAAAAAAAQZgAAAAEAACAAAABjne4wYaut/B6p8RDFLxMqq4TevELdKmn7XIt8auN3zQAAAAAOgAAAAAIAACAAAAA0nQMZLIIe4EpOHnay61138ELPkQMvU9HB8GlqsXOqMIAAAABtG4P4TmZ6I6eXhCnNugPGawwF8YwMaYAJ+dzZeCiVLbrkqMYUw0c6DcLa8Bxr/8mBwsjTC7IUS/mSy0HFsxOVaIVKDtfzQxGSqUjHcoE9opkB1Wdq229pBh0S2RHRVy9rzLhhHOSA5M6wMnbXolEXBDotnfH9LM81UpPAQXgfMUAAAAB6V7dWQkUCjnBmkHmrXeyYEbjcEIfz+7cT103GyqAk1Z2BjN/XzTlXOBE2XOgpqxFFnNA4GTQuDMCCTuAf7XtA</DTS:Password>
+    </DTS:ConnectionManager>
   </DTS:ObjectData>
 </DTS:ConnectionManager>

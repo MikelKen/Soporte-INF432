@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="DESKTOP-BQCTAU4.martAeroline"
+  DTS:DTSID="{0D9D93EC-A865-4720-A194-DF5CA3E5CFEF}"
+  DTS:CreationName="ADO.NET:System.Data.OleDb.OleDbConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=DESKTOP-BQCTAU4;Initial Catalog=martAeroline;Provider=SQLOLEDB.1;Integrated Security=SSPI;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

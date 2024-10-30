@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="Y2KTORREZ_SQLEXPRESS.airportScript.user_admin"
+  DTS:DTSID="{2CDF06C7-5C27-4588-8F2B-7B947944D513}"
+  DTS:CreationName="ADO.NET:System.Data.OleDb.OleDbConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=Y2KTORREZ\SQLEXPRESS;User ID=user_admin;Initial Catalog=airportScript;Provider=SQLOLEDB.1;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

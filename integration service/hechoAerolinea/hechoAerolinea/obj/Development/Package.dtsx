@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="10/29/2024 2:41:24 PM"
@@ -11,8 +11,8 @@
   DTS:LocaleID="3082"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="17"
-  DTS:VersionGUID="{B277FA61-7E14-4663-9FC5-6526B71DFBE8}">
+  DTS:VersionBuild="16"
+  DTS:VersionGUID="{0ED986E2-818A-4845-B717-BD10D6D6C932}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -1997,7 +1997,7 @@ from dimFlith</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-28.0103125,15.4212535511363,56.020625,11.384765625"
+              BoundingBox="-28.0103125,15.4212535511364,56.020625,11.384765625"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>

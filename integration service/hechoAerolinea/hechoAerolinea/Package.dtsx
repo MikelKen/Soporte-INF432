@@ -11,8 +11,8 @@
   DTS:LocaleID="3082"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="5"
-  DTS:VersionGUID="{4BCDD63A-F5E9-43F8-AE9B-5FCEEFBE547D}">
+  DTS:VersionBuild="13"
+  DTS:VersionGUID="{020EA8A6-2FF5-44C9-AD24-5D49CBBDBB74}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -29,7 +29,744 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <pipeline
-          version="1" />
+          version="1">
+          <components>
+            <component
+              refId="Package\Airline\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="División condicional;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Enruta filas de datos a diferentes salidas según el contenido de los datos. Se usan condiciones (expresiones de SSIS) para especificar las filas que se van a enrutar. Por ejemplo, se usa para separar los registros que deben limpiarse de los registros listos para ser cargados o para enrutar solamente un subconjunto de registros."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Airline\Conditional Split.Inputs[Entrada de división condicional]"
+                  description="Entrada en la transformación División condicional"
+                  name="Entrada de división condicional">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Airline\Conditional Split.Inputs[Entrada de división condicional].Columns[id_flith (1)]"
+                      cachedDataType="i4"
+                      cachedName="id_flith (1)"
+                      lineageId="Package\Airline\Merge Join.Outputs[Merge Join Output].Columns[id_flith (1)]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Airline\Conditional Split.Outputs[new register]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="new register"
+                  synchronousInputId="Package\Airline\Conditional Split.Inputs[Entrada de división condicional]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\Airline\Merge Join.Outputs[Merge Join Output].Columns[id_flith (1)]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL([id_flith (1)])</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Airline\Conditional Split.Outputs[Salida predeterminada de división condicional]"
+                  description="Salida predeterminada de la transformación División condicional"
+                  exclusionGroup="1"
+                  name="Salida predeterminada de división condicional"
+                  synchronousInputId="Package\Airline\Conditional Split.Inputs[Entrada de división condicional]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Airline\Conditional Split.Outputs[Salida de error de división condicional]"
+                  description="Salida de error de la transformación División condicional"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de división condicional"
+                  synchronousInputId="Package\Airline\Conditional Split.Inputs[Entrada de división condicional]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Airline\Conditional Split.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Airline\Conditional Split.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Airline\Conditional Split.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Airline\Conditional Split.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Airline\Destino de ADO NET"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+              description="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC."
+              name="Destino de ADO NET"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de destino."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">[dbo].[dimFlith]</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas por lote. El valor predeterminado es 0, que utiliza el mismo tamaño que el búfer interno de SSIS. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica si se debe usar la interfaz SqlBulkCopy para mejorar el rendimiento de las operaciones de inserción masiva. No todos los proveedores admiten esta interfaz."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Airline\Destino de ADO NET.Connections[IDbConnection]"
+                  connectionManagerID="{E42D6C9F-23A9-4175-8A71-5DF99C7340E8}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Y2KTORREZ_SQLEXPRESS.martAeroline.user_admin]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Airline\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de ADO NET">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Airline\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[id_flith]"
+                      cachedDataType="i4"
+                      cachedName="id_flith"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Airline\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[id_flith]"
+                      lineageId="Package\Airline\Merge Join.Outputs[Merge Join Output].Columns[id_flith]" />
+                    <inputColumn
+                      refId="Package\Airline\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[state]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="state"
+                      externalMetadataColumnId="Package\Airline\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[state]"
+                      lineageId="Package\Airline\Merge Join.Outputs[Merge Join Output].Columns[state]" />
+                    <inputColumn
+                      refId="Package\Airline\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[id_flith (1)]"
+                      cachedDataType="i4"
+                      cachedName="id_flith (1)"
+                      externalMetadataColumnId="Package\Airline\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[id]"
+                      lineageId="Package\Airline\Merge Join.Outputs[Merge Join Output].Columns[id_flith (1)]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Airline\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[id]"
+                      dataType="i4"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\Airline\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[id_flith]"
+                      dataType="i4"
+                      name="id_flith" />
+                    <externalMetadataColumn
+                      refId="Package\Airline\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[state]"
+                      dataType="wstr"
+                      length="20"
+                      name="state" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Airline\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de ADO NET"
+                  synchronousInputId="Package\Airline\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Airline\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Airline\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Airline\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Airline\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Airline\Merge Join"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combine two sorted data flows into one using the FULL, LEFT, or INNER join. We recommend this transformation when data flows can be sorted at their sources."
+              name="Merge Join"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of join to perform."
+                  name="JoinType"
+                  typeConverter="JoinType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of columns in the ordering key."
+                  name="NumKeyColumns">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the null values are treated as equal values."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indicates the requested maximum buffers per input before blocking."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Airline\Merge Join.Inputs[Merge Join Left Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Left Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Airline\Merge Join.Inputs[Merge Join Left Input].Columns[id_flith]"
+                      cachedDataType="i4"
+                      cachedName="id_flith"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Airline\Sort1.Outputs[Salida de ordenación].Columns[id_flith]" />
+                    <inputColumn
+                      refId="Package\Airline\Merge Join.Inputs[Merge Join Left Input].Columns[state]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="state"
+                      lineageId="Package\Airline\Sort1.Outputs[Salida de ordenación].Columns[state]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Airline\Merge Join.Inputs[Merge Join Right Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Right Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Airline\Merge Join.Inputs[Merge Join Right Input].Columns[id_flith]"
+                      cachedDataType="i4"
+                      cachedName="id_flith"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Airline\Sort2.Outputs[Salida de ordenación].Columns[id_flith]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Airline\Merge Join.Outputs[Merge Join Output]"
+                  isSorted="true"
+                  name="Merge Join Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Airline\Merge Join.Outputs[Merge Join Output].Columns[id_flith]"
+                      dataType="i4"
+                      lineageId="Package\Airline\Merge Join.Outputs[Merge Join Output].Columns[id_flith]"
+                      name="id_flith"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Airline\Merge Join.Inputs[Merge Join Left Input].Columns[id_flith]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Airline\Merge Join.Outputs[Merge Join Output].Columns[state]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Airline\Merge Join.Outputs[Merge Join Output].Columns[state]"
+                      name="state">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Airline\Merge Join.Inputs[Merge Join Left Input].Columns[state]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Airline\Merge Join.Outputs[Merge Join Output].Columns[id_flith (1)]"
+                      dataType="i4"
+                      lineageId="Package\Airline\Merge Join.Outputs[Merge Join Output].Columns[id_flith (1)]"
+                      name="id_flith (1)">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Airline\Merge Join.Inputs[Merge Join Right Input].Columns[id_flith]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Airline\Orig Airline"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="Orig Airline"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select f.id as id_flith,
+		case
+			when fc.ID is not null then 'Cancelado'
+			else 'Confirmado'
+		end as state
+from Flight f LEFT JOIN Flight_Cancellation fc ON f.ID = fc.Flight_ID</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Airline\Orig Airline.Connections[IDbConnection]"
+                  connectionManagerID="{2CDF06C7-5C27-4588-8F2B-7B947944D513}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Y2KTORREZ_SQLEXPRESS.airportScript.user_admin]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Airline\Orig Airline.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Airline\Orig Airline.Outputs[Salida de origen de ADO NET].Columns[id_flith]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Airline\Orig Airline.Outputs[Salida de origen de ADO NET].ExternalColumns[id_flith]"
+                      lineageId="Package\Airline\Orig Airline.Outputs[Salida de origen de ADO NET].Columns[id_flith]"
+                      name="id_flith"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Airline\Orig Airline.Outputs[Salida de origen de ADO NET].Columns[state]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Airline\Orig Airline.Outputs[Salida de origen de ADO NET].ExternalColumns[state]"
+                      length="10"
+                      lineageId="Package\Airline\Orig Airline.Outputs[Salida de origen de ADO NET].Columns[state]"
+                      name="state"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Airline\Orig Airline.Outputs[Salida de origen de ADO NET].ExternalColumns[id_flith]"
+                      dataType="i4"
+                      name="id_flith" />
+                    <externalMetadataColumn
+                      refId="Package\Airline\Orig Airline.Outputs[Salida de origen de ADO NET].ExternalColumns[state]"
+                      dataType="wstr"
+                      length="10"
+                      name="state" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Airline\Orig Airline.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Airline\Orig Airline.Outputs[Salida de error de origen de ADO NET].Columns[id_flith]"
+                      dataType="i4"
+                      lineageId="Package\Airline\Orig Airline.Outputs[Salida de error de origen de ADO NET].Columns[id_flith]"
+                      name="id_flith" />
+                    <outputColumn
+                      refId="Package\Airline\Orig Airline.Outputs[Salida de error de origen de ADO NET].Columns[state]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Airline\Orig Airline.Outputs[Salida de error de origen de ADO NET].Columns[state]"
+                      name="state" />
+                    <outputColumn
+                      refId="Package\Airline\Orig Airline.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Airline\Orig Airline.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Airline\Orig Airline.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Airline\Orig Airline.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Airline\Orig Airline Mart"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="Orig Airline Mart"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select id_flith
+from dimFlith</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Airline\Orig Airline Mart.Connections[IDbConnection]"
+                  connectionManagerID="{E42D6C9F-23A9-4175-8A71-5DF99C7340E8}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Y2KTORREZ_SQLEXPRESS.martAeroline.user_admin]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Airline\Orig Airline Mart.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Airline\Orig Airline Mart.Outputs[Salida de origen de ADO NET].Columns[id_flith]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Airline\Orig Airline Mart.Outputs[Salida de origen de ADO NET].ExternalColumns[id_flith]"
+                      lineageId="Package\Airline\Orig Airline Mart.Outputs[Salida de origen de ADO NET].Columns[id_flith]"
+                      name="id_flith"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Airline\Orig Airline Mart.Outputs[Salida de origen de ADO NET].ExternalColumns[id_flith]"
+                      dataType="i4"
+                      name="id_flith" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Airline\Orig Airline Mart.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Airline\Orig Airline Mart.Outputs[Salida de error de origen de ADO NET].Columns[id_flith]"
+                      dataType="i4"
+                      lineageId="Package\Airline\Orig Airline Mart.Outputs[Salida de error de origen de ADO NET].Columns[id_flith]"
+                      name="id_flith" />
+                    <outputColumn
+                      refId="Package\Airline\Orig Airline Mart.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Airline\Orig Airline Mart.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Airline\Orig Airline Mart.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Airline\Orig Airline Mart.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Airline\Sort1"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Ordenar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Ordena los datos de entrada de manera ascendente o descendente cuando no es posible ordenarlos en su origen. Por ejemplo, se ordenan los datos de ventas por 'id. de cliente' antes de que se escriban en un archivo plano y se entreguen a otro departamento. Nota: no se recomienda realizar esta transformación para grandes flujos de datos."
+              name="Sort1"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si la transformación Ordenar quita filas con valores de ordenación duplicados."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número máximo de subprocesos que se deben usar para la ordenación."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Airline\Sort1.Inputs[Entrada de ordenación]"
+                  name="Entrada de ordenación">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Airline\Sort1.Inputs[Entrada de ordenación].Columns[id_flith]"
+                      cachedDataType="i4"
+                      cachedName="id_flith"
+                      lineageId="Package\Airline\Orig Airline.Outputs[Salida de origen de ADO NET].Columns[id_flith]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Airline\Sort1.Inputs[Entrada de ordenación].Columns[state]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="state"
+                      lineageId="Package\Airline\Orig Airline.Outputs[Salida de origen de ADO NET].Columns[state]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Airline\Sort1.Outputs[Salida de ordenación]"
+                  isSorted="true"
+                  name="Salida de ordenación">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Airline\Sort1.Outputs[Salida de ordenación].Columns[id_flith]"
+                      dataType="i4"
+                      lineageId="Package\Airline\Sort1.Outputs[Salida de ordenación].Columns[id_flith]"
+                      name="id_flith"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Airline\Orig Airline.Outputs[Salida de origen de ADO NET].Columns[id_flith]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Airline\Sort1.Outputs[Salida de ordenación].Columns[state]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Airline\Sort1.Outputs[Salida de ordenación].Columns[state]"
+                      name="state">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Airline\Orig Airline.Outputs[Salida de origen de ADO NET].Columns[state]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Airline\Sort2"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Ordenar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Ordena los datos de entrada de manera ascendente o descendente cuando no es posible ordenarlos en su origen. Por ejemplo, se ordenan los datos de ventas por 'id. de cliente' antes de que se escriban en un archivo plano y se entreguen a otro departamento. Nota: no se recomienda realizar esta transformación para grandes flujos de datos."
+              name="Sort2"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si la transformación Ordenar quita filas con valores de ordenación duplicados."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número máximo de subprocesos que se deben usar para la ordenación."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Airline\Sort2.Inputs[Entrada de ordenación]"
+                  name="Entrada de ordenación">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Airline\Sort2.Inputs[Entrada de ordenación].Columns[id_flith]"
+                      cachedDataType="i4"
+                      cachedName="id_flith"
+                      lineageId="Package\Airline\Orig Airline Mart.Outputs[Salida de origen de ADO NET].Columns[id_flith]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Airline\Sort2.Outputs[Salida de ordenación]"
+                  isSorted="true"
+                  name="Salida de ordenación">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Airline\Sort2.Outputs[Salida de ordenación].Columns[id_flith]"
+                      dataType="i4"
+                      lineageId="Package\Airline\Sort2.Outputs[Salida de ordenación].Columns[id_flith]"
+                      name="id_flith"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Airline\Orig Airline Mart.Outputs[Salida de origen de ADO NET].Columns[id_flith]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Airline.Paths[Merge Join Output]"
+              endId="Package\Airline\Conditional Split.Inputs[Entrada de división condicional]"
+              name="Merge Join Output"
+              startId="Package\Airline\Merge Join.Outputs[Merge Join Output]" />
+            <path
+              refId="Package\Airline.Paths[new register]"
+              endId="Package\Airline\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]"
+              name="new register"
+              startId="Package\Airline\Conditional Split.Outputs[new register]" />
+            <path
+              refId="Package\Airline.Paths[Salida de ordenación]"
+              endId="Package\Airline\Merge Join.Inputs[Merge Join Right Input]"
+              name="Salida de ordenación"
+              startId="Package\Airline\Sort2.Outputs[Salida de ordenación]" />
+            <path
+              refId="Package\Airline.Paths[Salida de ordenación1]"
+              endId="Package\Airline\Merge Join.Inputs[Merge Join Left Input]"
+              name="Salida de ordenación"
+              startId="Package\Airline\Sort1.Outputs[Salida de ordenación]" />
+            <path
+              refId="Package\Airline.Paths[Salida de origen de ADO NET]"
+              endId="Package\Airline\Sort2.Inputs[Entrada de ordenación]"
+              name="Salida de origen de ADO NET"
+              startId="Package\Airline\Orig Airline Mart.Outputs[Salida de origen de ADO NET]" />
+            <path
+              refId="Package\Airline.Paths[Salida de origen de ADO NET1]"
+              endId="Package\Airline\Sort1.Inputs[Entrada de ordenación]"
+              name="Salida de origen de ADO NET"
+              startId="Package\Airline\Orig Airline.Outputs[Salida de origen de ADO NET]" />
+          </paths>
+        </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -47,174 +784,22 @@
           version="1">
           <components>
             <component
-              refId="Package\AirplaneModel\Conditional Split"
-              componentClassID="Microsoft.ConditionalSplit"
-              contactInfo="División condicional;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
-              description="Enruta filas de datos a diferentes salidas según el contenido de los datos. Se usan condiciones (expresiones de SSIS) para especificar las filas que se van a enrutar. Por ejemplo, se usa para separar los registros que deben limpiarse de los registros listos para ser cargados o para enrutar solamente un subconjunto de registros."
-              name="Conditional Split"
-              usesDispositions="true">
-              <inputs>
-                <input
-                  refId="Package\AirplaneModel\Conditional Split.Inputs[Entrada de división condicional]"
-                  description="Entrada en la transformación División condicional"
-                  name="Entrada de división condicional">
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\AirplaneModel\Conditional Split.Outputs[Salida predeterminada de división condicional]"
-                  description="Salida predeterminada de la transformación División condicional"
-                  exclusionGroup="1"
-                  name="Salida predeterminada de división condicional"
-                  synchronousInputId="Package\AirplaneModel\Conditional Split.Inputs[Entrada de división condicional]">
-                  <properties>
-                    <property
-                      dataType="System.Boolean"
-                      name="IsDefaultOut">true</property>
-                  </properties>
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\AirplaneModel\Conditional Split.Outputs[Salida de error de división condicional]"
-                  description="Salida de error de la transformación División condicional"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="Salida de error de división condicional"
-                  synchronousInputId="Package\AirplaneModel\Conditional Split.Inputs[Entrada de división condicional]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\AirplaneModel\Conditional Split.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\AirplaneModel\Conditional Split.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\AirplaneModel\Conditional Split.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\AirplaneModel\Conditional Split.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\AirplaneModel\Destino de ADO NET"
-              componentClassID="Microsoft.SSISODBCDst"
-              contactInfo="Destino de ODBC;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
-              description="Destino de ODBC"
-              name="Destino de ADO NET"
-              usesDispositions="true"
-              version="1">
-              <properties>
-                <property
-                  dataType="System.String"
-                  description="Nombre de la tabla que debe recuperarse."
-                  expressionType="Notify"
-                  name="TableName"></property>
-                <property
-                  dataType="System.Int32"
-                  description="Especifique el número de filas recuperadas por lote."
-                  expressionType="Notify"
-                  name="BatchSize">1000</property>
-                <property
-                  dataType="System.Int32"
-                  description="Número de filas insertadas en la misma transacción."
-                  expressionType="Notify"
-                  name="TransactionSize">1000</property>
-                <property
-                  dataType="System.Int32"
-                  description="Determina la asignación del tamaño de los fragmentos de las columnas LOB"
-                  expressionType="Notify"
-                  name="LobChunkSize">32768</property>
-                <property
-                  dataType="System.Int32"
-                  description="Número de segundos que se debe esperar para que una instrucción SQL se ejecute antes de volver a la aplicación."
-                  expressionType="Notify"
-                  name="StatementTimeout">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Página de códigos que se usará cuando la información de la página de códigos no esté disponible en el origen de datos."
-                  expressionType="Notify"
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Int32"
-                  description="Método usado para insertar datos. Los valores posibles son &quot;Batch&quot; o &quot;Row by row&quot;."
-                  expressionType="Notify"
-                  name="InsertMethod">1</property>
-                <property
-                  dataType="System.Int32"
-                  description="Tipo de datos ODBC C para el enlace de datos numéricos."
-                  expressionType="Notify"
-                  name="BindNumericAs">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Determina la manera en la que el componente enlazará columnas de tipos de cadena byte o multibyte (es decir, SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). Las opciones son Unicode (SQL_C_WCHAR) y ANSI (SQL_C_CHAR)."
-                  expressionType="Notify"
-                  name="BindCharColumnsAs">0</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\AirplaneModel\Destino de ADO NET.Connections[ODBCConnection]"
-                  description="Conexión de runtime de ODBC usada para acceder a la base de datos."
-                  name="ODBCConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\AirplaneModel\Destino de ADO NET.Inputs[Entrada de destino de ODBC]"
-                  errorOrTruncationOperation="Insertar"
-                  errorRowDisposition="FailComponent"
-                  hasSideEffects="true"
-                  name="Entrada de destino de ODBC"
-                  truncationRowDisposition="FailComponent">
-                  <externalMetadataColumns
-                    isUsed="True" />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\AirplaneModel\Destino de ADO NET.Outputs[Salida de error de destino de ODBC]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="Salida de error de destino de ODBC"
-                  synchronousInputId="Package\AirplaneModel\Destino de ADO NET.Inputs[Entrada de destino de ODBC]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\AirplaneModel\Destino de ADO NET.Outputs[Salida de error de destino de ODBC].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\AirplaneModel\Destino de ADO NET.Outputs[Salida de error de destino de ODBC].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\AirplaneModel\Destino de ADO NET.Outputs[Salida de error de destino de ODBC].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\AirplaneModel\Destino de ADO NET.Outputs[Salida de error de destino de ODBC].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\AirplaneModel\Merge Join"
+              refId="Package\AirplaneModel\Combinación de mezcla"
               componentClassID="Microsoft.MergeJoin"
               contactInfo="Combinación de mezcla;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
               description="Combina dos flujos de datos ordenados en uno solo mediante la combinación FULL, LEFT o INNER. Se recomienda esta transformación cuando se pueden ordenar los flujos de datos en sus orígenes."
-              name="Merge Join"
+              name="Combinación de mezcla"
               version="1">
               <properties>
                 <property
                   dataType="System.Int32"
                   description="Especifica el tipo de combinación que se debe realizar."
                   name="JoinType"
-                  typeConverter="JoinType">2</property>
+                  typeConverter="JoinType">1</property>
                 <property
                   dataType="System.Int32"
                   description="Especifica el número de columnas de la clave de ordenación."
-                  name="NumKeyColumns">0</property>
+                  name="NumKeyColumns">1</property>
                 <property
                   dataType="System.Boolean"
                   description="Indica si los valores NULL se tratan como valores iguales."
@@ -226,123 +811,167 @@
               </properties>
               <inputs>
                 <input
-                  refId="Package\AirplaneModel\Merge Join.Inputs[Entrada izquierda de combinación de mezcla]"
+                  refId="Package\AirplaneModel\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla]"
                   hasSideEffects="true"
                   name="Entrada izquierda de combinación de mezcla">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\AirplaneModel\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[id_airplane]"
+                      cachedDataType="i4"
+                      cachedName="id_airplane"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\AirplaneModel\Sort1.Outputs[Salida de ordenación].Columns[id_airplane]" />
+                    <inputColumn
+                      refId="Package\AirplaneModel\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[modelo]"
+                      cachedDataType="wstr"
+                      cachedLength="60"
+                      cachedName="modelo"
+                      lineageId="Package\AirplaneModel\Sort1.Outputs[Salida de ordenación].Columns[modelo]" />
+                    <inputColumn
+                      refId="Package\AirplaneModel\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[state]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="state"
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\AirplaneModel\Sort1.Outputs[Salida de ordenación].Columns[state]" />
+                  </inputColumns>
                   <externalMetadataColumns />
                 </input>
                 <input
-                  refId="Package\AirplaneModel\Merge Join.Inputs[Entrada derecha de combinación de mezcla]"
+                  refId="Package\AirplaneModel\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla]"
                   hasSideEffects="true"
                   name="Entrada derecha de combinación de mezcla">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\AirplaneModel\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[id_airplane]"
+                      cachedDataType="i4"
+                      cachedName="id_airplane"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\AirplaneModel\Sort2.Outputs[Salida de ordenación].Columns[id_airplane]" />
+                  </inputColumns>
                   <externalMetadataColumns />
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\AirplaneModel\Merge Join.Outputs[Salida de combinación de mezcla]"
+                  refId="Package\AirplaneModel\Combinación de mezcla.Outputs[Salida de combinación de mezcla]"
+                  isSorted="true"
                   name="Salida de combinación de mezcla">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\AirplaneModel\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[id_airplane]"
+                      dataType="i4"
+                      lineageId="Package\AirplaneModel\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[id_airplane]"
+                      name="id_airplane"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\AirplaneModel\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[id_airplane]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\AirplaneModel\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[modelo]"
+                      dataType="wstr"
+                      length="60"
+                      lineageId="Package\AirplaneModel\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[modelo]"
+                      name="modelo">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\AirplaneModel\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[modelo]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\AirplaneModel\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[id_airplane (1)]"
+                      dataType="i4"
+                      lineageId="Package\AirplaneModel\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[id_airplane (1)]"
+                      name="id_airplane (1)">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\AirplaneModel\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[id_airplane]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
                   <externalMetadataColumns />
                 </output>
               </outputs>
             </component>
             <component
-              refId="Package\AirplaneModel\Origen_AirplaneModel_Mart"
-              componentClassID="Microsoft.SSISODBCSrc"
-              contactInfo="Origen ODBC;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
-              description="Origen ODBC"
-              name="Origen_AirplaneModel_Mart"
+              refId="Package\AirplaneModel\Destino de ADO NET"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+              description="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC."
+              name="Destino de ADO NET"
               usesDispositions="true"
-              version="1">
+              version="2">
               <properties>
                 <property
                   dataType="System.String"
-                  description="Nombre de la tabla que debe recuperarse."
+                  description="Nombre de la tabla de la base de datos de destino."
                   expressionType="Notify"
-                  name="TableName"></property>
-                <property
-                  dataType="System.String"
-                  description="Comando SQL para ejecutar."
-                  expressionType="Notify"
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
                 <property
                   dataType="System.Int32"
-                  description="Especifique el número de filas recuperadas por lote."
+                  description="Especifique el número de filas por lote. El valor predeterminado es 0, que utiliza el mismo tamaño que el búfer interno de SSIS. "
                   expressionType="Notify"
-                  name="BatchSize">1000</property>
+                  name="BatchSize">0</property>
                 <property
                   dataType="System.Int32"
-                  description="Determina la asignación del tamaño de los fragmentos de las columnas LOB"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito. "
                   expressionType="Notify"
-                  name="LobChunkSize">32768</property>
+                  name="CommandTimeout">30</property>
                 <property
                   dataType="System.Boolean"
-                  description="Determina la manera en la que el componente expone las columnas CHAR. Si es False, las columnas CHAR se exponen como cadenas byte o multibyte (DT_STR); si es True, las columnas CHAR se exponen como cadenas de tipo ancho (DT_WSTR)."
+                  description="Especifica si se debe usar la interfaz SqlBulkCopy para mejorar el rendimiento de las operaciones de inserción masiva. No todos los proveedores admiten esta interfaz."
                   expressionType="Notify"
-                  name="ExposeCharColumnsAsUnicode">false</property>
+                  name="UseBulkInsertWhenPossible">true</property>
                 <property
-                  dataType="System.Int32"
-                  description="Número de segundos que se debe esperar para que una instrucción SQL se ejecute antes de volver a la aplicación."
-                  expressionType="Notify"
-                  name="StatementTimeout">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Página de códigos que se usará cuando la información de la página de códigos no esté disponible en el origen de datos."
-                  expressionType="Notify"
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Int32"
-                  description="Método usado para recuperar datos."
-                  expressionType="Notify"
-                  name="FetchMethod">1</property>
-                <property
-                  dataType="System.Int32"
-                  description="Tipo de datos ODBC C para el enlace de datos numéricos."
-                  expressionType="Notify"
-                  name="BindNumericAs">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Determina la manera en la que el componente enlazará columnas de tipos de cadena byte o multibyte (es decir, SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). Las opciones son Unicode (SQL_C_WCHAR) y ANSI (SQL_C_CHAR)."
-                  expressionType="Notify"
-                  name="BindCharColumnsAs">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Modo usado para obtener acceso a la base de datos."
-                  expressionType="Notify"
-                  name="AccessMode"
-                  typeConverter="AccessMode">0</property>
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\AirplaneModel\Origen_AirplaneModel_Mart.Connections[ODBCConnection]"
-                  description="Conexión de runtime de ODBC usada para acceder a la base de datos."
-                  name="ODBCConnection" />
+                  refId="Package\AirplaneModel\Destino de ADO NET.Connections[IDbConnection]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
               </connections>
-              <outputs>
-                <output
-                  refId="Package\AirplaneModel\Origen_AirplaneModel_Mart.Outputs[Salida de origen de ODBC]"
+              <inputs>
+                <input
+                  refId="Package\AirplaneModel\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]"
                   errorRowDisposition="FailComponent"
-                  name="Salida de origen de ODBC"
-                  truncationRowDisposition="FailComponent">
+                  hasSideEffects="true"
+                  name="Entrada de destino de ADO NET">
                   <externalMetadataColumns
                     isUsed="True" />
-                </output>
+                </input>
+              </inputs>
+              <outputs>
                 <output
-                  refId="Package\AirplaneModel\Origen_AirplaneModel_Mart.Outputs[Salida de error de origen de ODBC]"
+                  refId="Package\AirplaneModel\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET]"
+                  exclusionGroup="1"
                   isErrorOut="true"
-                  name="Salida de error de origen de ODBC">
+                  name="Salida de error de destino de ADO NET"
+                  synchronousInputId="Package\AirplaneModel\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\AirplaneModel\Origen_AirplaneModel_Mart.Outputs[Salida de error de origen de ODBC].Columns[ErrorCode]"
+                      refId="Package\AirplaneModel\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\AirplaneModel\Origen_AirplaneModel_Mart.Outputs[Salida de error de origen de ODBC].Columns[ErrorCode]"
+                      lineageId="Package\AirplaneModel\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\AirplaneModel\Origen_AirplaneModel_Mart.Outputs[Salida de error de origen de ODBC].Columns[ErrorColumn]"
+                      refId="Package\AirplaneModel\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\AirplaneModel\Origen_AirplaneModel_Mart.Outputs[Salida de error de origen de ODBC].Columns[ErrorColumn]"
+                      lineageId="Package\AirplaneModel\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -351,102 +980,324 @@
               </outputs>
             </component>
             <component
-              refId="Package\AirplaneModel\Origin_AirplaneModel"
-              componentClassID="Microsoft.SSISODBCSrc"
-              contactInfo="Origen ODBC;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
-              description="Origen ODBC"
-              name="Origin_AirplaneModel"
-              usesDispositions="true"
-              version="1">
-              <properties>
-                <property
-                  dataType="System.String"
-                  description="Nombre de la tabla que debe recuperarse."
-                  expressionType="Notify"
-                  name="TableName"></property>
-                <property
-                  dataType="System.String"
-                  description="Comando SQL para ejecutar."
-                  expressionType="Notify"
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
-                <property
-                  dataType="System.Int32"
-                  description="Especifique el número de filas recuperadas por lote."
-                  expressionType="Notify"
-                  name="BatchSize">1000</property>
-                <property
-                  dataType="System.Int32"
-                  description="Determina la asignación del tamaño de los fragmentos de las columnas LOB"
-                  expressionType="Notify"
-                  name="LobChunkSize">32768</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Determina la manera en la que el componente expone las columnas CHAR. Si es False, las columnas CHAR se exponen como cadenas byte o multibyte (DT_STR); si es True, las columnas CHAR se exponen como cadenas de tipo ancho (DT_WSTR)."
-                  expressionType="Notify"
-                  name="ExposeCharColumnsAsUnicode">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Número de segundos que se debe esperar para que una instrucción SQL se ejecute antes de volver a la aplicación."
-                  expressionType="Notify"
-                  name="StatementTimeout">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Página de códigos que se usará cuando la información de la página de códigos no esté disponible en el origen de datos."
-                  expressionType="Notify"
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Int32"
-                  description="Método usado para recuperar datos."
-                  expressionType="Notify"
-                  name="FetchMethod">1</property>
-                <property
-                  dataType="System.Int32"
-                  description="Tipo de datos ODBC C para el enlace de datos numéricos."
-                  expressionType="Notify"
-                  name="BindNumericAs">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Determina la manera en la que el componente enlazará columnas de tipos de cadena byte o multibyte (es decir, SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). Las opciones son Unicode (SQL_C_WCHAR) y ANSI (SQL_C_CHAR)."
-                  expressionType="Notify"
-                  name="BindCharColumnsAs">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Modo usado para obtener acceso a la base de datos."
-                  expressionType="Notify"
-                  name="AccessMode"
-                  typeConverter="AccessMode">0</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\AirplaneModel\Origin_AirplaneModel.Connections[ODBCConnection]"
-                  description="Conexión de runtime de ODBC usada para acceder a la base de datos."
-                  name="ODBCConnection" />
-              </connections>
+              refId="Package\AirplaneModel\División condicional"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="División condicional;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Enruta filas de datos a diferentes salidas según el contenido de los datos. Se usan condiciones (expresiones de SSIS) para especificar las filas que se van a enrutar. Por ejemplo, se usa para separar los registros que deben limpiarse de los registros listos para ser cargados o para enrutar solamente un subconjunto de registros."
+              name="División condicional"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\AirplaneModel\División condicional.Inputs[Entrada de división condicional]"
+                  description="Entrada en la transformación División condicional"
+                  name="Entrada de división condicional">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\AirplaneModel\División condicional.Inputs[Entrada de división condicional].Columns[id_airplane (1)]"
+                      cachedDataType="i4"
+                      cachedName="id_airplane (1)"
+                      lineageId="Package\AirplaneModel\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[id_airplane (1)]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
               <outputs>
                 <output
-                  refId="Package\AirplaneModel\Origin_AirplaneModel.Outputs[Salida de origen de ODBC]"
+                  refId="Package\AirplaneModel\División condicional.Outputs[new register]"
+                  description="Salida 1 de la transformación División condicional"
+                  errorOrTruncationOperation="Cálculo"
                   errorRowDisposition="FailComponent"
-                  name="Salida de origen de ODBC"
+                  exclusionGroup="1"
+                  name="new register"
+                  synchronousInputId="Package\AirplaneModel\División condicional.Inputs[Entrada de división condicional]"
                   truncationRowDisposition="FailComponent">
-                  <externalMetadataColumns
-                    isUsed="True" />
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la expresión. Esta versión de expresión usa identificadores de linaje en lugar de nombres de columna."
+                      name="Expression">[ISNULL](#{Package\AirplaneModel\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[id_airplane (1)]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la versión descriptiva de la expresión. Esta versión de expresión usa nombres de columna."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL([id_airplane (1)])</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la posición de la condición en la lista de condiciones que evalúa la transformación. El orden de evaluación es del menor al mayor valor."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\AirplaneModel\Origin_AirplaneModel.Outputs[Salida de error de origen de ODBC]"
+                  refId="Package\AirplaneModel\División condicional.Outputs[Salida predeterminada de división condicional]"
+                  description="Salida predeterminada de la transformación División condicional"
+                  exclusionGroup="1"
+                  name="Salida predeterminada de división condicional"
+                  synchronousInputId="Package\AirplaneModel\División condicional.Inputs[Entrada de división condicional]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\AirplaneModel\División condicional.Outputs[Salida de error de división condicional]"
+                  description="Salida de error de la transformación División condicional"
+                  exclusionGroup="1"
                   isErrorOut="true"
-                  name="Salida de error de origen de ODBC">
+                  name="Salida de error de división condicional"
+                  synchronousInputId="Package\AirplaneModel\División condicional.Inputs[Entrada de división condicional]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\AirplaneModel\Origin_AirplaneModel.Outputs[Salida de error de origen de ODBC].Columns[ErrorCode]"
+                      refId="Package\AirplaneModel\División condicional.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\AirplaneModel\Origin_AirplaneModel.Outputs[Salida de error de origen de ODBC].Columns[ErrorCode]"
+                      lineageId="Package\AirplaneModel\División condicional.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\AirplaneModel\Origin_AirplaneModel.Outputs[Salida de error de origen de ODBC].Columns[ErrorColumn]"
+                      refId="Package\AirplaneModel\División condicional.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\AirplaneModel\Origin_AirplaneModel.Outputs[Salida de error de origen de ODBC].Columns[ErrorColumn]"
+                      lineageId="Package\AirplaneModel\División condicional.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\AirplaneModel\Origen AirPlaneModel"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="Origen AirPlaneModel"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select a.Registration_Number as id_airplane,
+		a.Status as state, pm.Description as modelo
+from Airplane a LEFT JOIN Plane_Model pm on a.Plane_Model_ID = pm.ID</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\AirplaneModel\Origen AirPlaneModel.Connections[IDbConnection]"
+                  connectionManagerID="{2CDF06C7-5C27-4588-8F2B-7B947944D513}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Y2KTORREZ_SQLEXPRESS.airportScript.user_admin]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\AirplaneModel\Origen AirPlaneModel.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\AirplaneModel\Origen AirPlaneModel.Outputs[Salida de origen de ADO NET].Columns[id_airplane]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\AirplaneModel\Origen AirPlaneModel.Outputs[Salida de origen de ADO NET].ExternalColumns[id_airplane]"
+                      lineageId="Package\AirplaneModel\Origen AirPlaneModel.Outputs[Salida de origen de ADO NET].Columns[id_airplane]"
+                      name="id_airplane"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\AirplaneModel\Origen AirPlaneModel.Outputs[Salida de origen de ADO NET].Columns[state]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\AirplaneModel\Origen AirPlaneModel.Outputs[Salida de origen de ADO NET].ExternalColumns[state]"
+                      length="15"
+                      lineageId="Package\AirplaneModel\Origen AirPlaneModel.Outputs[Salida de origen de ADO NET].Columns[state]"
+                      name="state"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\AirplaneModel\Origen AirPlaneModel.Outputs[Salida de origen de ADO NET].Columns[modelo]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\AirplaneModel\Origen AirPlaneModel.Outputs[Salida de origen de ADO NET].ExternalColumns[modelo]"
+                      length="60"
+                      lineageId="Package\AirplaneModel\Origen AirPlaneModel.Outputs[Salida de origen de ADO NET].Columns[modelo]"
+                      name="modelo"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\AirplaneModel\Origen AirPlaneModel.Outputs[Salida de origen de ADO NET].ExternalColumns[id_airplane]"
+                      dataType="i4"
+                      name="id_airplane" />
+                    <externalMetadataColumn
+                      refId="Package\AirplaneModel\Origen AirPlaneModel.Outputs[Salida de origen de ADO NET].ExternalColumns[state]"
+                      dataType="wstr"
+                      length="15"
+                      name="state" />
+                    <externalMetadataColumn
+                      refId="Package\AirplaneModel\Origen AirPlaneModel.Outputs[Salida de origen de ADO NET].ExternalColumns[modelo]"
+                      dataType="wstr"
+                      length="60"
+                      name="modelo" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\AirplaneModel\Origen AirPlaneModel.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\AirplaneModel\Origen AirPlaneModel.Outputs[Salida de error de origen de ADO NET].Columns[id_airplane]"
+                      dataType="i4"
+                      lineageId="Package\AirplaneModel\Origen AirPlaneModel.Outputs[Salida de error de origen de ADO NET].Columns[id_airplane]"
+                      name="id_airplane" />
+                    <outputColumn
+                      refId="Package\AirplaneModel\Origen AirPlaneModel.Outputs[Salida de error de origen de ADO NET].Columns[state]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\AirplaneModel\Origen AirPlaneModel.Outputs[Salida de error de origen de ADO NET].Columns[state]"
+                      name="state" />
+                    <outputColumn
+                      refId="Package\AirplaneModel\Origen AirPlaneModel.Outputs[Salida de error de origen de ADO NET].Columns[modelo]"
+                      dataType="wstr"
+                      length="60"
+                      lineageId="Package\AirplaneModel\Origen AirPlaneModel.Outputs[Salida de error de origen de ADO NET].Columns[modelo]"
+                      name="modelo" />
+                    <outputColumn
+                      refId="Package\AirplaneModel\Origen AirPlaneModel.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\AirplaneModel\Origen AirPlaneModel.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\AirplaneModel\Origen AirPlaneModel.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\AirplaneModel\Origen AirPlaneModel.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\AirplaneModel\Origen AirPlaneModel_Mart"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="Origen AirPlaneModel_Mart"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select id_airplane
+from dimAirplane</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\AirplaneModel\Origen AirPlaneModel_Mart.Connections[IDbConnection]"
+                  connectionManagerID="{E42D6C9F-23A9-4175-8A71-5DF99C7340E8}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Y2KTORREZ_SQLEXPRESS.martAeroline.user_admin]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\AirplaneModel\Origen AirPlaneModel_Mart.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\AirplaneModel\Origen AirPlaneModel_Mart.Outputs[Salida de origen de ADO NET].Columns[id_airplane]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\AirplaneModel\Origen AirPlaneModel_Mart.Outputs[Salida de origen de ADO NET].ExternalColumns[id_airplane]"
+                      lineageId="Package\AirplaneModel\Origen AirPlaneModel_Mart.Outputs[Salida de origen de ADO NET].Columns[id_airplane]"
+                      name="id_airplane"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\AirplaneModel\Origen AirPlaneModel_Mart.Outputs[Salida de origen de ADO NET].ExternalColumns[id_airplane]"
+                      dataType="i4"
+                      name="id_airplane" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\AirplaneModel\Origen AirPlaneModel_Mart.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\AirplaneModel\Origen AirPlaneModel_Mart.Outputs[Salida de error de origen de ADO NET].Columns[id_airplane]"
+                      dataType="i4"
+                      lineageId="Package\AirplaneModel\Origen AirPlaneModel_Mart.Outputs[Salida de error de origen de ADO NET].Columns[id_airplane]"
+                      name="id_airplane" />
+                    <outputColumn
+                      refId="Package\AirplaneModel\Origen AirPlaneModel_Mart.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\AirplaneModel\Origen AirPlaneModel_Mart.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\AirplaneModel\Origen AirPlaneModel_Mart.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\AirplaneModel\Origen AirPlaneModel_Mart.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -476,6 +1327,58 @@
                 <input
                   refId="Package\AirplaneModel\Sort1.Inputs[Entrada de ordenación]"
                   name="Entrada de ordenación">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\AirplaneModel\Sort1.Inputs[Entrada de ordenación].Columns[id_airplane]"
+                      cachedDataType="i4"
+                      cachedName="id_airplane"
+                      lineageId="Package\AirplaneModel\Origen AirPlaneModel.Outputs[Salida de origen de ADO NET].Columns[id_airplane]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\AirplaneModel\Sort1.Inputs[Entrada de ordenación].Columns[modelo]"
+                      cachedDataType="wstr"
+                      cachedLength="60"
+                      cachedName="modelo"
+                      lineageId="Package\AirplaneModel\Origen AirPlaneModel.Outputs[Salida de origen de ADO NET].Columns[modelo]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\AirplaneModel\Sort1.Inputs[Entrada de ordenación].Columns[state]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="state"
+                      lineageId="Package\AirplaneModel\Origen AirPlaneModel.Outputs[Salida de origen de ADO NET].Columns[state]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">2</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
                   <externalMetadataColumns />
                 </input>
               </inputs>
@@ -484,6 +1387,51 @@
                   refId="Package\AirplaneModel\Sort1.Outputs[Salida de ordenación]"
                   isSorted="true"
                   name="Salida de ordenación">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\AirplaneModel\Sort1.Outputs[Salida de ordenación].Columns[id_airplane]"
+                      dataType="i4"
+                      lineageId="Package\AirplaneModel\Sort1.Outputs[Salida de ordenación].Columns[id_airplane]"
+                      name="id_airplane"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\AirplaneModel\Origen AirPlaneModel.Outputs[Salida de origen de ADO NET].Columns[id_airplane]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\AirplaneModel\Sort1.Outputs[Salida de ordenación].Columns[modelo]"
+                      dataType="wstr"
+                      length="60"
+                      lineageId="Package\AirplaneModel\Sort1.Outputs[Salida de ordenación].Columns[modelo]"
+                      name="modelo">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\AirplaneModel\Origen AirPlaneModel.Outputs[Salida de origen de ADO NET].Columns[modelo]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\AirplaneModel\Sort1.Outputs[Salida de ordenación].Columns[state]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\AirplaneModel\Sort1.Outputs[Salida de ordenación].Columns[state]"
+                      name="state"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\AirplaneModel\Origen AirPlaneModel.Outputs[Salida de origen de ADO NET].Columns[state]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
                   <externalMetadataColumns />
                 </output>
               </outputs>
@@ -510,6 +1458,24 @@
                 <input
                   refId="Package\AirplaneModel\Sort2.Inputs[Entrada de ordenación]"
                   name="Entrada de ordenación">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\AirplaneModel\Sort2.Inputs[Entrada de ordenación].Columns[id_airplane]"
+                      cachedDataType="i4"
+                      cachedName="id_airplane"
+                      lineageId="Package\AirplaneModel\Origen AirPlaneModel_Mart.Outputs[Salida de origen de ADO NET].Columns[id_airplane]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
                   <externalMetadataColumns />
                 </input>
               </inputs>
@@ -518,6 +1484,22 @@
                   refId="Package\AirplaneModel\Sort2.Outputs[Salida de ordenación]"
                   isSorted="true"
                   name="Salida de ordenación">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\AirplaneModel\Sort2.Outputs[Salida de ordenación].Columns[id_airplane]"
+                      dataType="i4"
+                      lineageId="Package\AirplaneModel\Sort2.Outputs[Salida de ordenación].Columns[id_airplane]"
+                      name="id_airplane"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\AirplaneModel\Origen AirPlaneModel_Mart.Outputs[Salida de origen de ADO NET].Columns[id_airplane]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
                   <externalMetadataColumns />
                 </output>
               </outputs>
@@ -525,35 +1507,35 @@
           </components>
           <paths>
             <path
+              refId="Package\AirplaneModel.Paths[new register]"
+              endId="Package\AirplaneModel\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]"
+              name="new register"
+              startId="Package\AirplaneModel\División condicional.Outputs[new register]" />
+            <path
               refId="Package\AirplaneModel.Paths[Salida de combinación de mezcla]"
-              endId="Package\AirplaneModel\Conditional Split.Inputs[Entrada de división condicional]"
+              endId="Package\AirplaneModel\División condicional.Inputs[Entrada de división condicional]"
               name="Salida de combinación de mezcla"
-              startId="Package\AirplaneModel\Merge Join.Outputs[Salida de combinación de mezcla]" />
+              startId="Package\AirplaneModel\Combinación de mezcla.Outputs[Salida de combinación de mezcla]" />
             <path
               refId="Package\AirplaneModel.Paths[Salida de ordenación]"
-              endId="Package\AirplaneModel\Merge Join.Inputs[Entrada derecha de combinación de mezcla]"
-              name="Salida de ordenación"
-              startId="Package\AirplaneModel\Sort2.Outputs[Salida de ordenación]" />
-            <path
-              refId="Package\AirplaneModel.Paths[Salida de ordenación1]"
-              endId="Package\AirplaneModel\Merge Join.Inputs[Entrada izquierda de combinación de mezcla]"
+              endId="Package\AirplaneModel\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla]"
               name="Salida de ordenación"
               startId="Package\AirplaneModel\Sort1.Outputs[Salida de ordenación]" />
             <path
-              refId="Package\AirplaneModel.Paths[Salida de origen de ODBC]"
+              refId="Package\AirplaneModel.Paths[Salida de ordenación1]"
+              endId="Package\AirplaneModel\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla]"
+              name="Salida de ordenación"
+              startId="Package\AirplaneModel\Sort2.Outputs[Salida de ordenación]" />
+            <path
+              refId="Package\AirplaneModel.Paths[Salida de origen de ADO NET]"
               endId="Package\AirplaneModel\Sort2.Inputs[Entrada de ordenación]"
-              name="Salida de origen de ODBC"
-              startId="Package\AirplaneModel\Origen_AirplaneModel_Mart.Outputs[Salida de origen de ODBC]" />
+              name="Salida de origen de ADO NET"
+              startId="Package\AirplaneModel\Origen AirPlaneModel_Mart.Outputs[Salida de origen de ADO NET]" />
             <path
-              refId="Package\AirplaneModel.Paths[Salida de origen de ODBC1]"
+              refId="Package\AirplaneModel.Paths[Salida de origen de ADO NET1]"
               endId="Package\AirplaneModel\Sort1.Inputs[Entrada de ordenación]"
-              name="Salida de origen de ODBC"
-              startId="Package\AirplaneModel\Origin_AirplaneModel.Outputs[Salida de origen de ODBC]" />
-            <path
-              refId="Package\AirplaneModel.Paths[Salida predeterminada de división condicional]"
-              endId="Package\AirplaneModel\Destino de ADO NET.Inputs[Entrada de destino de ODBC]"
-              name="Salida predeterminada de división condicional"
-              startId="Package\AirplaneModel\Conditional Split.Outputs[Salida predeterminada de división condicional]" />
+              name="Salida de origen de ADO NET"
+              startId="Package\AirplaneModel\Origen AirPlaneModel.Outputs[Salida de origen de ADO NET]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -698,8 +1680,8 @@
               <connections>
                 <connection
                   refId="Package\Flight\Destino de ADO NET.Connections[IDbConnection]"
-                  connectionManagerID="{0D9D93EC-A865-4720-A194-DF5CA3E5CFEF}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-BQCTAU4.martAeroline]"
+                  connectionManagerID="{E42D6C9F-23A9-4175-8A71-5DF99C7340E8}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Y2KTORREZ_SQLEXPRESS.martAeroline.user_admin]"
                   description="Administrador de conexiones administrado"
                   name="IDbConnection" />
               </connections>
@@ -724,6 +1706,12 @@
                       cachedName="state"
                       externalMetadataColumnId="Package\Flight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[state]"
                       lineageId="Package\Flight\Merge Join.Outputs[Merge Join Output].Columns[state]" />
+                    <inputColumn
+                      refId="Package\Flight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[id_flith (1)]"
+                      cachedDataType="i4"
+                      cachedName="id_flith (1)"
+                      externalMetadataColumnId="Package\Flight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[id]"
+                      lineageId="Package\Flight\Merge Join.Outputs[Merge Join Output].Columns[id_flith (1)]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -928,8 +1916,8 @@ from Flight f LEFT JOIN Flight_Cancellation fc ON f.ID = fc.Flight_ID</property>
               <connections>
                 <connection
                   refId="Package\Flight\Orig Flith.Connections[IDbConnection]"
-                  connectionManagerID="{621F6BAB-C6C6-4205-B4A0-C12FFB335078}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-BQCTAU4.airportScript]"
+                  connectionManagerID="{2CDF06C7-5C27-4588-8F2B-7B947944D513}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Y2KTORREZ_SQLEXPRESS.airportScript.user_admin]"
                   description="Administrador de conexiones administrado"
                   name="IDbConnection" />
               </connections>
@@ -1046,8 +2034,8 @@ from dimFlith</property>
               <connections>
                 <connection
                   refId="Package\Flight\Orig Flith Mart.Connections[IDbConnection]"
-                  connectionManagerID="{0D9D93EC-A865-4720-A194-DF5CA3E5CFEF}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-BQCTAU4.martAeroline]"
+                  connectionManagerID="{E42D6C9F-23A9-4175-8A71-5DF99C7340E8}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Y2KTORREZ_SQLEXPRESS.martAeroline.user_admin]"
                   description="Administrador de conexiones administrado"
                   name="IDbConnection" />
               </connections>
@@ -1419,227 +2407,47 @@ from dimFlith</property>
     </LayoutInfo>
   </Package>
   <TaskHost
-    design-time-name="Package\AirplaneModel">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="209,42"
-          Id="Package\AirplaneModel\Origen_AirplaneModel_Mart"
-          TopLeft="361,65" />
-        <NodeLayout
-          Size="104,42"
-          Id="Package\AirplaneModel\Sort2"
-          TopLeft="409,160" />
-        <NodeLayout
-          Size="176,42"
-          Id="Package\AirplaneModel\Destino de ADO NET"
-          TopLeft="223,434" />
-        <NodeLayout
-          Size="130,42"
-          Id="Package\AirplaneModel\Merge Join"
-          TopLeft="238,277" />
-        <NodeLayout
-          Size="179,42"
-          Id="Package\AirplaneModel\Origin_AirplaneModel"
-          TopLeft="26,59" />
-        <NodeLayout
-          Size="104,42"
-          Id="Package\AirplaneModel\Sort1"
-          TopLeft="71,160" />
-        <NodeLayout
-          Size="155,42"
-          Id="Package\AirplaneModel\Conditional Split"
-          TopLeft="229,357" />
-        <EdgeLayout
-          Id="Package\AirplaneModel.Paths[Salida predeterminada de división condicional]"
-          TopLeft="308.75,399">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,35"
-              Start="0,0"
-              End="0,27.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,27.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\AirplaneModel.Paths[Salida de origen de ODBC1]"
-          TopLeft="119.25,101">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,59"
-              Start="0,0"
-              End="0,51.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,51.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\AirplaneModel.Paths[Salida de origen de ODBC]"
-          TopLeft="463.25,107">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,53"
-              Start="0,0"
-              End="0,45.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,45.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\AirplaneModel.Paths[Salida de ordenación1]"
-          TopLeft="123,202">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="159.666666666667,75"
-              Start="0,0"
-              End="159.666666666667,67.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,40.4528875379939" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,40.4528875379939"
-                    Point2="0,44.4528875379939"
-                    Point3="4,44.4528875379939" />
-                  <mssgle:LineSegment
-                    End="155.666666666667,44.4528875379939" />
-                  <mssgle:CubicBezierSegment
-                    Point1="155.666666666667,44.4528875379939"
-                    Point2="159.666666666667,44.4528875379939"
-                    Point3="159.666666666667,48.4528875379939" />
-                  <mssgle:LineSegment
-                    End="159.666666666667,67.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\AirplaneModel.Paths[Salida de ordenación]"
-          TopLeft="461,202">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-137.666666666667,75"
-              Start="0,0"
-              End="-137.666666666667,67.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,40.4528875379939" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,40.4528875379939"
-                    Point2="0,44.4528875379939"
-                    Point3="-4,44.4528875379939" />
-                  <mssgle:LineSegment
-                    End="-133.666666666667,44.4528875379939" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-133.666666666667,44.4528875379939"
-                    Point2="-137.666666666667,44.4528875379939"
-                    Point3="-137.666666666667,48.4528875379939" />
-                  <mssgle:LineSegment
-                    End="-137.666666666667,67.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\AirplaneModel.Paths[Salida de combinación de mezcla]"
-          TopLeft="304.75,319">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,38"
-              Start="0,0"
-              End="0,30.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,30.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <TaskHost
-    design-time-name="Package\Flight">
+    design-time-name="Package\Airline">
     <LayoutInfo>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="104,42"
-          Id="Package\Flight\Sort2"
-          TopLeft="409,160" />
+          Size="176,42"
+          Id="Package\Airline\Destino de ADO NET"
+          TopLeft="213.545454545455,433.727272727273" />
+        <NodeLayout
+          Size="130,42"
+          Id="Package\Airline\Merge Join"
+          TopLeft="232.727272727273,239" />
         <NodeLayout
           Size="104,42"
-          Id="Package\Flight\Sort1"
-          TopLeft="71,160" />
+          Id="Package\Airline\Sort1"
+          TopLeft="66.7272727272727,145" />
+        <NodeLayout
+          Size="104,42"
+          Id="Package\Airline\Sort2"
+          TopLeft="404.727272727273,145" />
+        <NodeLayout
+          Size="131,42"
+          Id="Package\Airline\Orig Airline"
+          TopLeft="60,62.7272727272728" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Airline\Orig Airline Mart"
+          TopLeft="387.727272727273,60" />
         <NodeLayout
           Size="155,42"
-          Id="Package\Flight\Conditional Split"
-          TopLeft="229,357" />
-        <NodeLayout
-          Size="122,42"
-          Id="Package\Flight\Orig Flith"
-          TopLeft="77,75" />
+          Id="Package\Airline\Conditional Split"
+          TopLeft="224.727272727273,342" />
         <EdgeLayout
-          Id="Package\Flight.Paths[Salida de origen de ADO NET]"
-          TopLeft="138,117">
+          Id="Package\Airline.Paths[Salida de origen de ADO NET]"
+          TopLeft="465.727272727273,102">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-15,43"
+              EndConnector="-9,43"
               Start="0,0"
-              End="-15,35.5">
+              End="-9,35.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -1650,13 +2458,13 @@ from dimFlith</property>
                     Point2="0,21.5"
                     Point3="-4,21.5" />
                   <mssgle:LineSegment
-                    End="-11,21.5" />
+                    End="-5,21.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="-11,21.5"
-                    Point2="-15,21.5"
-                    Point3="-15,25.5" />
+                    Point1="-5,21.5"
+                    Point2="-9,21.5"
+                    Point3="-9,25.5" />
                   <mssgle:LineSegment
-                    End="-15,35.5" />
+                    End="-9,35.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1665,24 +2473,20 @@ from dimFlith</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="147,42"
-          Id="Package\Flight\Orig Flith Mart"
-          TopLeft="392,75" />
         <EdgeLayout
-          Id="Package\Flight.Paths[Salida de origen de ADO NET1]"
-          TopLeft="463.25,117">
+          Id="Package\Airline.Paths[Salida de origen de ADO NET1]"
+          TopLeft="122.113636363636,104.727272727273">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,43"
+              EndConnector="0,40.2727272727272"
               Start="0,0"
-              End="0,35.5">
+              End="0,32.7727272727272">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,35.5" />
+                    End="0,32.7727272727272" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1691,13 +2495,43 @@ from dimFlith</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="130,42"
-          Id="Package\Flight\Merge Join"
-          TopLeft="237,254" />
         <EdgeLayout
-          Id="Package\Flight.Paths[Salida de ordenación]"
-          TopLeft="123,202">
+          Id="Package\Airline.Paths[Salida de ordenación]"
+          TopLeft="456.727272727273,187">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-138.666666666667,52"
+              Start="0,0"
+              End="-138.666666666667,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.8206686930091" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.8206686930091"
+                    Point2="0,30.8206686930091"
+                    Point3="-4,30.8206686930091" />
+                  <mssgle:LineSegment
+                    End="-134.666666666667,30.8206686930091" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-134.666666666667,30.8206686930091"
+                    Point2="-138.666666666667,30.8206686930091"
+                    Point3="-138.666666666667,34.8206686930091" />
+                  <mssgle:LineSegment
+                    End="-138.666666666667,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Airline.Paths[Salida de ordenación1]"
+          TopLeft="118.727272727273,187">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1721,6 +2555,326 @@ from dimFlith</property>
                     Point3="179,30" />
                   <mssgle:LineSegment
                     End="179,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Airline.Paths[new register]"
+          TopLeft="301.886363636364,384">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49.7272727272727"
+              Start="0,0"
+              End="0,42.2272727272727">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.2272727272727" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-28.0103125,15.4212535511364,56.020625,11.384765625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Airline.Paths[Merge Join Output]"
+          TopLeft="299.977272727273,281">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,61"
+              Start="0,0"
+              End="0,53.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\AirplaneModel">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="104,42"
+          Id="Package\AirplaneModel\Sort2"
+          TopLeft="409,160" />
+        <NodeLayout
+          Size="104,42"
+          Id="Package\AirplaneModel\Sort1"
+          TopLeft="71,160" />
+        <NodeLayout
+          Size="207,42"
+          Id="Package\AirplaneModel\Origen AirPlaneModel_Mart"
+          TopLeft="360,67" />
+        <EdgeLayout
+          Id="Package\AirplaneModel.Paths[Salida de origen de ADO NET]"
+          TopLeft="462.25,109">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,51"
+              Start="0,0"
+              End="0,43.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="180,42"
+          Id="Package\AirplaneModel\Origen AirPlaneModel"
+          TopLeft="36,69" />
+        <EdgeLayout
+          Id="Package\AirplaneModel.Paths[Salida de origen de ADO NET1]"
+          TopLeft="124.5,111">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49"
+              Start="0,0"
+              End="0,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="190,42"
+          Id="Package\AirplaneModel\Combinación de mezcla"
+          TopLeft="207,263" />
+        <EdgeLayout
+          Id="Package\AirplaneModel.Paths[Salida de ordenación]"
+          TopLeft="123,202">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="148.666666666667,61"
+              Start="0,0"
+              End="148.666666666667,53.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.294363256785" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32.294363256785"
+                    Point2="0,36.294363256785"
+                    Point3="4,36.294363256785" />
+                  <mssgle:LineSegment
+                    End="144.666666666667,36.294363256785" />
+                  <mssgle:CubicBezierSegment
+                    Point1="144.666666666667,36.294363256785"
+                    Point2="148.666666666667,36.294363256785"
+                    Point3="148.666666666667,40.294363256785" />
+                  <mssgle:LineSegment
+                    End="148.666666666667,53.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\AirplaneModel.Paths[Salida de ordenación1]"
+          TopLeft="461,202">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-128.666666666667,61"
+              Start="0,0"
+              End="-128.666666666667,53.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.294363256785" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32.294363256785"
+                    Point2="0,36.294363256785"
+                    Point3="-4,36.294363256785" />
+                  <mssgle:LineSegment
+                    End="-124.666666666667,36.294363256785" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-124.666666666667,36.294363256785"
+                    Point2="-128.666666666667,36.294363256785"
+                    Point3="-128.666666666667,40.294363256785" />
+                  <mssgle:LineSegment
+                    End="-128.666666666667,53.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="171,42"
+          Id="Package\AirplaneModel\División condicional"
+          TopLeft="213,364" />
+        <EdgeLayout
+          Id="Package\AirplaneModel.Paths[Salida de combinación de mezcla]"
+          TopLeft="300.25,305">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59"
+              Start="0,0"
+              End="0,51.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="176,42"
+          Id="Package\AirplaneModel\Destino de ADO NET"
+          TopLeft="210,465" />
+        <EdgeLayout
+          Id="Package\AirplaneModel.Paths[new register]"
+          TopLeft="298.25,406">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59"
+              Start="0,0"
+              End="0,51.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-28.0103125,20.0576171875,56.020625,11.384765625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\Flight">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Flight\Destino de ADO NET"
+          TopLeft="217.818181818182,448.727272727273" />
+        <NodeLayout
+          Size="130,42"
+          Id="Package\Flight\Merge Join"
+          TopLeft="237,254" />
+        <NodeLayout
+          Size="104,42"
+          Id="Package\Flight\Sort1"
+          TopLeft="71,160" />
+        <NodeLayout
+          Size="104,42"
+          Id="Package\Flight\Sort2"
+          TopLeft="409,160" />
+        <NodeLayout
+          Size="122,42"
+          Id="Package\Flight\Orig Flith"
+          TopLeft="64.2727272727273,77.7272727272728" />
+        <NodeLayout
+          Size="147,42"
+          Id="Package\Flight\Orig Flith Mart"
+          TopLeft="392,75" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Flight\Conditional Split"
+          TopLeft="229,357" />
+        <EdgeLayout
+          Id="Package\Flight.Paths[Salida de origen de ADO NET1]"
+          TopLeft="463.25,117">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,43"
+              Start="0,0"
+              End="0,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Flight.Paths[Salida de origen de ADO NET]"
+          TopLeft="124.136363636364,119.727272727273">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40.2727272727272"
+              Start="0,0"
+              End="0,32.7727272727272">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.7727272727272" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1764,6 +2918,64 @@ from dimFlith</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
+          Id="Package\Flight.Paths[Salida de ordenación]"
+          TopLeft="123,202">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="179,52"
+              Start="0,0"
+              End="179,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22"
+                    Point2="0,26"
+                    Point3="4,26" />
+                  <mssgle:LineSegment
+                    End="175,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="175,26"
+                    Point2="179,26"
+                    Point3="179,30" />
+                  <mssgle:LineSegment
+                    End="179,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Flight.Paths[new register]"
+          TopLeft="306.159090909091,399">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49.7272727272727"
+              Start="0,0"
+              End="0,42.2272727272727">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.2272727272727" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-28.0103125,15.4212535511364,56.020625,11.384765625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
           Id="Package\Flight.Paths[Merge Join Output]"
           TopLeft="304.25,296">
           <EdgeLayout.Curve>
@@ -1785,49 +2997,17 @@ from dimFlith</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="176,42"
-          Id="Package\Flight\Destino de ADO NET"
-          TopLeft="276,426" />
-        <EdgeLayout
-          Id="Package\Flight.Paths[new register]"
-          TopLeft="306.5,399">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="57.5,27"
-              Start="0,0"
-              End="57.5,19.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,9.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,9.5"
-                    Point2="0,13.5"
-                    Point3="4,13.5" />
-                  <mssgle:LineSegment
-                    End="53.5,13.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="53.5,13.5"
-                    Point2="57.5,13.5"
-                    Point3="57.5,17.5" />
-                  <mssgle:LineSegment
-                    End="57.5,19.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0.739687500000002,18.5,56.020625,11.384765625"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Flight\Destino de ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Flight\Orig Flith">
     <Properties>
@@ -1845,7 +3025,15 @@ from dimFlith</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Flight\Destino de ADO NET">
+    design-time-name="Package\AirplaneModel\Origen AirPlaneModel_Mart">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\AirplaneModel\Origen AirPlaneModel">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

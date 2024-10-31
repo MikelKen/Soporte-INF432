@@ -35,5 +35,8 @@ create table factAeroline
 	foreign key (airplane_id) references dimAirplane(id)
 
 )
+Alter table factAeroline
+Add name_aeroline Varchar(50)
 
+select * from factAeroline f
 

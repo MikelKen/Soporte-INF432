@@ -11,16 +11,19 @@ EXEC InsertAirport;
 --Insert date PlanelModel
 EXEC InsertPlanelModel;
 
+--Insert date state airplane
+EXEC InsertStateAirplane;
+select * from State_Airplane
 --Insert date Airplane
 EXEC InsertAirplane @NumberOfRows = 30;
-
+select * from Airplane
 
 --Insert date FlightNumbers
 EXEC InsertFlightNumbers @NumberOfRows = 1500;
 
 --Insert date Seat
 EXEC InsertSeats @NumberOfRows = 200;
-
+select * from Seat
 --Insert date Airline
 EXEC InsertAirline;
 
@@ -39,6 +42,9 @@ EXEC InsertDataFromTempToPerson;
 
 --Insert date Passenger
 EXEC InsertPassengers @NumberOfRows = 800;
+
+--Insert type customer
+EXEC InsertTypeCustomer
 
 --Insert date Customer
 EXEC InsertCustomer @NumberOfRows = 400;
@@ -64,6 +70,9 @@ EXEC InsertFlightReprogramings @NumberOfRows = 40;
 --Insert date Payment_Type
 EXEC InsertPayment_Type;
 
+--Insert Currency
+EXEC InsertCurrency
+
 --Insert date Payment
 EXEC InsertPayments @NumberOfRows = 300;
 
@@ -82,11 +91,7 @@ EXEC InsertTickets @NumberOfRows = 500;
 --Insert date Reserve
 EXEC InsertReserves @NumberOfRows = 500;
 
---Insert date Confirmation
-EXEC InsertConfirmation @NumberOfRows = 450;
 
---Insert date Cancellation
-EXEC InsertCancellations @NumberOfRows = 50;
 
 --Insert date Coupon
 EXEC InsertCoupons @NumberOfRows = 800;
@@ -114,77 +119,3 @@ EXEC InsertCheck_In @NumberOfRows = 750;
 
 
 
-
-
-/*
-select * from Country
-select * from City
-select * from Airport
-select * from Plane_Model
-select * from Airplane
-select * from Flight_Number
-select * from Seat
-select * from Airline
-select * from Flight
-select * from Available_Seat
-select * from Passenger_Type
-select * from Person
---
-select * from TempPersonData
-drop table TempPersonData
---
-select * from Passenger
-select * from Customer
-select * from Crew_Member
-select * from Crew_Rol
-select * from Crew_Assigment
-select * from Frequent_Flyer_Card
-select * from Flight_Cancellation
-select * from Flight_Reprograming
-select * from Payment_Type
-select * from Payment
-select * from Document_Type
-select * from Document
-select * from Category
-select * from Ticket
-select * from Reserve
-select * from Confirmation
-select * from Cancellation
-select * from Coupon
-select * from Boarding_Pass
-select * from Pieces_of_Luggage
-select * from Baggage_Check_In
-select * from Check_In
-
-*/
-
-
-
-select * from dimPassenger
-
-truncate table dimPassenger
-
-
--- Insertar 20 aviones aleatorios
-EXEC InsertAirplanes @NumberOfRows = 20;
-
--- Insertar 10 números de seats aleatorios
-EXEC InsertFlightNumbers @NumberOfRows = 20;
-
-
--- Crear una tabla temporal para cargar los datos desde el CSV
-CREATE TABLE #TempPersonData (
-    Name VARCHAR(50),
-    Phone VARCHAR(20),
-    Email VARCHAR(50)
-);
-
--- Cargar los datos del CSV a la tabla temporal
-BULK INSERT #TempPersonData
-FROM 'C:\Users\usuario\Desktop\uagrm\2-2024\soport\Script\person.csv'--cambiar la ruta del archivo
-WITH (
-    FIELDTERMINATOR = ',',
-    ROWTERMINATOR = '\n',
-    FIRSTROW = 2 -- Asume que la primera fila es el encabezado
-);
-Go

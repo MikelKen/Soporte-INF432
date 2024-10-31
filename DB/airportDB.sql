@@ -1,12 +1,12 @@
 use master
 
-if db_id('airportScript') is null
+if db_id('airport') is null
 begin
-	create database airportScript;
+	create database airport;
 end
 go
 
-use airportScript;
+use airport;
 go
 
 ---------------------------------------------------------------------
@@ -62,7 +62,7 @@ go
 if object_id('State_Airplane', 'U') is null
 begin
 	create table State_Airplane (
-		ID integer identity primary key,
+		ID integer identity(1,1) primary key,
 		name varchar(50) not null,
 	)
 end
@@ -73,7 +73,8 @@ go
 if object_id('Airplane', 'U') is null
 begin
     create table Airplane(
-        Registration_Number int identity(1,1) primary key,
+		id int identity (1,1) primary key,
+        Registration_Number int not null,
         Begin_of_Operation date not null check (Begin_of_Operation <= GETDATE()),
         Status_ID integer not null,-- varchar(15) Default 'Active' not null check (Status IN ('Active', 'Inactive', 'Maintenance')),
         Plane_Model_ID int null,
@@ -107,9 +108,9 @@ if object_id('Seat', 'U') is null
 begin
     create table Seat(
         ID int identity(1,1) primary key,
-        Size varchar(10) default 'Medium'not null check (Size IN ('Small', 'Medium', 'Large')),
+        Size varchar(10) default 'Medium'not null,-- check (Size IN ('Small', 'Medium', 'Large')),
         Number int not null unique check (Number > 0),
-        Location varchar(30) not null check (Location IN ('Window','Aisle','Middle','Left','Right')),
+        Location varchar(30) default 'Window' not null,-- check (Location IN ('Window','Aisle','Middle','Left','Right')),
         Plane_Model_ID int not null,
         foreign key (Plane_Model_ID) references Plane_Model(ID) ON DELETE NO ACTION
     );
@@ -216,7 +217,7 @@ go
 if object_id ('Type_Customer', 'U') is null
 begin
 	create table Type_Customer (
-		ID integer identity primary key,
+		ID integer identity(1,1) primary key,
 		name varchar(50) not null
 	);
 end
@@ -333,7 +334,7 @@ go
 if object_id ('Currency', 'U') is null
 begin
 	create table Currency(
-		ID integer identity primary key,
+		ID integer identity(1,1) primary key,
 		code varchar(10) not null,
 	);
 end
@@ -427,7 +428,6 @@ begin
         ID int identity(1,1) primary key,
 		State bit not null default 1,
 		Reservation_Date date not null default getdate(),
-		TotalAmount decimal(10,2) not null,
 		TicketCount int not null check (TicketCount > 0),
         Customer_ID int not null,
 		Payment_ID int not null,

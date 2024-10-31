@@ -1,4 +1,4 @@
-use airportScript;
+use airport;
 go
 --Procedure for country
 --Procedure for city
@@ -97,43 +97,61 @@ END;
 GO
 
 -----------------------------------------------------------------------
+--Procedure for State Airplane
+IF OBJECT_ID('InsertStateAirplane','P') is null
+begin
+	DROP PROCEDURE InsertStateAirplane
+end;
+go
+CREATE PROCEDURE InsertStateAirplane
+AS
+BEGIN
+	INSERT INTO State_Airplane (name) VALUES
+	('Active'),
+	('Inactive'),
+	('Maintenance')
+
+END
+go
+-------------------------------------------------------------------
 --Procedure for Airplane
 IF OBJECT_ID('InsertAirplane', 'P') IS NOT NULL
 BEGIN
     DROP PROCEDURE InsertAirplane;
 END;
 go
-CREATE PROCEDURE  InsertAirplane
+CREATE PROCEDURE InsertAirplane
     @NumberOfRows INT -- Cantidad a insertar
 AS
 BEGIN
     DECLARE @i INT = 0;
 
-WHILE @i < @NumberOfRows
-BEGIN
-		BEGIN TRY
-			BEGIN TRANSACTION
-			INSERT INTO Airplane (Begin_of_Operation, Status, Plane_Model_ID)
-			SELECT 
-            -- Fecha de inicio de operación aleatoria en los últimos 10 años
-            DATEADD(DAY, -ABS(CHECKSUM(NEWID()) % 3650), GETDATE()) AS Begin_of_Operation,
-            -- Estado aleatorio ('Active', 'Inactive', 'Maintenance')
-            CASE ABS(CHECKSUM(NEWID()) % 3)
-                WHEN 0 THEN 'Active'
-                WHEN 1 THEN 'Inactive'
-                WHEN 2 THEN 'Maintenance'
-            END AS Status,
-            -- Selección aleatoria de Plane_Model_ID de la tabla Plane_Model
-            (SELECT TOP 1 ID FROM Plane_Model ORDER BY NEWID()) AS Plane_Model_ID;
-		COMMIT TRANSACTION;
-	END TRY
-	BEGIN CATCH
-		ROLLBACK TRANSACTION;
-	END CATCH;
+    WHILE @i < @NumberOfRows
+    BEGIN
+        BEGIN TRY
+            BEGIN TRANSACTION
+            INSERT INTO Airplane (Registration_Number, Begin_of_Operation, Status_ID, Plane_Model_ID)
+            SELECT 
+                -- Generación de un número de registro aleatorio entre un rango (ej. 10000 y 99999)
+                ABS(CHECKSUM(NEWID()) % 90000) + 10000 AS Registration_Number,
+                -- Fecha de inicio de operación aleatoria en los últimos 10 años
+                DATEADD(DAY, -ABS(CHECKSUM(NEWID()) % 3650), GETDATE()) AS Begin_of_Operation,
+                -- Selección aleatoria de Status_ID
+                (SELECT TOP 1 ID FROM State_Airplane ORDER BY NEWID()) AS Status_ID,
+                -- Selección aleatoria de Plane_Model_ID de la tabla Plane_Model
+                (SELECT TOP 1 ID FROM Plane_Model ORDER BY NEWID()) AS Plane_Model_ID;
+            COMMIT TRANSACTION;
+        END TRY
+        BEGIN CATCH
+            ROLLBACK TRANSACTION;
+			PRINT 'Error: ' + ERROR_MESSAGE();
+        END CATCH;
         SET @i = @i + 1;
     END;
 END;
 GO
+
+
 
 -----------------------------------------------------------------------
 --Procedure for FlightNumbers
@@ -168,11 +186,14 @@ BEGIN
     END TRY
     BEGIN CATCH
         ROLLBACK TRANSACTION;
+		PRINT 'Error: ' + ERROR_MESSAGE();
     END CATCH;
         SET @i = @i + 1;
     END;
 END;
 GO
+
+
 
 
 --=====================================================================
@@ -495,6 +516,23 @@ END;
 GO
 
 --=============================================================================
+--Procedure for Type Customer
+IF OBJECT_ID('InsertTypeCustomer','P') is null
+begin
+	DROP PROCEDURE InsertTypeCustomer
+end;
+go
+CREATE PROCEDURE InsertTypeCustomer
+AS
+BEGIN
+	INSERT INTO Type_Customer (name) VALUES
+	('Natural Customer'),
+	('Legal Customer')
+
+END
+go
+
+---------------------------------------------------------------------
 --Procedure for Customer
 IF OBJECT_ID('InsertCustomer', 'P') IS NOT NULL
 BEGIN
@@ -512,17 +550,14 @@ BEGIN
     BEGIN TRY
         BEGIN TRANSACTION;    
         -- Insertar en la tabla Passenger
-        INSERT INTO Customer (Loyalty_Points, Person_ID,TypeCustomer)
+        INSERT INTO Customer (Loyalty_Points, Person_ID,TypeCustomer_ID)
         SELECT 
             -- Número aleatorio de vuelos entre 0 y 100
             ABS(CHECKSUM(NEWID()) % 100) AS Loyalty_Points,
             -- Persona aleatoria (Person_ID)
 			(SELECT TOP 1 ID FROM Person ORDER BY NEWID()) AS Person_ID,
 			-- Tipo de cliente aleatorio ('Natural Customer', 'Legal Customer')
-            CASE ABS(CHECKSUM(NEWID()) % 2)
-                WHEN 0 THEN 'Natural Customer'
-                WHEN 1 THEN 'Legal Customer'
-            END AS TypeCustomer;
+			(SELECT TOP 1 ID FROM Type_Customer ORDER BY NEWID()) AS TypeCustomer_ID
         COMMIT TRANSACTION;
     END TRY
     BEGIN CATCH
@@ -767,6 +802,24 @@ END;
 GO
 
 --=============================================================================
+IF OBJECT_ID('InsertCurrency', 'P') IS NOT NULL
+BEGIN
+    DROP PROCEDURE InsertCurrency;
+END;
+go
+CREATE PROCEDURE InsertCurrency
+AS
+BEGIN
+if not exists (select 1 from Currency) 
+begin
+	INSERT INTO Currency(code) VALUES
+	('Bs'),
+	('USD')
+end
+
+END;
+GO
+-------------------------------------------------------------
 --Procedure for Payment
 IF OBJECT_ID('InsertPayments', 'P') IS NOT NULL
 BEGIN
@@ -784,10 +837,10 @@ BEGIN
     BEGIN TRY
         BEGIN TRANSACTION;   
         -- Insertar en la tabla Payment
-        INSERT INTO Payment (Currency, Amount, Date, Payment_Type_ID)
+        INSERT INTO Payment (Currency_ID, Amount, Date, Payment_Type_ID)
         SELECT 
             -- Moneda aleatoria (Bs o USD)
-            CASE WHEN ABS(CHECKSUM(NEWID()) % 2) = 0 THEN 'Bs' ELSE 'USD' END AS Currency,
+			(SELECT TOP 1 ID FROM Currency ORDER BY NEWID()) AS Currency_ID,
             -- Monto aleatorio entre 1 y 10000
             ABS(CHECKSUM(NEWID()) % 10000) + 1 AS Amount,
             -- Fecha aleatoria en los últimos 365 días
@@ -878,11 +931,11 @@ AS
 BEGIN
 if not exists (select 1 from Category) 
 begin
-	INSERT INTO Category (Name) VALUES 
-	('Economic'),
-	('Business'),
-	('First Class'),
-	('Premium Economic');
+	INSERT INTO Category (Name, price) VALUES 
+	('Economic', 300),
+	('Business', 350),
+	('First Class', 400),
+	('Premium Economic', 450);
 end
 
 END;
@@ -905,12 +958,10 @@ BEGIN
     BEGIN TRY
         BEGIN TRANSACTION; 
         -- Insertar en la tabla Ticket
-        INSERT INTO Ticket (Number,Price, Category_id, Document_ID, Passenger_ID)
+        INSERT INTO Ticket (Number, Category_id, Document_ID, Passenger_ID)
         SELECT 
             -- Número aleatorio mayor a 0
             ABS(CHECKSUM(NEWID()) % 100000) + 1 AS Number,
-			-- Precio aleatorio entre 50 y 1000
-                CAST((ABS(CHECKSUM(NEWID()) % 951) + 50) AS DECIMAL(10, 2)) AS Price,
             -- Categoría aleatoria (Category_id)
 			(SELECT TOP 1 ID FROM Category ORDER BY NEWID()) AS Category_id,
 			-- Documento (Document_ID)
@@ -940,48 +991,46 @@ AS
 BEGIN
     DECLARE @i INT = 0;
 
-WHILE @i < @NumberOfRows
-BEGIN
-    BEGIN TRY
-        BEGIN TRANSACTION;  
-		-- Generar la cantidad de tickets aleatoria para esta reserva (entre 1 y 5)
-            DECLARE @TicketCount INT = ABS(CHECKSUM(NEWID()) % 5) + 1;
-	    -- Calcular el monto total sumando el precio de los tickets seleccionados
-            DECLARE @TotalAmount DECIMAL(10, 2) = (
-                SELECT SUM(Price)
-                FROM (SELECT TOP (@TicketCount) Price FROM Ticket ORDER BY NEWID()) AS TicketPrices
-            );
+    WHILE @i < @NumberOfRows
+    BEGIN
+        BEGIN TRY
+            BEGIN TRANSACTION;
 
-        -- Insertar en la tabla Reserve
-        INSERT INTO Reserve (State, Reservation_Date,TotalAmount, TicketCount, Customer_ID, Payment_ID, Ticketing_Code)
-		SELECT
+            -- Generar una cantidad de tickets aleatoria entre 1 y 5 para esta reserva
+            DECLARE @TicketCount INT = ABS(CHECKSUM(NEWID()) % 5) + 1;
+
+            -- Insertar en la tabla Reserve
+            INSERT INTO Reserve (State, Reservation_Date, TicketCount, Customer_ID, Payment_ID, Ticketing_Code)
+            SELECT
                 -- Estado aleatorio (0 o 1)
                 ABS(CHECKSUM(NEWID()) % 2),
                 -- Fecha de reserva aleatoria en los últimos 30 días
                 DATEADD(DAY, -ABS(CHECKSUM(NEWID()) % 30), GETDATE()),
-                -- Monto total calculado
-                @TotalAmount,
                 -- Cantidad de tickets generada
                 @TicketCount,
                 -- Cliente aleatorio
-  				(SELECT TOP 1 ID FROM Customer ORDER BY NEWID()) AS Customer_ID,
+                (SELECT TOP 1 ID FROM Customer ORDER BY NEWID()) AS Customer_ID,
                 -- Pago aleatorio
-				(SELECT TOP 1 ID FROM Payment ORDER BY NEWID()) AS Payment_ID,
+                (SELECT TOP 1 ID FROM Payment ORDER BY NEWID()) AS Payment_ID,
                 -- Código de ticket aleatorio
-				(SELECT TOP 1 Ticketing_Code FROM Ticket ORDER BY NEWID()) AS Ticketing_Code;
-        COMMIT TRANSACTION;
-    END TRY
-    BEGIN CATCH
-        ROLLBACK TRANSACTION;
-    END CATCH;      
+                (SELECT TOP 1 Ticketing_Code FROM Ticket ORDER BY NEWID()) AS Ticketing_Code;
+
+            COMMIT TRANSACTION;
+        END TRY
+        BEGIN CATCH
+            ROLLBACK TRANSACTION;
+            PRINT 'Error: ' + ERROR_MESSAGE();
+        END CATCH;
+
         SET @i = @i + 1;
     END;
 END;
 GO
 
+
 --=============================================================================
 --Procedure for Confirmation
-IF OBJECT_ID('InsertConfirmation', 'P') IS NOT NULL
+/*IF OBJECT_ID('InsertConfirmation', 'P') IS NOT NULL
 BEGIN
     DROP PROCEDURE InsertConfirmation;
 END;
@@ -1011,10 +1060,10 @@ BEGIN
         SET @i = @i + 1;
     END;
 END;
-GO
+GO*/
 --==========================================================================
 --Procedure for Cancellation
-IF OBJECT_ID('InsertCancellations', 'P') IS NOT NULL
+/*IF OBJECT_ID('InsertCancellations', 'P') IS NOT NULL
 BEGIN
     DROP PROCEDURE InsertCancellations;
 END;
@@ -1056,7 +1105,7 @@ BEGIN
 	END;
 END;
 GO
-
+*/
 
 --=============================================================================
 --Procedure for Coupon

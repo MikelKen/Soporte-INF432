@@ -1,0 +1,36 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\usuario\\Desktop\\uagrm\\2-2024\\soport\\Soporte-INF432\\integration service\\Cubo_Mart_Reserve\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{CF2E532F-AFB7-4DEC-A3D4-34C4C6FD3050}|Cubo_Mart_Reserve\\Cubo_Mart_Reserve.dwproj|C:\\Users\\usuario\\Desktop\\uagrm\\2-2024\\soport\\Soporte-INF432\\integration service\\Cubo_Mart_Reserve\\Cubo_Mart_Reserve\\Mart Reserve.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{CF2E532F-AFB7-4DEC-A3D4-34C4C6FD3050}|Cubo_Mart_Reserve\\Cubo_Mart_Reserve.dwproj|solutionrelative:Cubo_Mart_Reserve\\Mart Reserve.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Mart Reserve.cube [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\usuario\\Desktop\\uagrm\\2-2024\\soport\\Soporte-INF432\\integration service\\Cubo_Mart_Reserve\\Cubo_Mart_Reserve\\Mart Reserve.cube",
+              "RelativeDocumentMoniker": "Cubo_Mart_Reserve\\Mart Reserve.cube",
+              "ToolTip": "C:\\Users\\usuario\\Desktop\\uagrm\\2-2024\\soport\\Soporte-INF432\\integration service\\Cubo_Mart_Reserve\\Cubo_Mart_Reserve\\Mart Reserve.cube [Dise\u00F1o]",
+              "RelativeToolTip": "Cubo_Mart_Reserve\\Mart Reserve.cube [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-11-02T01:24:02.781Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

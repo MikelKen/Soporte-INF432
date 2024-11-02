@@ -98,7 +98,7 @@ GO
 
 -----------------------------------------------------------------------
 --Procedure for State Airplane
-IF OBJECT_ID('InsertStateAirplane','P') is null
+IF OBJECT_ID('InsertStateAirplane','P') is not null
 begin
 	DROP PROCEDURE InsertStateAirplane
 end;
@@ -517,7 +517,7 @@ GO
 
 --=============================================================================
 --Procedure for Type Customer
-IF OBJECT_ID('InsertTypeCustomer','P') is null
+IF OBJECT_ID('InsertTypeCustomer','P') is not null
 begin
 	DROP PROCEDURE InsertTypeCustomer
 end;

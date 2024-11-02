@@ -1,113 +1,120 @@
 
 --Insert date country
 EXEC InsertCountry;
-select * from Country
+go
+--select * from Country
 --Insert date City
 EXEC InsertCity;
-
+go
 --Insert date Airport
 EXEC InsertAirport;
-
+go
 --Insert date PlanelModel
 EXEC InsertPlanelModel;
-
+go
 --Insert date state airplane
 EXEC InsertStateAirplane;
-select * from State_Airplane
+go
+--select * from State_Airplane
 --Insert date Airplane
 EXEC InsertAirplane @NumberOfRows = 30;
-select * from Airplane
+go
+--select * from Airplane
 
 --Insert date FlightNumbers
 EXEC InsertFlightNumbers @NumberOfRows = 1500;
-
+go
 --Insert date Seat
 EXEC InsertSeats @NumberOfRows = 200;
-select * from Seat
+go
+--select * from Seat
 --Insert date Airline
 EXEC InsertAirline;
-
+go
 --Insert date Flight
 EXEC InsertFlights @NumberOfRows = 1500;
-
+go
 --Insert date Available_Seat
 EXEC InsertAvailable_Seat @NumberOfRows = 100;
-
+go
 --Insert date Passenger_Type
 EXEC InsertPassenger_Type;
-
+go
 --Insert date Person
 EXEC LoadPersonDataFrom ;--@FilePath = 'C:\Users\usuario\Desktop\uagrm\2-2024\soport\Script\person.csv'--cambiar la ruta del archivo
+go
 EXEC InsertDataFromTempToPerson;
-
+go
 --Insert date Passenger
 EXEC InsertPassengers @NumberOfRows = 800;
-
+go
 --Insert type customer
 EXEC InsertTypeCustomer
-
+go
 --Insert date Customer
 EXEC InsertCustomer @NumberOfRows = 400;
-
+go
 --Insert date Crew_Member
 EXEC InsertCrew_Member @NumberOfRows = 50;
-
+go
 --Insert date Crew_Rol
 EXEC InsertCrew_Rol;
-
+go
 --Insert date Crew_Assigment
 EXEC InsertCrewAssignments @NumberOfRows = 50;
-
+go
 --Insert date Frequent_Flyer_Card
 EXEC InsertFrequentFlyerCards @NumberOfRows = 200;
-
+go
 --Insert date Flight_Cancellation
 EXEC InsertFlightCancellations @NumberOfRows = 50;
-select * from Flight_Cancellation
+go
+--select * from Flight_Cancellation
 --Insert date Flight_Reprograming
 EXEC InsertFlightReprogramings @NumberOfRows = 40;
-
+go
 --Insert date Payment_Type
 EXEC InsertPayment_Type;
-
+go
 --Insert Currency
 EXEC InsertCurrency
-
+go
 --Insert date Payment
 EXEC InsertPayments @NumberOfRows = 300;
-
+go
 --Insert date Document_Type
 EXEC InsertDocument_Type;
-
+go
 --Insert date Document
 EXEC InsertDocuments @NumberOfRows = 100;
-
+go
 --Insert date Category
 EXEC InsertCategory;
-
+go
 --Insert date Ticket
 EXEC InsertTickets @NumberOfRows = 500;
-
+go
+--select * from Ticket
 --Insert date Reserve
 EXEC InsertReserves @NumberOfRows = 500;
-
+go
 
 
 --Insert date Coupon
 EXEC InsertCoupons @NumberOfRows = 800;
-
+go
 --Insert date Boarding_Pass
 EXEC InsertBoardingPasses @NumberOfRows = 750;
-
+go
 --Insert date Pieces_of_Luggage
 EXEC InsertPiecesOfLuggage @NumberOfRows = 750;
-
+go
 --Insert date Baggage_Check_In
 EXEC InsertPiecesOfLuggage @NumberOfRows = 750;
-
+go
 --Insert date Check_In
 EXEC InsertCheck_In @NumberOfRows = 750;
-
+go
 
 
 

@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="20"
-  DTS:VersionGUID="{29F69735-CF60-4A5A-95D0-C715E0ED6C4F}">
+  DTS:VersionBuild="24"
+  DTS:VersionGUID="{3B2BA9DD-0C6C-4F57-975C-9ED1C750573F}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -68,8 +68,8 @@
               <connections>
                 <connection
                   refId="Package\Dim Customer\Destino de ADO NET.Connections[IDbConnection]"
-                  connectionManagerID="{6D5E5D4E-8FCF-4C7F-9126-643BCAA48E62}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-BQCTAU4.martReserve.sa]"
+                  connectionManagerID="{A9E4E576-A8AC-4052-9D83-77ADF5122965}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Y2KTORREZ_SQLEXPRESS.martReserve.user_admin]"
                   description="Administrador de conexiones administrado"
                   name="IDbConnection" />
               </connections>
@@ -203,8 +203,8 @@ where c.ID not in(select id_customer from martReserve.dbo.dimCustomer)</property
               <connections>
                 <connection
                   refId="Package\Dim Customer\Origen Customer.Connections[IDbConnection]"
-                  connectionManagerID="{4595FE73-3F4C-4E48-B6C3-8250AAB72E13}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-BQCTAU4.airport.sa]"
+                  connectionManagerID="{CF02B0A8-9340-4A69-8869-25E6F0E4B0E2}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Y2KTORREZ_SQLEXPRESS.airport.user_admin]"
                   description="Administrador de conexiones administrado"
                   name="IDbConnection" />
               </connections>
@@ -380,8 +380,8 @@ where c.ID not in(select id_customer from martReserve.dbo.dimCustomer)</property
               <connections>
                 <connection
                   refId="Package\Dim Payment\Destino de ADO NET.Connections[IDbConnection]"
-                  connectionManagerID="{6D5E5D4E-8FCF-4C7F-9126-643BCAA48E62}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-BQCTAU4.martReserve.sa]"
+                  connectionManagerID="{A9E4E576-A8AC-4052-9D83-77ADF5122965}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Y2KTORREZ_SQLEXPRESS.martReserve.user_admin]"
                   description="Administrador de conexiones administrado"
                   name="IDbConnection" />
               </connections>
@@ -426,6 +426,10 @@ where c.ID not in(select id_customer from martReserve.dbo.dimCustomer)</property
                       dataType="i4"
                       name="id" />
                     <externalMetadataColumn
+                      refId="Package\Dim Payment\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[id_payment]"
+                      dataType="i4"
+                      name="id_payment" />
+                    <externalMetadataColumn
                       refId="Package\Dim Payment\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[type]"
                       dataType="wstr"
                       length="50"
@@ -440,10 +444,6 @@ where c.ID not in(select id_customer from martReserve.dbo.dimCustomer)</property
                       dataType="wstr"
                       length="50"
                       name="currency" />
-                    <externalMetadataColumn
-                      refId="Package\Dim Payment\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[id_payment]"
-                      dataType="i4"
-                      name="id_payment" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -516,8 +516,8 @@ where p.ID not in(select id_payment from martReserve.dbo.dimPayment)</property>
               <connections>
                 <connection
                   refId="Package\Dim Payment\Origen Payment.Connections[IDbConnection]"
-                  connectionManagerID="{4595FE73-3F4C-4E48-B6C3-8250AAB72E13}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-BQCTAU4.airport.sa]"
+                  connectionManagerID="{CF02B0A8-9340-4A69-8869-25E6F0E4B0E2}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Y2KTORREZ_SQLEXPRESS.airport.user_admin]"
                   description="Administrador de conexiones administrado"
                   name="IDbConnection" />
               </connections>
@@ -693,8 +693,8 @@ where p.ID not in(select id_payment from martReserve.dbo.dimPayment)</property>
               <connections>
                 <connection
                   refId="Package\Dim StateReserve\Destino State Mart.Connections[IDbConnection]"
-                  connectionManagerID="{6D5E5D4E-8FCF-4C7F-9126-643BCAA48E62}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-BQCTAU4.martReserve.sa]"
+                  connectionManagerID="{A9E4E576-A8AC-4052-9D83-77ADF5122965}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Y2KTORREZ_SQLEXPRESS.martReserve.user_admin]"
                   description="Administrador de conexiones administrado"
                   name="IDbConnection" />
               </connections>
@@ -802,8 +802,8 @@ where r.State not in (select distinct case
               <connections>
                 <connection
                   refId="Package\Dim StateReserve\Origen State.Connections[IDbConnection]"
-                  connectionManagerID="{4595FE73-3F4C-4E48-B6C3-8250AAB72E13}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-BQCTAU4.airport.sa]"
+                  connectionManagerID="{CF02B0A8-9340-4A69-8869-25E6F0E4B0E2}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Y2KTORREZ_SQLEXPRESS.airport.user_admin]"
                   description="Administrador de conexiones administrado"
                   name="IDbConnection" />
               </connections>
@@ -1012,8 +1012,8 @@ where r.State not in (select distinct case
               <connections>
                 <connection
                   refId="Package\Dim TIME\Destino de ADO NET.Connections[IDbConnection]"
-                  connectionManagerID="{6D5E5D4E-8FCF-4C7F-9126-643BCAA48E62}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-BQCTAU4.martReserve.sa]"
+                  connectionManagerID="{A9E4E576-A8AC-4052-9D83-77ADF5122965}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Y2KTORREZ_SQLEXPRESS.martReserve.user_admin]"
                   description="Administrador de conexiones administrado"
                   name="IDbConnection" />
               </connections>
@@ -1323,8 +1323,8 @@ FROM Reserve;</property>
               <connections>
                 <connection
                   refId="Package\Dim TIME\Origen Time.Connections[IDbConnection]"
-                  connectionManagerID="{4595FE73-3F4C-4E48-B6C3-8250AAB72E13}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-BQCTAU4.airport.sa]"
+                  connectionManagerID="{CF02B0A8-9340-4A69-8869-25E6F0E4B0E2}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Y2KTORREZ_SQLEXPRESS.airport.user_admin]"
                   description="Administrador de conexiones administrado"
                   name="IDbConnection" />
               </connections>
@@ -1498,8 +1498,8 @@ from dimTime</property>
               <connections>
                 <connection
                   refId="Package\Dim TIME\Origen Time Mart.Connections[IDbConnection]"
-                  connectionManagerID="{6D5E5D4E-8FCF-4C7F-9126-643BCAA48E62}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-BQCTAU4.martReserve.sa]"
+                  connectionManagerID="{A9E4E576-A8AC-4052-9D83-77ADF5122965}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Y2KTORREZ_SQLEXPRESS.martReserve.user_admin]"
                   description="Administrador de conexiones administrado"
                   name="IDbConnection" />
               </connections>
@@ -1901,8 +1901,8 @@ from dimTime</property>
               <connections>
                 <connection
                   refId="Package\Hecho Reseve\Destino Resere Mart.Connections[IDbConnection]"
-                  connectionManagerID="{6D5E5D4E-8FCF-4C7F-9126-643BCAA48E62}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-BQCTAU4.martReserve.sa]"
+                  connectionManagerID="{A9E4E576-A8AC-4052-9D83-77ADF5122965}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Y2KTORREZ_SQLEXPRESS.martReserve.user_admin]"
                   description="Administrador de conexiones administrado"
                   name="IDbConnection" />
               </connections>
@@ -2054,8 +2054,8 @@ GROUP BY
               <connections>
                 <connection
                   refId="Package\Hecho Reseve\Origen Reserve.Connections[IDbConnection]"
-                  connectionManagerID="{4595FE73-3F4C-4E48-B6C3-8250AAB72E13}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-BQCTAU4.airport.sa]"
+                  connectionManagerID="{CF02B0A8-9340-4A69-8869-25E6F0E4B0E2}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Y2KTORREZ_SQLEXPRESS.airport.user_admin]"
                   description="Administrador de conexiones administrado"
                   name="IDbConnection" />
               </connections>
@@ -2240,28 +2240,28 @@ GROUP BY
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="125,42"
-          Id="Package\Dim TIME"
-          TopLeft="133,43" />
+          Size="146,42"
+          Id="Package\Dim Customer"
+          TopLeft="235,46" />
         <NodeLayout
           Size="142,42"
           Id="Package\Dim Payment"
-          TopLeft="539,45" />
-        <NodeLayout
-          Size="146,42"
-          Id="Package\Dim Customer"
-          TopLeft="332,42" />
+          TopLeft="442,49" />
         <NodeLayout
           Size="163,42"
           Id="Package\Dim StateReserve"
-          TopLeft="505,140" />
+          TopLeft="408,144" />
+        <NodeLayout
+          Size="125,42"
+          Id="Package\Dim TIME"
+          TopLeft="36,47" />
         <NodeLayout
           Size="145,42"
           Id="Package\Hecho Reseve"
-          TopLeft="295,153" />
+          TopLeft="198,157" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción]"
-          TopLeft="258,63.5">
+          TopLeft="161,67.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2283,7 +2283,7 @@ GROUP BY
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 1]"
-          TopLeft="478,64.5">
+          TopLeft="381,68.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2305,7 +2305,7 @@ GROUP BY
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 2]"
-          TopLeft="610,87">
+          TopLeft="513,91">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2339,7 +2339,7 @@ GROUP BY
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 3]"
-          TopLeft="505,161">
+          TopLeft="408,165">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2375,316 +2375,18 @@ GROUP BY
     </LayoutInfo>
   </Package>
   <TaskHost
-    design-time-name="Package\Dim TIME">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
-        <NodeLayout
-          Size="137,42"
-          Id="Package\Dim TIME\Origen Time"
-          TopLeft="164,35" />
-        <NodeLayout
-          Size="161,42"
-          Id="Package\Dim TIME\Origen Time Mart"
-          TopLeft="551,26" />
-        <NodeLayout
-          Size="98,42"
-          Id="Package\Dim TIME\Sort"
-          TopLeft="269,112" />
-        <EdgeLayout
-          Id="Package\Dim TIME.Paths[Salida de origen de ADO NET]"
-          TopLeft="232.5,77">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="85.5,35"
-              Start="0,0"
-              End="85.5,27.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,13.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,13.5"
-                    Point2="0,17.5"
-                    Point3="4,17.5" />
-                  <mssgle:LineSegment
-                    End="81.5,17.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="81.5,17.5"
-                    Point2="85.5,17.5"
-                    Point3="85.5,21.5" />
-                  <mssgle:LineSegment
-                    End="85.5,27.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="107,42"
-          Id="Package\Dim TIME\Sort 1"
-          TopLeft="555,110" />
-        <EdgeLayout
-          Id="Package\Dim TIME.Paths[Salida de origen de ADO NET1]"
-          TopLeft="631.5,68">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-23,42"
-              Start="0,0"
-              End="-23,34.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,17" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,17"
-                    Point2="0,21"
-                    Point3="-4,21" />
-                  <mssgle:LineSegment
-                    End="-19,21" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-19,21"
-                    Point2="-23,21"
-                    Point3="-23,25" />
-                  <mssgle:LineSegment
-                    End="-23,34.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="130,42"
-          Id="Package\Dim TIME\Merge Join"
-          TopLeft="410,149" />
-        <EdgeLayout
-          Id="Package\Dim TIME.Paths[Sort Output]"
-          TopLeft="367,133">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="43,37"
-              Start="0,0"
-              End="35.5,37">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="17.5,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="17.5,0"
-                    Point2="21.5,0"
-                    Point3="21.5,4" />
-                  <mssgle:LineSegment
-                    End="21.5,33" />
-                  <mssgle:CubicBezierSegment
-                    Point1="21.5,33"
-                    Point2="21.5,37"
-                    Point3="25.5,37" />
-                  <mssgle:LineSegment
-                    End="35.5,37" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Dim TIME.Paths[Sort Output1]"
-          TopLeft="555,126.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-80,22.5"
-              Start="0,0"
-              End="-80,15">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="-76,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-76,0"
-                    Point2="-80,0"
-                    Point3="-80,4" />
-                  <mssgle:LineSegment
-                    End="-80,15" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="155,42"
-          Id="Package\Dim TIME\Conditional Split"
-          TopLeft="404,238" />
-        <EdgeLayout
-          Id="Package\Dim TIME.Paths[Merge Join Output]"
-          TopLeft="478.25,191">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,47"
-              Start="0,0"
-              End="0,39.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,39.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="176,42"
-          Id="Package\Dim TIME\Destino de ADO NET"
-          TopLeft="416,312" />
-        <EdgeLayout
-          Id="Package\Dim TIME.Paths[new register]"
-          TopLeft="481.5,280">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="22.5,32"
-              Start="0,0"
-              End="22.5,24.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,12" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,12"
-                    Point2="0,16"
-                    Point3="4,16" />
-                  <mssgle:LineSegment
-                    End="18.5,16" />
-                  <mssgle:CubicBezierSegment
-                    Point1="18.5,16"
-                    Point2="22.5,16"
-                    Point3="22.5,20" />
-                  <mssgle:LineSegment
-                    End="22.5,24.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-16.7603125,21,56.020625,11.384765625"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\Dim TIME\Origen Time">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Dim TIME\Origen Time Mart">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Dim TIME\Destino de ADO NET">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <TaskHost
-    design-time-name="Package\Dim Payment">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="154,42"
-          Id="Package\Dim Payment\Origen Payment"
-          TopLeft="180,54" />
-        <NodeLayout
-          Size="176,42"
-          Id="Package\Dim Payment\Destino de ADO NET"
-          TopLeft="256,146" />
-        <EdgeLayout
-          Id="Package\Dim Payment.Paths[Salida de origen de ADO NET]"
-          TopLeft="257,96">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="87,50"
-              Start="0,0"
-              End="87,42.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,21" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,21"
-                    Point2="0,25"
-                    Point3="4,25" />
-                  <mssgle:LineSegment
-                    End="83,25" />
-                  <mssgle:CubicBezierSegment
-                    Point1="83,25"
-                    Point2="87,25"
-                    Point3="87,29" />
-                  <mssgle:LineSegment
-                    End="87,42.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <TaskHost
     design-time-name="Package\Dim Customer">
     <LayoutInfo>
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="159,42"
-          Id="Package\Dim Customer\Origen Customer"
-          TopLeft="165,31" />
-        <NodeLayout
           Size="176,42"
           Id="Package\Dim Customer\Destino de ADO NET"
           TopLeft="345,137" />
+        <NodeLayout
+          Size="159,42"
+          Id="Package\Dim Customer\Origen Customer"
+          TopLeft="165,31" />
         <EdgeLayout
           Id="Package\Dim Customer.Paths[Salida de origen de ADO NET]"
           TopLeft="244.5,73">
@@ -2722,6 +2424,88 @@ GROUP BY
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dim Customer\Destino de ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dim Customer\Origen Customer">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Dim Payment">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Dim Payment\Destino de ADO NET"
+          TopLeft="256,146" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Dim Payment\Origen Payment"
+          TopLeft="180,54" />
+        <EdgeLayout
+          Id="Package\Dim Payment.Paths[Salida de origen de ADO NET]"
+          TopLeft="257,96">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="87,50"
+              Start="0,0"
+              End="87,42.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21"
+                    Point2="0,25"
+                    Point3="4,25" />
+                  <mssgle:LineSegment
+                    End="83,25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="83,25"
+                    Point2="87,25"
+                    Point3="87,29" />
+                  <mssgle:LineSegment
+                    End="87,42.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dim Payment\Destino de ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dim Payment\Origen Payment">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\Dim StateReserve">
     <LayoutInfo>
@@ -2773,31 +2557,7 @@ GROUP BY
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Dim Customer\Origen Customer">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Dim Customer\Destino de ADO NET">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Dim Payment\Origen Payment">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Dim Payment\Destino de ADO NET">
+    design-time-name="Package\Dim StateReserve\Destino State Mart">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -2812,8 +2572,248 @@ GROUP BY
       </Property>
     </Properties>
   </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Dim TIME">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="98,42"
+          Id="Package\Dim TIME\Sort"
+          TopLeft="139,99" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Dim TIME\Destino de ADO NET"
+          TopLeft="286,299" />
+        <NodeLayout
+          Size="107,42"
+          Id="Package\Dim TIME\Sort 1"
+          TopLeft="425,97" />
+        <NodeLayout
+          Size="137,42"
+          Id="Package\Dim TIME\Origen Time"
+          TopLeft="34,22" />
+        <NodeLayout
+          Size="161,42"
+          Id="Package\Dim TIME\Origen Time Mart"
+          TopLeft="421,13" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Dim TIME\Conditional Split"
+          TopLeft="274,225" />
+        <NodeLayout
+          Size="130,42"
+          Id="Package\Dim TIME\Merge Join"
+          TopLeft="280,136" />
+        <EdgeLayout
+          Id="Package\Dim TIME.Paths[Sort Output1]"
+          TopLeft="425,113.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-80,22.5"
+              Start="0,0"
+              End="-80,15">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-76,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-76,0"
+                    Point2="-80,0"
+                    Point3="-80,4" />
+                  <mssgle:LineSegment
+                    End="-80,15" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Dim TIME.Paths[Sort Output]"
+          TopLeft="237,120">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="43,37"
+              Start="0,0"
+              End="35.5,37">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="17.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="17.5,0"
+                    Point2="21.5,0"
+                    Point3="21.5,4" />
+                  <mssgle:LineSegment
+                    End="21.5,33" />
+                  <mssgle:CubicBezierSegment
+                    Point1="21.5,33"
+                    Point2="21.5,37"
+                    Point3="25.5,37" />
+                  <mssgle:LineSegment
+                    End="35.5,37" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Dim TIME.Paths[Salida de origen de ADO NET1]"
+          TopLeft="501.5,55">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-23,42"
+              Start="0,0"
+              End="-23,34.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17"
+                    Point2="0,21"
+                    Point3="-4,21" />
+                  <mssgle:LineSegment
+                    End="-19,21" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-19,21"
+                    Point2="-23,21"
+                    Point3="-23,25" />
+                  <mssgle:LineSegment
+                    End="-23,34.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Dim TIME.Paths[Salida de origen de ADO NET]"
+          TopLeft="102.5,64">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="85.5,35"
+              Start="0,0"
+              End="85.5,27.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.5"
+                    Point2="0,17.5"
+                    Point3="4,17.5" />
+                  <mssgle:LineSegment
+                    End="81.5,17.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="81.5,17.5"
+                    Point2="85.5,17.5"
+                    Point3="85.5,21.5" />
+                  <mssgle:LineSegment
+                    End="85.5,27.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Dim TIME.Paths[new register]"
+          TopLeft="351.5,267">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="22.5,32"
+              Start="0,0"
+              End="22.5,24.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12"
+                    Point2="0,16"
+                    Point3="4,16" />
+                  <mssgle:LineSegment
+                    End="18.5,16" />
+                  <mssgle:CubicBezierSegment
+                    Point1="18.5,16"
+                    Point2="22.5,16"
+                    Point3="22.5,20" />
+                  <mssgle:LineSegment
+                    End="22.5,24.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-16.7603125,21,56.020625,11.384765625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Dim TIME.Paths[Merge Join Output]"
+          TopLeft="348.25,178">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,47"
+              Start="0,0"
+              End="0,39.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Dim StateReserve\Destino State Mart">
+    design-time-name="Package\Dim TIME\Destino de ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dim TIME\Origen Time">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dim TIME\Origen Time Mart">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -2871,7 +2871,7 @@ GROUP BY
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Hecho Reseve\Origen Reserve">
+    design-time-name="Package\Hecho Reseve\Destino Resere Mart">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -2879,7 +2879,7 @@ GROUP BY
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Hecho Reseve\Destino Resere Mart">
+    design-time-name="Package\Hecho Reseve\Origen Reserve">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

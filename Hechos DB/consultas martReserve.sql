@@ -7,7 +7,8 @@ SELECT DISTINCT
     CONVERT(VARCHAR,DATEPART(MONTH, Reservation_Date)) AS month,
     CONVERT(INT, DATEPART(WEEK, Reservation_Date)) AS week,--quitar
     CONVERT(INT, DATEPART(DAY, Reservation_Date)) AS day
-FROM Reserve;
+FROM Reserve r
+where r.Reservation_Date not in(select fecha from martReserve.dbo.dimTime)
 
 --dimCustomer
 select c.ID as id_customer, p.Name as name,tc.name as type, c.Loyalty_Points as loyaltyPoints
@@ -53,6 +54,28 @@ GROUP BY
 
 
 	select * from martReserve.dbo.facReservation
+
+
+SELECT
+    dt.id AS time_id,
+    dc.id AS customer_id,
+    dp.id AS payment_id,
+    ds.id AS status_id,
+    COUNT(r.ID) AS count_reserve,
+    SUM(p.Amount) AS total_amount
+FROM 
+    Reserve r
+    INNER JOIN Payment p ON r.Payment_ID = p.ID
+    INNER JOIN martReserve.dbo.dimTime dt ON CONVERT(DATE, r.Reservation_Date) = dt.fecha
+    INNER JOIN martReserve.dbo.dimCustomer dc ON r.Customer_ID = dc.id_customer
+    INNER JOIN martReserve.dbo.dimPayment dp ON r.Payment_ID = dp.id
+    INNER JOIN martReserve.dbo.dimStatusReserve ds ON 
+        (CASE WHEN r.State = 1 THEN 'Cancelado' ELSE 'Confirmado' END) = ds.name
+where r.id not in(select id from martReserve.dbo.facReservation)
+GROUP BY 
+    dt.id, dc.id, dp.id, ds.id;
+
+
 
 /*PARA PRUEBA*/
 --Cantidad de reservas confirmadas y canceladas por cliente:
@@ -135,7 +158,8 @@ SELECT
     dp.id AS passenger_id,
     dd.id AS document_id,
     dt.id AS time_id,
-    COUNT(*) AS ticket_count
+    COUNT(*) AS ticket_count,
+	SUM(dc.price) AS total_price
 FROM 
     Ticket t
 JOIN martTicket.dbo.dimCategory dc ON t.Category_ID = dc.id_category

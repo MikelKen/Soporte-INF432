@@ -43,11 +43,10 @@ create table facReservation
 	payment_id integer,
 	status_id integer,
 	count_reserve integer,
+	total_amount decimal(10,2),
 	foreign key(time_id) references dimTime(id),
 	foreign key(customer_id) references dimCustomer(id),
 	foreign key(payment_id) references dimPayment(id),
 	foreign key(status_id) references dimStatusReserve(id)
 )
 
-alter table facReservation 
-add 

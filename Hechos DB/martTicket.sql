@@ -48,6 +48,7 @@ create table factTicket
 	time_id integer,
 	ticketNumber integer,
 	ticket_count int,
+	total_price decimal(10,2),
 	foreign key (category_id) references dimCategory(id),
 	foreign key (passenger_id) references dimPassenger(id),
 	foreign key (document_id) references dimDocument(id),

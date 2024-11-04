@@ -88,7 +88,7 @@ go
 EXEC InsertDocument_Type;
 go
 --Insert date Document
-EXEC InsertDocuments @NumberOfRows = 100;
+EXEC InsertDocuments @NumberOfRows = 1000;
 go
 --Insert date Category
 EXEC InsertCategory;

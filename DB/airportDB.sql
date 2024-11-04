@@ -410,6 +410,7 @@ begin
     create table Ticket(
         Ticketing_Code int identity(1,1) primary key,
         Number int not null check (Number > 0),
+		Date_Ticket date not null,
         Category_ID int not null,
 		Document_ID int not null,
 		Passenger_ID int not null,
@@ -521,7 +522,6 @@ go
 
 
 
-select * from Category
 
 
 

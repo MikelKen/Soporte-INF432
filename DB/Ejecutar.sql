@@ -43,6 +43,7 @@ go
 --Insert date Person
 EXEC LoadPersonDataFrom ;--@FilePath = 'C:\Users\usuario\Desktop\uagrm\2-2024\soport\Script\person.csv'--cambiar la ruta del archivo
 go
+
 EXEC InsertDataFromTempToPerson;
 go
 --Insert date Passenger
@@ -52,7 +53,7 @@ go
 EXEC InsertTypeCustomer
 go
 --Insert date Customer
-EXEC InsertCustomer @NumberOfRows = 400;
+EXEC InsertCustomer @NumberOfRows = 1000;
 go
 --Insert date Crew_Member
 EXEC InsertCrew_Member @NumberOfRows = 50;
@@ -70,6 +71,7 @@ go
 EXEC InsertFlightCancellations @NumberOfRows = 50;
 go
 --select * from Flight_Cancellation
+use airport
 --Insert date Flight_Reprograming
 EXEC InsertFlightReprogramings @NumberOfRows = 40;
 go
@@ -80,7 +82,7 @@ go
 EXEC InsertCurrency
 go
 --Insert date Payment
-EXEC InsertPayments @NumberOfRows = 300;
+EXEC InsertPayments @NumberOfRows = 1000;
 go
 --Insert date Document_Type
 EXEC InsertDocument_Type;
@@ -92,22 +94,22 @@ go
 EXEC InsertCategory;
 go
 --Insert date Ticket
-EXEC InsertTickets @NumberOfRows = 500;
+EXEC InsertTickets @NumberOfRows = 1000;
 go
 --select * from Ticket
 --Insert date Reserve
-EXEC InsertReserves @NumberOfRows = 500;
+EXEC InsertReserves @NumberOfRows = 1000;
 go
 
 
 --Insert date Coupon
-EXEC InsertCoupons @NumberOfRows = 800;
+EXEC InsertCoupons @NumberOfRows = 1500;
 go
 --Insert date Boarding_Pass
-EXEC InsertBoardingPasses @NumberOfRows = 750;
+EXEC InsertBoardingPasses @NumberOfRows = 1500;
 go
 --Insert date Pieces_of_Luggage
-EXEC InsertPiecesOfLuggage @NumberOfRows = 750;
+EXEC InsertPiecesOfLuggage @NumberOfRows = 1500;
 go
 --Insert date Baggage_Check_In
 EXEC InsertPiecesOfLuggage @NumberOfRows = 750;

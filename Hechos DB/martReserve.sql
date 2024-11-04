@@ -1,5 +1,6 @@
+use master
 create database martReserve
-
+use martReserve
 create table dimTime
 (
 	id integer identity(1,1) primary key,

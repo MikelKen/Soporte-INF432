@@ -1,7 +1,8 @@
 use airport;
 go
 --Procedure for country
---Procedure for city
+
+
 IF OBJECT_ID('InsertCountry', 'P') IS NOT NULL
 BEGIN
     DROP PROCEDURE InsertCountry;
@@ -10,6 +11,8 @@ go
 CREATE PROCEDURE InsertCountry
 AS
 BEGIN
+IF NOT EXISTS (SELECT 1 FROM Country)
+    BEGIN
    	INSERT INTO Country (Name) VALUES 
 	('Bolivia'), 
 	('Argentina'), 
@@ -21,7 +24,7 @@ BEGIN
 	('Paraguay'), 
 	('Uruguay'), 
 	('Venezuela');
-
+end
 END;
 GO
 -----------------------------------------------------------------------
@@ -34,19 +37,26 @@ go
 CREATE PROCEDURE InsertCity
 AS
 BEGIN
-	INSERT INTO City (Country_id,Name) VALUES 
-	(1, 'Santa Cruz'), 
-	(2, 'Buenos Aires'), 
-	(3, 'Santiago'), 
-	(4, 'Rio de Janeiro'), 
-	(5, 'Lima'), 
-	(6, 'Bogotá'), 
-	(7, 'Quito'), 
-	(8, 'Asunción'), 
-	(9, 'Montevideo'), 
-	(10, 'Caracas');
+    -- Verifica si la tabla City está vacía
+    IF NOT EXISTS (SELECT 1 FROM City)
+    BEGIN
+        -- Si está vacía, inserta las ciudades
+        INSERT INTO City (Country_id, Name) VALUES 
+        (1, 'Santa Cruz'), 
+        (2, 'Buenos Aires'), 
+        (3, 'Santiago'), 
+        (4, 'Rio de Janeiro'), 
+        (5, 'Lima'), 
+        (6, 'Bogotá'), 
+        (7, 'Quito'), 
+        (8, 'Asunción'), 
+        (9, 'Montevideo'), 
+        (10, 'Caracas');
+    END
 END;
 GO
+
+
 
 -----------------------------------------------------------------------
 --Procedure for Airport
@@ -58,6 +68,8 @@ go
 CREATE PROCEDURE InsertAirport
 AS
 BEGIN
+    IF NOT EXISTS (SELECT 1 FROM Airport)
+	begin
 	INSERT INTO Airport (Name, City_id) VALUES 
 	('Airport Viru Viru', 1), 
 	('Airport Ezeiza', 2), 
@@ -69,6 +81,7 @@ BEGIN
 	('Airport Silvio Pettirossi', 8), 
 	('Airport Carrasco', 9), 
 	('Airport de Maiquetía', 10);
+	end
 END;
 GO
 
@@ -82,6 +95,8 @@ go
 CREATE PROCEDURE  InsertPlanelModel
 AS
 BEGIN
+IF NOT EXISTS (SELECT 1 FROM Plane_Model)
+	begin
 	INSERT INTO Plane_Model (Description, Graphic) VALUES 
 	('Boeing 737', 'Grafico1'), 
 	('Airbus A320', 'Grafico2'), 
@@ -93,6 +108,7 @@ BEGIN
 	('Cessna 172', 'Grafico8'), 
 	('Bombardier CRJ200', 'Grafico9'), 
 	('Boeing 787', 'Grafico10');
+	end
 END;
 GO
 
@@ -106,11 +122,13 @@ go
 CREATE PROCEDURE InsertStateAirplane
 AS
 BEGIN
+IF NOT EXISTS (SELECT 1 FROM State_Airplane)
+	begin
 	INSERT INTO State_Airplane (name) VALUES
 	('Active'),
 	('Inactive'),
 	('Maintenance')
-
+end
 END
 go
 -------------------------------------------------------------------
@@ -401,7 +419,9 @@ END;
 go
 CREATE PROCEDURE LoadPersonDataFrom
 AS
-BEGIN     
+BEGIN   
+	IF NOT EXISTS (SELECT 1 FROM TempPersonData)
+	begin
     -- Crear una tabla temporal para cargar los datos desde el CSV
     CREATE TABLE TempPersonData (
         Name VARCHAR(50),
@@ -417,6 +437,7 @@ BEGIN
         ROWTERMINATOR = '\n',
         FIRSTROW = 2 -- Asume que la primera fila es el encabezado
     );
+end
 END;
 GO
 
@@ -430,6 +451,8 @@ go
 CREATE PROCEDURE InsertDataFromTempToPerson
 AS
 BEGIN
+	IF NOT EXISTS (SELECT 1 FROM Person)
+	begin
     -- Declarar variables para almacenar los datos temporales
     DECLARE @Name VARCHAR(50);
     DECLARE @Phone VARCHAR(20);
@@ -476,6 +499,7 @@ BEGIN
     -- Cerrar y liberar el cursor
     CLOSE cur;
     DEALLOCATE cur;
+	end
 END;
 GO
 
@@ -525,12 +549,17 @@ go
 CREATE PROCEDURE InsertTypeCustomer
 AS
 BEGIN
-	INSERT INTO Type_Customer (name) VALUES
-	('Natural Customer'),
-	('Legal Customer')
+    -- Verifica si la tabla Type_Customer está vacía
+    IF NOT EXISTS (SELECT 1 FROM Type_Customer)
+    BEGIN
+        -- Si está vacía, inserta los tipos de cliente
+        INSERT INTO Type_Customer (name) VALUES
+        ('Natural Customer'),
+        ('Legal Customer');
+    END
+END;
+GO
 
-END
-go
 
 ---------------------------------------------------------------------
 --Procedure for Customer
@@ -958,10 +987,11 @@ BEGIN
     BEGIN TRY
         BEGIN TRANSACTION; 
         -- Insertar en la tabla Ticket
-        INSERT INTO Ticket (Number, Category_id, Document_ID, Passenger_ID)
+        INSERT INTO Ticket (Number, Date_Ticket, Category_id, Document_ID, Passenger_ID)
         SELECT 
             -- Número aleatorio mayor a 0
             ABS(CHECKSUM(NEWID()) % 100000) + 1 AS Number,
+			DATEADD(DAY, ABS(CHECKSUM(NEWID()) % 365), CONVERT(DATE, GETDATE())) AS Date_Ticket,
             -- Categoría aleatoria (Category_id)
 			(SELECT TOP 1 ID FROM Category ORDER BY NEWID()) AS Category_id,
 			-- Documento (Document_ID)

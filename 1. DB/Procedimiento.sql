@@ -419,27 +419,36 @@ END;
 go
 CREATE PROCEDURE LoadPersonDataFrom
 AS
-BEGIN   
-	IF NOT EXISTS (SELECT 1 FROM TempPersonData)
-	begin
-    -- Crear una tabla temporal para cargar los datos desde el CSV
-    CREATE TABLE TempPersonData (
-        Name VARCHAR(50),
-        Phone VARCHAR(20),
-        Email VARCHAR(50)
-    );
-	
-    -- Cargar los datos del CSV a la tabla temporal
-    BULK INSERT TempPersonData
-    FROM 'C:\Temp\person.csv'--cambiar la ruta del archivo
-    WITH (
-        FIELDTERMINATOR = ',',
-        ROWTERMINATOR = '\n',
-        FIRSTROW = 2 -- Asume que la primera fila es el encabezado
-    );
-end
+BEGIN
+    BEGIN TRY
+        -- Check if the temporary table already exists
+        IF OBJECT_ID('tempdb..TempPersonData') IS NULL
+        BEGIN
+            -- Create a temporary table to load data from the CSV file
+            CREATE TABLE TempPersonData (
+                Name VARCHAR(50),
+                Phone VARCHAR(20),
+                Email VARCHAR(50)
+            );
+            
+            -- Load data from the CSV file into the temporary table
+            BULK INSERT TempPersonData
+            FROM 'C:\Temp\person.csv' -- Change the file path
+            WITH (
+                FIELDTERMINATOR = ',',
+                ROWTERMINATOR = '\n',
+                FIRSTROW = 2 -- Assumes the first row is the header
+            );
+        END
+    END TRY
+    BEGIN CATCH
+        -- Handle any errors during execution
+        PRINT 'Error occurred during BULK INSERT operation';
+        PRINT ERROR_MESSAGE();
+    END CATCH;
 END;
 GO
+
 
 --Procedure for Person
 

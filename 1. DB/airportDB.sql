@@ -2,11 +2,11 @@ use master
 
 if db_id('airport') is null
 begin
-	create database airport;
+	create database airportPP;
 end
 go
 
-use airport;
+use airportPP;
 go
 
 ---------------------------------------------------------------------

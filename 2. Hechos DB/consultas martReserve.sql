@@ -10,12 +10,24 @@ SELECT DISTINCT
 FROM Reserve r
 where r.Reservation_Date not in(select fecha from martReserve.dbo.dimTime)
 
+
+SELECT DISTINCT 
+    Reservation_Date AS fecha,
+    CONVERT(INT, DATEPART(YEAR, Reservation_Date)) AS year,
+    DATENAME(MONTH, Reservation_Date) AS month, -- Nombre del mes en letras
+    CONVERT(INT, DATEPART(WEEK, Reservation_Date)) AS week, --quitar si no es necesario
+    CONVERT(INT, DATEPART(DAY, Reservation_Date)) AS day,
+    DATENAME(WEEKDAY, Reservation_Date) AS day_name -- Nombre del día en letras
+FROM Reserve r
+
+
 --dimCustomer
 select c.ID as id_customer, p.Name as name,tc.name as type, c.Loyalty_Points as loyaltyPoints
 from Customer c INNER JOIN Person p ON (c.Person_ID = p.ID)
 				  INNER JOIN Type_Customer tc ON(c.TypeCustomer_ID=tc.ID)
 where c.ID not in(select id_customer from martReserve.dbo.dimCustomer)
 
+select * from Customer
 --dimPayment
 select p.ID as id_payment, pt.Name as type, p.Amount as amount, c.code as currency
 from Payment p INNER JOIN Payment_Type pt ON (p.Payment_Type_ID=pt.ID)

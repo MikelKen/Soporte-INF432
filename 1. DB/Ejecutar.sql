@@ -35,6 +35,7 @@ go
 --Insert date Flight
 EXEC InsertFlights @NumberOfRows = 1500;
 go
+-- select * from Flight
 --Insert date Available_Seat
 EXEC InsertAvailable_Seat @NumberOfRows = 100;
 go
@@ -45,6 +46,8 @@ go
 EXEC LoadPersonDataFrom ; --@FilePath = 'C:\Users\usuario\Desktop\uagrm\2-2024\soport\Script\person.csv'--cambiar la ruta del archivo
 go   -- No funciona 
 
+select * from TempPersonData
+drop table TempPersonData
 EXEC InsertDataFromTempToPerson;   --No funciona 
 go
 --Insert date Passenger

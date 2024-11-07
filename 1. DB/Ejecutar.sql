@@ -1,10 +1,11 @@
-
+use airport;
+go
 --Insert date country
-EXEC InsertCountry;
+EXEC InsertCountry;  
 go
 --select * from Country
 --Insert date City
-EXEC InsertCity;
+EXEC InsertCity;     
 go
 --Insert date Airport
 EXEC InsertAirport;
@@ -25,7 +26,7 @@ go
 EXEC InsertFlightNumbers @NumberOfRows = 1500;
 go
 --Insert date Seat
-EXEC InsertSeats @NumberOfRows = 200;
+EXEC InsertSeats @NumberOfRows = 200;   --datos no insertados
 go
 --select * from Seat
 --Insert date Airline
@@ -41,10 +42,10 @@ go
 EXEC InsertPassenger_Type;
 go
 --Insert date Person
-EXEC LoadPersonDataFrom ;--@FilePath = 'C:\Users\usuario\Desktop\uagrm\2-2024\soport\Script\person.csv'--cambiar la ruta del archivo
-go
+EXEC LoadPersonDataFrom ; --@FilePath = 'C:\Users\usuario\Desktop\uagrm\2-2024\soport\Script\person.csv'--cambiar la ruta del archivo
+go   -- No funciona 
 
-EXEC InsertDataFromTempToPerson;
+EXEC InsertDataFromTempToPerson;   --No funciona 
 go
 --Insert date Passenger
 EXEC InsertPassengers @NumberOfRows = 800;
@@ -53,25 +54,24 @@ go
 EXEC InsertTypeCustomer
 go
 --Insert date Customer
-EXEC InsertCustomer @NumberOfRows = 1000;
+EXEC InsertCustomer @NumberOfRows = 1000;  --hay datos no insertados 
 go
 --Insert date Crew_Member
-EXEC InsertCrew_Member @NumberOfRows = 50;
+EXEC InsertCrew_Member @NumberOfRows = 50;  --hay datos no insertados
 go
 --Insert date Crew_Rol
 EXEC InsertCrew_Rol;
 go
 --Insert date Crew_Assigment
-EXEC InsertCrewAssignments @NumberOfRows = 50;
+EXEC InsertCrewAssignments @NumberOfRows = 50;  --hay datos no insertados 
 go
 --Insert date Frequent_Flyer_Card
-EXEC InsertFrequentFlyerCards @NumberOfRows = 200;
+EXEC InsertFrequentFlyerCards @NumberOfRows = 200;  --Error
 go
 --Insert date Flight_Cancellation
-EXEC InsertFlightCancellations @NumberOfRows = 50;
+EXEC InsertFlightCancellations @NumberOfRows = 50;  --algunos datos no insertados 
 go
---select * from Flight_Cancellation
-use airport
+
 --Insert date Flight_Reprograming
 EXEC InsertFlightReprogramings @NumberOfRows = 40;
 go
@@ -98,33 +98,22 @@ EXEC InsertTickets @NumberOfRows = 1000;
 go
 --select * from Ticket
 --Insert date Reserve
-EXEC InsertReserves @NumberOfRows = 1000;
+EXEC InsertReserves @NumberOfRows = 1000; -- hay datos no insertados
 go
 
 
 --Insert date Coupon
-EXEC InsertCoupons @NumberOfRows = 1500;
+EXEC InsertCoupons @NumberOfRows = 1500;  -- hay datos insertados
 go
 --Insert date Boarding_Pass
-EXEC InsertBoardingPasses @NumberOfRows = 1500;
+EXEC InsertBoardingPasses @NumberOfRows = 1500; -- hay datos insertados
 go
 --Insert date Pieces_of_Luggage
-EXEC InsertPiecesOfLuggage @NumberOfRows = 1500;
+EXEC InsertPiecesOfLuggage @NumberOfRows = 1500; -- hay datos insertados
 go
 --Insert date Baggage_Check_In
-EXEC InsertPiecesOfLuggage @NumberOfRows = 750;
+EXEC InsertPiecesOfLuggage @NumberOfRows = 750;   -- hay datos insertados
 go
 --Insert date Check_In
-EXEC InsertCheck_In @NumberOfRows = 750;
+EXEC InsertCheck_In @NumberOfRows = 750;   -- hay datos insertados
 go
-
-
-
-
-
-
-
-
-
-
-

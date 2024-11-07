@@ -486,6 +486,8 @@ begin
         Height decimal(5,2) not null, -- Alto en cm
 		BaggageType varchar(50) not null, --check (BaggageType in ('Maleta','Bolsa de mano', 'Equipaje Deportivo')),
 		ExtraWeight decimal(10,2),
+		Price decimal(5,2),
+		Handling_cost decimal (5,2), 
 		Coupon_ID int not null,
 		foreign key (Coupon_ID) references Coupon(ID)
 	);
@@ -519,25 +521,3 @@ begin
 	);
 end 
 go
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

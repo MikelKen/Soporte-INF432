@@ -431,7 +431,7 @@ BEGIN
 	
     -- Cargar los datos del CSV a la tabla temporal
     BULK INSERT TempPersonData
-    FROM 'C:\Users\usuario\Desktop\uagrm\2-2024\soport\Script\person.csv'--cambiar la ruta del archivo
+    FROM 'C:\Temp\person.csv'--cambiar la ruta del archivo
     WITH (
         FIELDTERMINATOR = ',',
         ROWTERMINATOR = '\n',
@@ -1228,25 +1228,25 @@ IF OBJECT_ID('InsertPiecesOfLuggage', 'P') IS NOT NULL
 BEGIN
     DROP PROCEDURE InsertPiecesOfLuggage;
 END;
-go
+GO
 CREATE PROCEDURE InsertPiecesOfLuggage
     @NumberOfRows INT -- Cantidad de registros a insertar
 AS
 BEGIN
     DECLARE @i INT = 0;
 
-WHILE @i < @NumberOfRows
-BEGIN
-	BEGIN TRY
-        BEGIN TRANSACTION; 
-        -- Insertar en la tabla Pieces_of_Luggage
-        INSERT INTO Pieces_of_Luggage (Number, Weight, Length, Width, Height,BaggageType,ExtraWeight, Coupon_ID)
-		SELECT
-            -- Número de piezas de equipaje aleatorio entre 1 y 5
-            ABS(CHECKSUM(NEWID()) % 5) + 1 AS Number,
-            -- Peso aleatorio entre 0 y 50
-            CAST(ABS(CHECKSUM(NEWID()) % 50) + (RAND() * 0.99) AS DECIMAL(5, 2)) AS Weight,
-             -- Largo aleatorio entre 30 y 100 cm
+    WHILE @i < @NumberOfRows
+    BEGIN
+        BEGIN TRY
+            BEGIN TRANSACTION; 
+            -- Insertar en la tabla Pieces_of_Luggage
+            INSERT INTO Pieces_of_Luggage (Number, Weight, Length, Width, Height, BaggageType, ExtraWeight, Price, Handling_cost, Coupon_ID)
+            SELECT
+                -- Número de piezas de equipaje aleatorio entre 1 y 5
+                ABS(CHECKSUM(NEWID()) % 5) + 1 AS Number,
+                -- Peso aleatorio entre 0 y 50
+                CAST(ABS(CHECKSUM(NEWID()) % 50) + (RAND() * 0.99) AS DECIMAL(5, 2)) AS Weight,
+                -- Largo aleatorio entre 30 y 100 cm
                 CAST(ABS(CHECKSUM(NEWID()) % 70) + 30 AS DECIMAL(5, 2)) AS Length,
                 -- Ancho aleatorio entre 20 y 70 cm
                 CAST(ABS(CHECKSUM(NEWID()) % 50) + 20 AS DECIMAL(5, 2)) AS Width,
@@ -1260,18 +1260,21 @@ BEGIN
                 END AS BaggageType,
                 -- Peso extra aleatorio entre 0 y 10
                 CAST(ABS(CHECKSUM(NEWID()) % 11) AS DECIMAL(5, 2)) AS ExtraWeight,
-		   -- Cupón aleatorio
-			(SELECT TOP 1 ID FROM Coupon ORDER BY NEWID()) AS Coupon_ID;
-        COMMIT TRANSACTION;
-    END TRY
-    BEGIN CATCH
-        ROLLBACK TRANSACTION;
-    END CATCH;
+                -- Precio aleatorio entre 5 y 100
+                CAST(ABS(CHECKSUM(NEWID()) % 96) + 5 AS DECIMAL(5, 2)) AS Price,
+                -- Costo de manejo aleatorio entre 1 y 20
+                CAST(ABS(CHECKSUM(NEWID()) % 20) + 1 AS DECIMAL(5, 2)) AS Handling_cost,
+                -- Cupón aleatorio
+                (SELECT TOP 1 ID FROM Coupon ORDER BY NEWID()) AS Coupon_ID;
+            COMMIT TRANSACTION;
+        END TRY
+        BEGIN CATCH
+            ROLLBACK TRANSACTION;
+        END CATCH;
         SET @i = @i + 1;
     END;
 END;
 GO
-
 --=============================================================================
 --Procedure for Baggage_Check_In
 IF OBJECT_ID('InsertBaggageCheckIns', 'P') IS NOT NULL
@@ -1341,23 +1344,3 @@ BEGIN
     END;
 END;
 GO
-
---=============================================================================
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

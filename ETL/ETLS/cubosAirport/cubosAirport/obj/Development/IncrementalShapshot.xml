@@ -1,0 +1,229 @@
+﻿<DeploymentSnapshot xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0">
+  <Target>
+    <Database>cubosAirport</Database>
+    <Server>localhost</Server>
+    <ConnectionString>Data Source=localhost;Timeout=0</ConnectionString>
+  </Target>
+  <Options>
+    <TransactionalDeployment>false</TransactionalDeployment>
+    <PartitionDeployment>DeployPartitions</PartitionDeployment>
+    <RoleDeployment>DeployRolesRetainMembers</RoleDeployment>
+    <ProcessingOption>DoNotProcess</ProcessingOption>
+    <OutputScript></OutputScript>
+    <ImpactAnalysisFile></ImpactAnalysisFile>
+    <ConfigurationSettingsDeployment>Deploy</ConfigurationSettingsDeployment>
+    <OptimizationSettingsDeployment>Deploy</OptimizationSettingsDeployment>
+    <WriteBackTableCreation>UseExisting</WriteBackTableCreation>
+  </Options>
+  <Snapshot>
+    <ObjectSnapshots>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.RelationalDataSource</Type>
+        <TimeStamp>tCpQosNlf2fIqCG1V0iNnZugaIY=08/11/2024 15:46:5708/11/2024 15:46:57</TimeStamp>
+        <ID>
+          <String>Mart Flight</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.RelationalDataSource</Type>
+        <TimeStamp>X6XYLmVbj0REKyb/9UAvWj2QVD8=08/11/2024 15:49:2208/11/2024 15:49:22</TimeStamp>
+        <ID>
+          <String>Mart Payment</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.RelationalDataSource</Type>
+        <TimeStamp>wH2hbOFUIOsmDZnZQdggU0344L0=08/11/2024 15:52:0308/11/2024 15:52:03</TimeStamp>
+        <ID>
+          <String>Mart Reserve</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.RelationalDataSource</Type>
+        <TimeStamp>zSVG19yb2AC8LDQhRPPfeI72KOc=08/11/2024 15:54:0908/11/2024 15:54:09</TimeStamp>
+        <ID>
+          <String>Mart Ticket</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.DataSourceView</Type>
+        <TimeStamp>MWMRlxPqlgYfhBf46nlY+Fbd2uk=08/11/2024 15:47:1008/11/2024 15:47:09</TimeStamp>
+        <ID>
+          <String>Mart Flight</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.DataSourceView</Type>
+        <TimeStamp>oNGe088lgpxEODhAFoju70WTQcs=08/11/2024 15:49:3708/11/2024 15:49:37</TimeStamp>
+        <ID>
+          <String>Mart Payment</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.DataSourceView</Type>
+        <TimeStamp>hLYufmMQ8kHkjCb4BFJHBl1Ghmo=08/11/2024 15:52:2808/11/2024 15:52:28</TimeStamp>
+        <ID>
+          <String>Mart Reserve</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.DataSourceView</Type>
+        <TimeStamp>E2BNMoDZj21g9muCv8IpahKJFM8=08/11/2024 15:54:2008/11/2024 15:54:20</TimeStamp>
+        <ID>
+          <String>Mart Ticket</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>Oi3NLBAXZaudo9oApNvkWrh6ziY=08/11/2024 15:47:3808/11/2024 15:47:19</TimeStamp>
+        <ID>
+          <String>Dim Model Plane</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>yguHTOpnpEcfSQXs5Ka7t//nW+Q=08/11/2024 15:47:5008/11/2024 15:47:19</TimeStamp>
+        <ID>
+          <String>Dim Airport</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>67w+cN46KQZlf35jkfB7SL8PRjs=08/11/2024 15:47:5808/11/2024 15:47:19</TimeStamp>
+        <ID>
+          <String>Dim Flight Status</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>nht2crdf9lWIYLcbwEXckwaKBtI=08/11/2024 15:48:0808/11/2024 15:47:19</TimeStamp>
+        <ID>
+          <String>Dim Time</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>cEKajAeZIh4AqP7AiNv1GFyXF28=08/11/2024 15:48:2708/11/2024 15:47:19</TimeStamp>
+        <ID>
+          <String>Dim Airline</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>bDjoyT57hCzvzJERcMdEO28Es3c=08/11/2024 15:50:4608/11/2024 15:50:29</TimeStamp>
+        <ID>
+          <String>Dim Time 1</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>S4Lt0BvIZ1jS+U9Kk5Jb4hmiqUY=08/11/2024 15:50:5708/11/2024 15:50:29</TimeStamp>
+        <ID>
+          <String>Dim Customer</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>nYmcYovSbvyCfnZw3HO98wQb3+I=08/11/2024 15:51:0508/11/2024 15:50:29</TimeStamp>
+        <ID>
+          <String>Dim Type Payment</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>5/e5IKLcxQry+q2Za4WF4osRnsM=08/11/2024 15:53:0008/11/2024 15:52:41</TimeStamp>
+        <ID>
+          <String>Dim Customer 1</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>IQZeb9r5rb32Zl8SISH9t6OVXQE=08/11/2024 15:53:0808/11/2024 15:52:42</TimeStamp>
+        <ID>
+          <String>Dim Payment</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>FDU6raKBi23prK/eXANNOJWrxmg=08/11/2024 15:53:1808/11/2024 15:52:42</TimeStamp>
+        <ID>
+          <String>Dim Time 2</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>JCkyTiUy5mg2AOiJ5un5fRGft60=08/11/2024 15:53:2508/11/2024 15:52:42</TimeStamp>
+        <ID>
+          <String>Dim Status Reserve</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>eJCX21YbI5uG/GJxtyerlSLQG9c=08/11/2024 15:55:1208/11/2024 15:54:37</TimeStamp>
+        <ID>
+          <String>Dim Category</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>ua5w7crN2+55tKKYbNE0VHqC9FU=08/11/2024 15:55:2108/11/2024 15:54:37</TimeStamp>
+        <ID>
+          <String>Dim Passenger</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>STaQbz7evXpbZTbTxATco9zuazI=08/11/2024 15:55:2908/11/2024 15:54:37</TimeStamp>
+        <ID>
+          <String>Dim Document</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>21QtMGJOfI6Nmmd2K+KaKPiVrMk=08/11/2024 15:55:3608/11/2024 15:54:37</TimeStamp>
+        <ID>
+          <String>Dim Time 3</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Cube</Type>
+        <TimeStamp>RKtWjw6HfeByK8n2miYCsxv6Rk0=08/11/2024 15:48:2708/11/2024 15:47:19KovJnHDIXPtWpLh6I5vDQbNgTeY=08/11/2024 15:47:2008/11/2024 15:47:19</TimeStamp>
+        <ID>
+          <String>Mart Flight</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Cube</Type>
+        <TimeStamp>QOPe8ifkW8m8Bc6YrX11BR3CiAk=08/11/2024 15:51:0508/11/2024 15:50:29qn//5z0J5ZsZgxXS3D0BDDF5IE4=08/11/2024 15:50:2908/11/2024 15:50:29</TimeStamp>
+        <ID>
+          <String>Mart Payment</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Cube</Type>
+        <TimeStamp>h/EJ6v0a5IuS13X3g2oTCc/fp2M=08/11/2024 15:53:2508/11/2024 15:52:41WrblCC0dYLWDw/d5ZxTZxxwf5/M=08/11/2024 15:52:4208/11/2024 15:52:41</TimeStamp>
+        <ID>
+          <String>Mart Reserve</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Cube</Type>
+        <TimeStamp>Ck12bCWhfydp2UtxBbv7R/alftE=08/11/2024 15:55:3608/11/2024 15:54:376NaKRYxHQta/15Q9jHqnlFVyvd8=08/11/2024 15:54:3708/11/2024 15:54:37</TimeStamp>
+        <ID>
+          <String>Mart Ticket</String>
+        </ID>
+      </ObjectSnapshot>
+    </ObjectSnapshots>
+    <DatabaseSnapshot>
+      <Type>Microsoft.AnalysisServices.Database</Type>
+      <TimeStamp>lhxfmf9AiLwsbWwF1RLlk8+1mtA=08/11/2024 15:46:4108/11/2024 15:46:41</TimeStamp>
+      <ID>
+        <String>cubosAirport</String>
+      </ID>
+    </DatabaseSnapshot>
+    <Granularity>Coarse</Granularity>
+  </Snapshot>
+  <AssemblyLocations />
+  <ProcessingComplete>true</ProcessingComplete>
+  <LastDeployed>2024-11-08T19:55:44.3Z</LastDeployed>
+</DeploymentSnapshot>

@@ -35,7 +35,7 @@ create table dimTime
 	fecha date,
 	year int,
 	month varchar(50),
-	day int
+	day varchar(50)
 )
 go
 

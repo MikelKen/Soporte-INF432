@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="Y2KTORREZ.airport.sa"
+  DTS:DTSID="{68141757-F20B-4420-A5E1-7E2230186DC7}"
+  DTS:CreationName="ADO.NET:System.Data.OleDb.OleDbConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=Y2KTORREZ;User ID=sa;Initial Catalog=airport;Provider=SQLOLEDB.1;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAPA70RInXAUa6fkL1n2rtTQAAAAACAAAAAAAQZgAAAAEAACAAAABKMOVZDwIOHwJ3p3TfeTX92WP27eXzhmQ09xG0gJNIqwAAAAAOgAAAAAIAACAAAAAtcjXJ1ytlCTKlGTPbpMO9JNby+3GvlvaDrnIoE9u0ZHAAAACF+v2eFvHqRzbp/jV+D2fXrjXgRb+SzRUuUWcV4882Hq90AaOYucCJl1ek7R4kRjsaMLjt2RJQmeUuc2vr0AryTIQ3Odk4FlOOwJFls3tItSARroCAU/3TxrGF/yDfhiogUYy6f+9REQgI3/9IxiLJQAAAACz3SfCHiN8Lj04X0Ok8XkPJcbTjol9jL84b1T2VTR82wbFZJkUktNpdP/PrCehAkC6NAuO2nSOLHSJgh99c/Pk=</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="Y2KTORREZ.martTicket.sa"
+  DTS:DTSID="{E4A74306-79E5-405F-B8F4-BE8CDEBAB109}"
+  DTS:CreationName="ADO.NET:System.Data.OleDb.OleDbConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=Y2KTORREZ;User ID=sa;Initial Catalog=martTicket;Provider=SQLOLEDB.1;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAPA70RInXAUa6fkL1n2rtTQAAAAACAAAAAAAQZgAAAAEAACAAAABH+X5Oxi0hM/V9X09UY3pZa6y33MxbG7Lqo0mKSHeCCgAAAAAOgAAAAAIAACAAAACLT2W5V/bU+T94kbJSgDU6k37sJHXioidcB9OWv5IFCHAAAABe0koyt+ui+L47ceO0ky1m7Gvk9TS6CZJhWwtve7DKO/n3QzmkDHLb1Ev+evMrzxDDsWvT6OXR3i9YpgPWwHdFq7FX3S8OrypboOFnBsvWLN+KCqEbY5DmMToD6r1nzWZ+b7Qxs9vcBktau+5EPeSUQAAAAC89IP73wTS+ObhYK0ySokj+Exrsrv7RdeqKEESiy+0ntOWuImoy2TLPM2IslpBxayMQv/bzoA8QDnKswdXtrJA=</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

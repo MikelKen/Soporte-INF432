@@ -5,10 +5,6 @@
   DTS:CreationName="ADO.NET:System.Data.OleDb.OleDbConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
   <DTS:ObjectData>
     <DTS:ConnectionManager
-      DTS:ConnectionString="Data Source=DESKTOP-BQCTAU4;User ID=sa;Initial Catalog=martReserve;Provider=SQLOLEDB.1;">
-      <DTS:Password
-        DTS:Name="Password"
-        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAJ52fG0Hn+kmZ0OFKk5wxvQAAAAACAAAAAAAQZgAAAAEAACAAAABaIIoQN1l8zo/wx0C83D8cMtKh49KobDHWybMWMrH0UwAAAAAOgAAAAAIAACAAAABG7HhkF3ZsRusF81VBj0IYueOx7YFObZ4HRmfH1y98VYAAAABJ7FviWs+TtShutHvfhAigmq+E0kIkQ086ZGJT90G3q5lyEsc4W6M8BvVMc+bkYSl6DiLvuD/04yJIJzdEEnVgobWBkTEei0aEzUxXXjVm7bq76zcfcR10vaiudzM9dZXtWZYm8ZzJ8EwXbzcZM4N3dcjalrX4Bay/dO2mZxmNjkAAAABgqzARIyhqzNlLLTluc3Wh21a/Hi3kNUPoxhFag6B+1B4Sv0ZL5D6XMFcQE10Cb35+AQtqhscvjz7MC9m127gb</DTS:Password>
-    </DTS:ConnectionManager>
+      DTS:ConnectionString="Data Source=DESKTOP-BQCTAU4;User ID=sa;Initial Catalog=martReserve;Provider=SQLOLEDB.1;" />
   </DTS:ObjectData>
 </DTS:ConnectionManager>

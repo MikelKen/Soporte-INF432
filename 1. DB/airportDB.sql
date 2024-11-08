@@ -2,11 +2,11 @@ use master
 
 if db_id('airport') is null
 begin
-	create database airportPP;
+	create database airport;
 end
 go
 
-use airportPP;
+use airport;
 go
 
 ---------------------------------------------------------------------
@@ -136,18 +136,47 @@ if object_id('Flight', 'U') is null
 begin
     create table Flight(
         ID int identity(1,1) primary key,
-        Boarding_Time time not null,  --
+        Boarding_Time time not null,
         Flight_Date date not null check (Flight_Date >= CONVERT(DATE, GETDATE())),
         Gate tinyint not null check (Gate BETWEEN 1 AND 255),
         Check_In_Counter bit not null,
-		DepartureTime dateTime not null,  -- Fecha y hora de salida
-		ArrivalTime dateTime not null,  --Fecha y hora de llegada 
+        DepartureTime dateTime not null,
+        ArrivalTime dateTime not null,
         Flight_Number_id int not null,
-		Plane_ID int not null,
-		Airline_ID int not null,
+        Plane_ID int not null,
+        Airline_ID int not null,
+        State bit not null default 1, -- 1 para confirmado, 0 para cancelado
         foreign key (Flight_Number_ID) references Flight_Number(ID) ON DELETE NO ACTION,
-		foreign key (Plane_id) references Plane_Model(ID) ON DELETE NO ACTION,
-		foreign key (Airline_ID) references Airline(ID) ON DELETE NO ACTION,
+        foreign key (Plane_ID) references Plane_Model(ID) ON DELETE NO ACTION,
+        foreign key (Airline_ID) references Airline(ID) ON DELETE NO ACTION
+    );
+end
+go
+
+---------------------------------------------------------------------
+
+if object_id('Flight_Cancellation', 'U') is null
+begin
+    create table Flight_Cancellation(
+        ID int identity(1,1) primary key,
+		Reason varchar(75) not null default 'Sin Especificar' check (len(Reason)>5),
+        NewDepartureDate date not null,
+		Flight_ID int not null,
+		foreign key (Flight_ID) references Flight(ID) ON DELETE NO ACTION,
+    );
+end
+go
+
+---------------------------------------------------------------------
+
+if object_id('Flight_Reprograming', 'U') is null
+begin
+    create table Flight_Reprograming(
+        ID int identity(1,1) primary key,
+        NewDepartureDate date not null,
+		NewDepartureTime time not null,
+		Flight_ID int not null,
+		foreign key (Flight_ID) references Flight(ID) ON DELETE NO ACTION,
     );
 end
 go
@@ -287,34 +316,6 @@ begin
         Meal_Code int not null default 3 check (Meal_Code >= 1 AND Meal_Code <= 10),
         Passenger_ID int not null,
         foreign key (Passenger_ID) references Passenger(ID) 
-    );
-end
-go
-
----------------------------------------------------------------------
-
-if object_id('Flight_Cancellation', 'U') is null
-begin
-    create table Flight_Cancellation(
-        ID int identity(1,1) primary key,
-		Reason varchar(75) not null default 'Sin Especificar' check (len(Reason)>5),
-        NewDepartureDate date not null,
-		Flight_ID int not null,
-		foreign key (Flight_ID) references Flight(ID) ON DELETE NO ACTION,
-    );
-end
-go
-
----------------------------------------------------------------------
-
-if object_id('Flight_Reprograming', 'U') is null
-begin
-    create table Flight_Reprograming(
-        ID int identity(1,1) primary key,
-        NewDepartureDate date not null,
-		NewDepartureTime time not null,
-		Flight_ID int not null,
-		foreign key (Flight_ID) references Flight(ID) ON DELETE NO ACTION,
     );
 end
 go

@@ -295,7 +295,6 @@ GO
 
 --===================================================================
 
---Procedure for Flight
 IF OBJECT_ID('InsertFlights', 'P') IS NOT NULL
 BEGIN
     DROP PROCEDURE InsertFlights;
@@ -307,45 +306,38 @@ AS
 BEGIN
     DECLARE @i INT = 0;
 
-WHILE @i < @NumberOfRows
-BEGIN
-    BEGIN TRY
-        BEGIN TRANSACTION;   
-        
-        -- Insertar en la tabla Flight
-        INSERT INTO Flight (Boarding_Time, Flight_Date, Gate, Check_In_Counter, DepartureTime, ArrivalTime, Flight_Number_ID,Plane_ID,Airline_ID)
-        SELECT
-            -- Hora de embarque aleatoria entre las 00:00 y las 23:59
-            CONVERT(TIME, DATEADD(MINUTE, ABS(CHECKSUM(NEWID()) % 1440), '00:00:00')) AS Boarding_Time,
-            -- Fecha de vuelo aleatoria a partir del día actual
-            DATEADD(DAY, ABS(CHECKSUM(NEWID()) % 365), CONVERT(DATE, GETDATE())) AS Flight_Date,
-            -- Puerta aleatoria entre 1 y 255
-            ABS(CHECKSUM(NEWID()) % 255) + 1 AS Gate,
-            -- Contador de check-in aleatorio (0 o 1)
-            ABS(CHECKSUM(NEWID()) % 2) AS Check_In_Counter,
-			-- Fecha y hora de salida aleatoria en el día de vuelo
+    WHILE @i < @NumberOfRows
+    BEGIN
+        BEGIN TRY
+            BEGIN TRANSACTION;   
+            
+            -- Insertar en la tabla Flight
+            INSERT INTO Flight (Boarding_Time, Flight_Date, Gate, Check_In_Counter, DepartureTime, ArrivalTime, Flight_Number_ID, Plane_ID, Airline_ID, State)
+            SELECT
+                CONVERT(TIME, DATEADD(MINUTE, ABS(CHECKSUM(NEWID()) % 1440), '00:00:00')) AS Boarding_Time,
+                DATEADD(DAY, ABS(CHECKSUM(NEWID()) % 365), CONVERT(DATE, GETDATE())) AS Flight_Date,
+                ABS(CHECKSUM(NEWID()) % 255) + 1 AS Gate,
+                ABS(CHECKSUM(NEWID()) % 2) AS Check_In_Counter,
                 DATEADD(MINUTE, ABS(CHECKSUM(NEWID()) % 1440), 
                     DATEADD(DAY, ABS(CHECKSUM(NEWID()) % 365), GETDATE())) AS DepartureTime,
-                -- Fecha y hora de llegada aleatoria, después de la hora de salida
                 DATEADD(MINUTE, ABS(CHECKSUM(NEWID()) % 300) + 30, 
                     DATEADD(MINUTE, ABS(CHECKSUM(NEWID()) % 1440), 
                     DATEADD(DAY, ABS(CHECKSUM(NEWID()) % 365), GETDATE()))) AS ArrivalTime,
-            -- Número de vuelo seleccionado
-            (SELECT TOP 1 ID FROM Flight_Number ORDER BY NEWID()) AS Flight_Number_ID,
-			-- Número de modelo de avion seleccionado
-            (SELECT TOP 1 ID FROM Plane_Model ORDER BY NEWID()) AS Plane_id,
-			-- Nombre de aerolinea seleccionado
-            (SELECT TOP 1 ID FROM Airline ORDER BY NEWID()) AS Airline_ID ;
-        COMMIT TRANSACTION;
-    END TRY
-    BEGIN CATCH
-        ROLLBACK TRANSACTION;
-		PRINT 'Error: ' + ERROR_MESSAGE();
-    END CATCH;
+                (SELECT TOP 1 ID FROM Flight_Number ORDER BY NEWID()) AS Flight_Number_ID,
+                (SELECT TOP 1 ID FROM Plane_Model ORDER BY NEWID()) AS Plane_ID,
+                (SELECT TOP 1 ID FROM Airline ORDER BY NEWID()) AS Airline_ID,
+                ABS(CHECKSUM(NEWID()) % 2) AS State; -- Estado aleatorio, 0 o 1
+            COMMIT TRANSACTION;
+        END TRY
+        BEGIN CATCH
+            ROLLBACK TRANSACTION;
+            PRINT 'Error: ' + ERROR_MESSAGE();
+        END CATCH;
         SET @i = @i + 1;
     END;
 END;
 GO
+
 
 --============================================================================
 --Procedure for Available_Seat

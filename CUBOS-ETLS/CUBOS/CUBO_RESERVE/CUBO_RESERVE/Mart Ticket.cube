@@ -1,0 +1,228 @@
+﻿<Cube xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="fdc79172-2835-4778-8471-dd51d2a2cfa8" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Mart Ticket</ID>
+  <Name>Mart Ticket</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+      <Value>false</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+      <Value>100</Value>
+    </Annotation>
+  </Annotations>
+  <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <Dimensions>
+    <Dimension dwd:design-time-name="a21bda39-e4e6-437e-9036-ad1986e12e56">
+      <ID>Dim Time 2</ID>
+      <Name>Dim Time 2</Name>
+      <DimensionID>Dim Time 2</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="83d03744-9f32-45ff-81f0-bfe9ac04f72a">
+          <AttributeID>Id</AttributeID>
+        </Attribute>
+      </Attributes>
+    </Dimension>
+    <Dimension dwd:design-time-name="f4ba073c-0d4e-4943-923b-90b7f15d4da6">
+      <ID>Dim Passenger</ID>
+      <Name>Dim Passenger</Name>
+      <DimensionID>Dim Passenger</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="8e972177-1fd7-4c55-8cae-915b63ba5197">
+          <AttributeID>Id</AttributeID>
+        </Attribute>
+      </Attributes>
+    </Dimension>
+    <Dimension dwd:design-time-name="fbd03102-b492-41e5-99db-042266bc00b8">
+      <ID>Dim Document</ID>
+      <Name>Dim Document</Name>
+      <DimensionID>Dim Document</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="0a385c3e-5fad-4b39-bcc5-ac319cedf569">
+          <AttributeID>Id</AttributeID>
+        </Attribute>
+      </Attributes>
+    </Dimension>
+    <Dimension dwd:design-time-name="ec5357a7-8622-4e2a-8017-916e57a4f8b6">
+      <ID>Dim Category</ID>
+      <Name>Dim Category</Name>
+      <DimensionID>Dim Category</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="f6c45c9c-ee7a-44ac-9a5a-f49bad75fbff">
+          <AttributeID>Id</AttributeID>
+        </Attribute>
+      </Attributes>
+    </Dimension>
+  </Dimensions>
+  <MeasureGroups>
+    <MeasureGroup dwd:design-time-name="a79a8f05-826f-4dfd-b5c7-c62218a2fe49">
+      <ID>Fact Ticket</ID>
+      <Name>Fact Ticket</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+      <State>Unprocessed</State>
+      <Measures>
+        <Measure dwd:design-time-name="979115f7-cccc-4d6c-97b8-dee7bfca8c7a">
+          <ID>Ticket Number</ID>
+          <Name>Ticket Number</Name>
+          <Source dwd:design-time-name="613eec32-6337-448c-9ac2-72b8db6e3b76">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="c0747c75-bd96-4e57-b98d-cc8fefbba1ca">
+              <TableID>dbo_factTicket</TableID>
+              <ColumnID>ticketNumber</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="abecae65-c19f-46af-9aa2-0aae78d2e7b9">
+          <ID>Ticket Count</ID>
+          <Name>Ticket Count</Name>
+          <Source dwd:design-time-name="647e5661-7acf-4a19-a4d0-52978e595514">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="8da6a071-b77a-4979-a89d-af295ea1069b">
+              <TableID>dbo_factTicket</TableID>
+              <ColumnID>ticket_count</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="57701a02-4693-466d-a63a-b2a89cf97ffe">
+          <ID>Total Price</ID>
+          <Name>Total Price</Name>
+          <Source dwd:design-time-name="0d42bc19-3914-4dd1-8e83-9c2846ef5a42">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="8e2998bc-ea69-454f-9d0e-290e84989f59">
+              <TableID>dbo_factTicket</TableID>
+              <ColumnID>total_price</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="88e2b84f-2058-4ed4-bab8-13a6a08fab38">
+          <ID>Recuento Fact Ticket</ID>
+          <Name>Recuento Fact Ticket</Name>
+          <AggregateFunction>Count</AggregateFunction>
+          <Source dwd:design-time-name="5061661b-ad83-4e6f-8759-8df75fdd233d">
+            <DataType>Integer</DataType>
+            <DataSize>4</DataSize>
+            <Source xsi:type="RowBinding" dwd:design-time-name="9e1f2ff6-3549-4a08-957b-ce5cfc4835ea">
+              <TableID>dbo_factTicket</TableID>
+            </Source>
+          </Source>
+        </Measure>
+      </Measures>
+      <StorageMode>Molap</StorageMode>
+      <ProcessingMode>Regular</ProcessingMode>
+      <Dimensions>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="dd7f3f82-6251-4456-b195-ea2a4a994c47">
+          <CubeDimensionID>Dim Time 2</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="7ce798a7-9324-4fea-8ac5-42c716aab506">
+              <AttributeID>Id</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="b81bc909-95f3-436b-ae5f-0b1b405bd619">
+                  <DataType>Integer</DataType>
+                  <NullProcessing>UnknownMember</NullProcessing>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="9456a1c9-06b0-4150-a79d-d10690772d42">
+                    <TableID>dbo_factTicket</TableID>
+                    <ColumnID>time_id</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="0043954e-4843-4a85-8ac0-51365eecd5b4">
+          <CubeDimensionID>Dim Passenger</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="878361b5-4141-4e9a-be53-16dfb5755fc9">
+              <AttributeID>Id</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="4a98856d-e8f9-49c4-806b-abcc55e0db59">
+                  <DataType>Integer</DataType>
+                  <NullProcessing>UnknownMember</NullProcessing>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="ef36303a-6a07-4222-a2bf-358baaf57456">
+                    <TableID>dbo_factTicket</TableID>
+                    <ColumnID>passenger_id</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="bc344307-ef5e-4cf4-aaea-12ae6f16f9ae">
+          <CubeDimensionID>Dim Document</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="dacc9d7b-c8a1-457e-8794-3aea765e25a0">
+              <AttributeID>Id</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="e5e8e84d-3f17-48d0-80f7-a00dcec8a722">
+                  <DataType>Integer</DataType>
+                  <NullProcessing>UnknownMember</NullProcessing>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="29878870-716d-447e-befd-9757ff421782">
+                    <TableID>dbo_factTicket</TableID>
+                    <ColumnID>document_id</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="1b066917-424c-4b70-baf6-61de704b6dad">
+          <CubeDimensionID>Dim Category</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="e02243a5-47c5-46c7-ab43-a680ec2b465c">
+              <AttributeID>Id</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="7ce13d74-3961-4ecd-98e4-c7116ffe2990">
+                  <DataType>Integer</DataType>
+                  <NullProcessing>UnknownMember</NullProcessing>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="ed5a5ad9-e654-4054-92e7-5a6faf816975">
+                    <TableID>dbo_factTicket</TableID>
+                    <ColumnID>category_id</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+      </Dimensions>
+      <Partitions />
+    </MeasureGroup>
+  </MeasureGroups>
+  <Source dwd:design-time-name="31c6be72-aca3-487b-a715-5e131a4867f4">
+    <DataSourceViewID>Mart Ticket</DataSourceViewID>
+  </Source>
+</Cube>

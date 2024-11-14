@@ -1,0 +1,53 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\usuario\\Desktop\\Soporte\\CUBOS\\CUBO_RESERVE\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{2E85AC2A-DE1F-4B31-BCFB-A778F8B99E91}|CUBO_RESERVE\\CUBO_RESERVE.dwproj|C:\\Users\\usuario\\Desktop\\Soporte\\CUBOS\\CUBO_RESERVE\\CUBO_RESERVE\\Mart Payment.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{2E85AC2A-DE1F-4B31-BCFB-A778F8B99E91}|CUBO_RESERVE\\CUBO_RESERVE.dwproj|solutionrelative:CUBO_RESERVE\\Mart Payment.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E85AC2A-DE1F-4B31-BCFB-A778F8B99E91}|CUBO_RESERVE\\CUBO_RESERVE.dwproj|C:\\Users\\usuario\\Desktop\\Soporte\\CUBOS\\CUBO_RESERVE\\CUBO_RESERVE\\Mart Payment.dsv||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{2E85AC2A-DE1F-4B31-BCFB-A778F8B99E91}|CUBO_RESERVE\\CUBO_RESERVE.dwproj|solutionrelative:CUBO_RESERVE\\Mart Payment.dsv||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Mart Payment.cube [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\usuario\\Desktop\\Soporte\\CUBOS\\CUBO_RESERVE\\CUBO_RESERVE\\Mart Payment.cube",
+              "RelativeDocumentMoniker": "CUBO_RESERVE\\Mart Payment.cube",
+              "ToolTip": "C:\\Users\\usuario\\Desktop\\Soporte\\CUBOS\\CUBO_RESERVE\\CUBO_RESERVE\\Mart Payment.cube [Dise\u00F1o]",
+              "RelativeToolTip": "CUBO_RESERVE\\Mart Payment.cube [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-11-13T17:00:46.364Z",
+              "IsPinned": true,
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Mart Payment.dsv [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\usuario\\Desktop\\Soporte\\CUBOS\\CUBO_RESERVE\\CUBO_RESERVE\\Mart Payment.dsv",
+              "RelativeDocumentMoniker": "CUBO_RESERVE\\Mart Payment.dsv",
+              "ToolTip": "C:\\Users\\usuario\\Desktop\\Soporte\\CUBOS\\CUBO_RESERVE\\CUBO_RESERVE\\Mart Payment.dsv [Dise\u00F1o]",
+              "RelativeToolTip": "CUBO_RESERVE\\Mart Payment.dsv [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-11-13T17:04:50.052Z",
+              "IsPinned": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

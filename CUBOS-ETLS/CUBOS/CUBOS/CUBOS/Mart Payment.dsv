@@ -1,0 +1,174 @@
+﻿<DataSourceView xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="884fba47-1bc2-44f3-960d-796b862d175a" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Mart Payment</ID>
+  <Name>Mart Payment</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:CurrentLayout</Name>
+      <Value>_ALL_TABLES_</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:SchemaRestriction</Name>
+      <Value></Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:RetrieveRelationships</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:Layouts</Name>
+      <Value>
+        <Layouts xmlns="">
+          <Diagram>
+            <Name>_ALL_TABLES_</Name>
+            <DiagramLayout />
+            <ShowRelationshipNames>False</ShowRelationshipNames>
+            <UseDiagramDefaultLayout>True</UseDiagramDefaultLayout>
+            <DiagramViewPortLeft>0</DiagramViewPortLeft>
+            <DiagramViewPortTop>0</DiagramViewPortTop>
+            <DiagramBoundingLeft>0</DiagramBoundingLeft>
+            <DiagramBoundingTop>0</DiagramBoundingTop>
+            <DiagramZoom>100</DiagramZoom>
+          </Diagram>
+        </Layouts>
+      </Value>
+    </Annotation>
+  </Annotations>
+  <DataSourceID>Mart Payment</DataSourceID>
+  <Schema>
+    <xs:schema id="Mart_x0020_Payment" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop">
+      <xs:element name="Mart_x0020_Payment" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:design-time-name="50b159b1-ea6c-47a9-aedc-9f1b319ce4b1">
+        <xs:complexType>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="dbo_dimCustomer" msprop:DbTableName="dimCustomer" msprop:FriendlyName="dimCustomer" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:design-time-name="e04d7d0e-6774-4753-99c6-10f8374471fe">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:FriendlyName="id" msprop:DbColumnName="id" msprop:design-time-name="1d8281cd-f266-4071-af55-1a3acf0a3cc6" type="xs:int" />
+                  <xs:element name="id_customer" msprop:FriendlyName="id_customer" msprop:DbColumnName="id_customer" msprop:design-time-name="de383bc2-dd85-484c-b63a-36138cb2469d" type="xs:int" minOccurs="0" />
+                  <xs:element name="name" msprop:FriendlyName="name" msprop:DbColumnName="name" msprop:design-time-name="05c561ee-8577-43eb-a7f5-2abcac24abd5" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="50" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="type" msprop:FriendlyName="type" msprop:DbColumnName="type" msprop:design-time-name="be26ff26-91d0-4b77-972b-ac60a568e139" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="50" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="loyaltyPoints" msprop:FriendlyName="loyaltyPoints" msprop:DbColumnName="loyaltyPoints" msprop:design-time-name="58404e34-bcd0-43c0-9d4a-7e5486a33736" type="xs:int" minOccurs="0" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="dbo_dimMontoPayment" msprop:DbTableName="dimMontoPayment" msprop:FriendlyName="dimMontoPayment" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:design-time-name="4c847807-4292-4569-9f98-58c3bb6c3cac">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:FriendlyName="id" msprop:DbColumnName="id" msprop:design-time-name="53ea5ee8-80b6-460a-a995-3b861dddb575" type="xs:int" />
+                  <xs:element name="id_montoPayment" msprop:FriendlyName="id_montoPayment" msprop:DbColumnName="id_montoPayment" msprop:design-time-name="4058bacb-b9db-4809-a58f-767997a74c50" type="xs:int" minOccurs="0" />
+                  <xs:element name="monto" msprop:FriendlyName="monto" msprop:DbColumnName="monto" msprop:design-time-name="fed94345-939f-42c0-910d-96066244338f" type="xs:int" minOccurs="0" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="dbo_dimTime" msprop:DbTableName="dimTime" msprop:FriendlyName="dimTime" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:design-time-name="bda4aaa7-9ffd-4067-9530-82974d7e6012">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:FriendlyName="id" msprop:DbColumnName="id" msprop:design-time-name="42596d06-5823-4365-a704-11a2a121a739" type="xs:int" />
+                  <xs:element name="fecha" msprop:FriendlyName="fecha" msprop:DbColumnName="fecha" msprop:design-time-name="ccbc9804-8bb2-4a86-a132-14f7b5634885" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="10" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="year" msprop:FriendlyName="year" msprop:DbColumnName="year" msprop:design-time-name="dae8ac93-35e4-4b68-89fc-20d8e61f9e56" type="xs:int" minOccurs="0" />
+                  <xs:element name="month" msprop:FriendlyName="month" msprop:DbColumnName="month" msprop:design-time-name="cecbb3da-ccef-485a-9bb1-be03d9346de2" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="50" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="day" msprop:FriendlyName="day" msprop:DbColumnName="day" msprop:design-time-name="709596e9-d316-481c-a22c-0b05fac7aded" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="50" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="dbo_dimTypePayment" msprop:DbTableName="dimTypePayment" msprop:FriendlyName="dimTypePayment" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:design-time-name="53a86f2f-f930-4afa-9ccd-c7222492cfcd">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:FriendlyName="id" msprop:DbColumnName="id" msprop:design-time-name="b299cfb4-6fa2-4c82-9370-a7f62354198d" type="xs:int" />
+                  <xs:element name="id_typePayment" msprop:FriendlyName="id_typePayment" msprop:DbColumnName="id_typePayment" msprop:design-time-name="a3793f76-c93e-4405-b365-e0cb3105ecc6" type="xs:int" minOccurs="0" />
+                  <xs:element name="typePayment" msprop:FriendlyName="typePayment" msprop:DbColumnName="typePayment" msprop:design-time-name="cfa76726-0a2d-4d00-8b69-92793e40ba3b" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="40" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="dbo_factPayment" msprop:DbTableName="factPayment" msprop:FriendlyName="factPayment" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:design-time-name="6c7f4eed-8fa2-4f80-807a-47abf752fd39">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:FriendlyName="id" msprop:DbColumnName="id" msprop:design-time-name="2ebb5cab-3634-46d0-b8f0-e5362ed05a2d" type="xs:int" />
+                  <xs:element name="time_id" msprop:FriendlyName="time_id" msprop:DbColumnName="time_id" msprop:design-time-name="038338db-0fd2-4e2c-997a-ecd7ea6ba7e4" type="xs:int" minOccurs="0" />
+                  <xs:element name="customer_id" msprop:FriendlyName="customer_id" msprop:DbColumnName="customer_id" msprop:design-time-name="8e0c85c7-e686-4084-a3b0-0a19acefd775" type="xs:int" minOccurs="0" />
+                  <xs:element name="typePayment_id" msprop:FriendlyName="typePayment_id" msprop:DbColumnName="typePayment_id" msprop:design-time-name="a27d7f20-a806-4027-910b-69aa12214c35" type="xs:int" minOccurs="0" />
+                  <xs:element name="MontoTotalPago" msprop:FriendlyName="MontoTotalPago" msprop:DbColumnName="MontoTotalPago" msprop:design-time-name="756e4d4b-d668-4a7e-9d6b-f4ad1c1c5343" type="xs:int" minOccurs="0" />
+                  <xs:element name="CantPagoRealizado" msprop:FriendlyName="CantPagoRealizado" msprop:DbColumnName="CantPagoRealizado" msprop:design-time-name="32c43f5a-2138-49ee-aa11-1d4d4d594176" type="xs:int" minOccurs="0" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:complexType>
+        <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//dbo_dimCustomer" />
+          <xs:field xpath="id" />
+        </xs:unique>
+        <xs:unique name="dbo_dimMontoPayment_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//dbo_dimMontoPayment" />
+          <xs:field xpath="id" />
+        </xs:unique>
+        <xs:unique name="dbo_dimTime_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//dbo_dimTime" />
+          <xs:field xpath="id" />
+        </xs:unique>
+        <xs:unique name="dbo_dimTypePayment_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//dbo_dimTypePayment" />
+          <xs:field xpath="id" />
+        </xs:unique>
+        <xs:unique name="dbo_factPayment_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//dbo_factPayment" />
+          <xs:field xpath="id" />
+        </xs:unique>
+        <xs:keyref name="FK__factPayme__custo__656C112C" refer="Constraint1">
+          <xs:selector xpath=".//dbo_factPayment" />
+          <xs:field xpath="customer_id" />
+        </xs:keyref>
+        <xs:keyref name="FK__factPayme__typeP__66603565" refer="dbo_dimTypePayment_Constraint1">
+          <xs:selector xpath=".//dbo_factPayment" />
+          <xs:field xpath="typePayment_id" />
+        </xs:keyref>
+        <xs:keyref name="FK__factPayme__CantP__6477ECF3" refer="dbo_dimTime_Constraint1">
+          <xs:selector xpath=".//dbo_factPayment" />
+          <xs:field xpath="time_id" />
+        </xs:keyref>
+      </xs:element>
+    </xs:schema>
+    <Mart_x0020_Payment xmlns="" />
+  </Schema>
+</DataSourceView>

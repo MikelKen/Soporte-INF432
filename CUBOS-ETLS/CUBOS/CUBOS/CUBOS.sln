@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{D2ABAB84-BF74-430A-B69E-9DC6D40DDA17}") = "CUBOS", "CUBOS\CUBOS.dwproj", "{C2A3B2F2-E83E-48A1-890C-79F43EB5EEC3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C2A3B2F2-E83E-48A1-890C-79F43EB5EEC3}.Development|Default.ActiveCfg = Development
+		{C2A3B2F2-E83E-48A1-890C-79F43EB5EEC3}.Development|Default.Build.0 = Development
+		{C2A3B2F2-E83E-48A1-890C-79F43EB5EEC3}.Development|Default.Deploy.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DAF42F4F-8078-4442-90A3-2EA0C700BE0C}
+	EndGlobalSection
+EndGlobal

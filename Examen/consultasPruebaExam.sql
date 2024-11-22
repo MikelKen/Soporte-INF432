@@ -1,56 +1,9 @@
 --TIME
 
-SELECT 
-    CONVERT(DATE, departureTime) AS FlightDate,
-    YEAR(CONVERT(DATE, departureTime)) AS Year,
-    MONTH(CONVERT(DATE, departureTime)) AS Month,
-    DAY(CONVERT(DATE, departureTime)) AS Day,
-    DATEPART(week, CONVERT(DATE, departureTime)) AS Week
-FROM Flight
-UNION
-SELECT 
-    arrivalDate AS FlightDate,
-    YEAR(arrivalDate) AS Year,
-    MONTH(arrivalDate) AS Month,
-    DAY(arrivalDate) AS Day,
-    DATEPART(week, arrivalDate) AS Week
-FROM Flight
-ORDER BY FlightDate;
-
-select * from Flight
-SELECT 
-    CONVERT(DATE, departureTime) AS FlightDate,
-    YEAR(CONVERT(DATE, departureTime)) AS Year,
-    MONTH(CONVERT(DATE, departureTime)) AS Month,
-    DAY(CONVERT(DATE, departureTime)) AS Day,
-    DATEPART(week, CONVERT(DATE, departureTime)) AS Week,
-    CASE 
-        WHEN MONTH(CONVERT(DATE, departureTime)) BETWEEN 1 AND 3 THEN 1
-        WHEN MONTH(CONVERT(DATE, departureTime)) BETWEEN 4 AND 6 THEN 2
-        WHEN MONTH(CONVERT(DATE, departureTime)) BETWEEN 7 AND 9 THEN 3
-        WHEN MONTH(CONVERT(DATE, departureTime)) BETWEEN 10 AND 12 THEN 4
-    END AS Quarter
-FROM Flight
-UNION
-SELECT 
-    arrivalDate AS FlightDate,
-    YEAR(arrivalDate) AS Year,
-    MONTH(arrivalDate) AS Month,
-    DAY(arrivalDate) AS Day,
-    DATEPART(week, arrivalDate) AS Week,
-    CASE 
-        WHEN MONTH(arrivalDate) BETWEEN 1 AND 3 THEN 1
-        WHEN MONTH(arrivalDate) BETWEEN 4 AND 6 THEN 2
-        WHEN MONTH(arrivalDate) BETWEEN 7 AND 9 THEN 3
-        WHEN MONTH(arrivalDate) BETWEEN 10 AND 12 THEN 4
-    END AS Quarter
-FROM Flight
-ORDER BY FlightDate;
-
 
 
 SELECT 
-	Flight_Number_id AS flightId,
+	--Flight_Number_id AS flightId,
     CONVERT(DATE, departureTime) AS FlightDate,
     YEAR(CONVERT(DATE, departureTime)) AS Year,
 	MONTH(CONVERT(DATE, departureTime)) AS Month,
@@ -81,8 +34,55 @@ SELECT
         WHEN MONTH(arrivalDate) BETWEEN 7 AND 9 THEN 3
         WHEN MONTH(arrivalDate) BETWEEN 10 AND 12 THEN 4
     END AS Quarter
-FROM Flight
+FROM Flight f
+WHERE  NOT IN (SELECT mf.FlightDate FROM martFlightPrueba.dbo.dimTime mf)
+
 ORDER BY FlightDate;
+
+
+
+-----------------------
+SELECT DISTINCT 
+    CONVERT(DATE, departureTime) AS FlightDate,
+    YEAR(CONVERT(DATE, departureTime)) AS Year,
+    MONTH(CONVERT(DATE, departureTime)) AS Month,
+    DATENAME(MONTH, CONVERT(DATE, departureTime)) AS MonthName,
+    DAY(CONVERT(DATE, departureTime)) AS Day,
+    DATENAME(WEEKDAY, CONVERT(DATE, departureTime)) AS DayName,
+    DATEPART(week, CONVERT(DATE, departureTime)) AS Week,
+    CASE 
+        WHEN MONTH(CONVERT(DATE, departureTime)) BETWEEN 1 AND 3 THEN 1
+        WHEN MONTH(CONVERT(DATE, departureTime)) BETWEEN 4 AND 6 THEN 2
+        WHEN MONTH(CONVERT(DATE, departureTime)) BETWEEN 7 AND 9 THEN 3
+        WHEN MONTH(CONVERT(DATE, departureTime)) BETWEEN 10 AND 12 THEN 4
+    END AS Quarter
+FROM Flight
+WHERE CONVERT(DATE, departureTime) NOT IN (
+    SELECT mf.FlightDate FROM martFlightPrueba.dbo.dimTime mf
+)
+UNION
+SELECT DISTINCT
+    CONVERT(DATE, arrivalDate) AS FlightDate,
+    YEAR(arrivalDate) AS Year,
+    MONTH(arrivalDate) AS Month,
+    DATENAME(MONTH, arrivalDate) AS MonthName,
+    DAY(arrivalDate) AS Day,
+    DATENAME(WEEKDAY, arrivalDate) AS DayName,
+    DATEPART(week, arrivalDate) AS Week,
+    CASE 
+        WHEN MONTH(arrivalDate) BETWEEN 1 AND 3 THEN 1
+        WHEN MONTH(arrivalDate) BETWEEN 4 AND 6 THEN 2
+        WHEN MONTH(arrivalDate) BETWEEN 7 AND 9 THEN 3
+        WHEN MONTH(arrivalDate) BETWEEN 10 AND 12 THEN 4
+    END AS Quarter
+FROM Flight f
+WHERE arrivalDate NOT IN (
+    SELECT mf.FlightDate FROM martFlightPrueba.dbo.dimTime mf
+)
+ORDER BY FlightDate;
+
+
+
 
 ------------------------------------------------------------------------------------------------
 --AIRLINE
@@ -493,7 +493,8 @@ SELECT
     dt.id AS time_id,
     da.id AS airline_id,
     dm.id AS modelPlane_id,
-    dai.id AS airport_id,
+    dai.id_flightNum AS airport_id,
+	dc.id AS crewRole_id,
     f.FlightNumber AS flight_number,
     fs.fechaFligth AS flight_date,   
     f.departureTime AS departureTime,

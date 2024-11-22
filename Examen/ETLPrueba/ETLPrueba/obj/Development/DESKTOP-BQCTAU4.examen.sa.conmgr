@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="DESKTOP-BQCTAU4.examen.sa"
+  DTS:DTSID="{E51ED9E4-836B-41F2-813F-CFB8AED1765B}"
+  DTS:CreationName="ADO.NET:System.Data.OleDb.OleDbConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=DESKTOP-BQCTAU4;User ID=sa;Initial Catalog=examen;Provider=SQLOLEDB.1;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAJ52fG0Hn+kmZ0OFKk5wxvQAAAAACAAAAAAAQZgAAAAEAACAAAADBDJtW7lr9G1dNXp20fDQMc0bIVosR2OvwPi0a3nALaQAAAAAOgAAAAAIAACAAAAB3lN1V747nsbg7A5OuqDOA7c2ZhVQ6hamlkcvPs2WvNoAAAADNCyvFpLJixIR5azyrtYNIL7NSwdkeHFCNc/qMNiRElCtmraxAM1kCHw2O8C/4Nc6jVquYOiXe+cW3sn4kLmZGhMhvfcubQ+oSojJkUq+fc1MF+dUpgYg45R/+dxB3OtaQ0q7+hcIX8ciIsbfBEEDVqvdUkarRD4wxPOo2pUn5AEAAAAAA37dvIV8VjaJzORz1qjnPKUtz0ke5LQxzPzmsGfMbXIjiGQXtdS/1pZi1uKkit/mO658Nwh8ve5K/7vo9V/72</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

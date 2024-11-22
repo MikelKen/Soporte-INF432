@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="DESKTOP-BQCTAU4.martFlightPrueba.sa"
+  DTS:DTSID="{523C7B2E-108B-4CA1-9547-F3D5B654CA8D}"
+  DTS:CreationName="ADO.NET:System.Data.OleDb.OleDbConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=DESKTOP-BQCTAU4;User ID=sa;Initial Catalog=martFlightPrueba;Provider=SQLOLEDB.1;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAJ52fG0Hn+kmZ0OFKk5wxvQAAAAACAAAAAAAQZgAAAAEAACAAAAD67Ad5Vu5hTwg1Nj82b5mQ+qpIdKgEY96YzxAhGwSpAAAAAAAOgAAAAAIAACAAAABsjV1bnYUFpRuB1kZxqX8uJNW3XI5nM4nJuU8KN0fkaIAAAACq/1hw7lWA+rOGn946D86+uRCSxmwb7Lty/H1poCBEtgGWYq1zERZQTnhsck2XJkhh6QvHE4bKBaP/ZWrMwMkKk6XqykuqrACjklpfAd+btMOouH8wcfRKSzFFtjOff472R9Hq2AItzCUo1wfj4AkoMhS1hs/2krSfShj+qw4VcUAAAAAwlPGpyooAQJYDRVvPdJbb4E2suw7T/apIBS/+FpgEsslEtxQfXoTBs1WPGP0GkAcfD6VwC2Mnn2Wuu6Ish6Ot</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

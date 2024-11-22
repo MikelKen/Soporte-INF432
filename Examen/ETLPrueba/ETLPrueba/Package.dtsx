@@ -1,0 +1,3038 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/21/2024 9:50:52 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-BQCTAU4"
+  DTS:CreatorName="DESKTOP-BQCTAU4\usuario"
+  DTS:DTSID="{706058A6-59EB-49EA-80D3-F96540FC6E8D}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{8BF643DF-4B9D-435F-8F61-8DEC498921FD}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\dimAirline"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{BBBBCD08-AED1-492C-BD02-85FF41FCE99B}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="dimAirline"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\dimAirline\Destino de ADO NET"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+              description="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC."
+              name="Destino de ADO NET"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de destino."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">[dbo].[dimAirline]</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas por lote. El valor predeterminado es 0, que utiliza el mismo tamaño que el búfer interno de SSIS. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica si se debe usar la interfaz SqlBulkCopy para mejorar el rendimiento de las operaciones de inserción masiva. No todos los proveedores admiten esta interfaz."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\dimAirline\Destino de ADO NET.Connections[IDbConnection]"
+                  connectionManagerID="{523C7B2E-108B-4CA1-9547-F3D5B654CA8D}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-BQCTAU4.martFlightPrueba.sa]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\dimAirline\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de ADO NET">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\dimAirline\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[id_airline]"
+                      cachedDataType="i4"
+                      cachedName="id_airline"
+                      externalMetadataColumnId="Package\dimAirline\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[id_airline]"
+                      lineageId="Package\dimAirline\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[id_airline]" />
+                    <inputColumn
+                      refId="Package\dimAirline\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[name]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="name"
+                      externalMetadataColumnId="Package\dimAirline\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[name]"
+                      lineageId="Package\dimAirline\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[name]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\dimAirline\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[id]"
+                      dataType="i4"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\dimAirline\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[id_airline]"
+                      dataType="i4"
+                      name="id_airline" />
+                    <externalMetadataColumn
+                      refId="Package\dimAirline\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[name]"
+                      dataType="wstr"
+                      length="100"
+                      name="name" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\dimAirline\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de ADO NET"
+                  synchronousInputId="Package\dimAirline\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dimAirline\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dimAirline\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dimAirline\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dimAirline\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\dimAirline\Origen de ADO NET"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="Origen de ADO NET"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DISTINCT 
+    ID AS id_airline, 
+    Name AS name
+FROM Airline
+WHERE ID NOT IN (SELECT id_airline FROM martFlightPrueba.dbo.dimAirline)</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\dimAirline\Origen de ADO NET.Connections[IDbConnection]"
+                  connectionManagerID="{E51ED9E4-836B-41F2-813F-CFB8AED1765B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-BQCTAU4.examen.sa]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\dimAirline\Origen de ADO NET.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dimAirline\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[id_airline]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dimAirline\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[id_airline]"
+                      lineageId="Package\dimAirline\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[id_airline]"
+                      name="id_airline"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dimAirline\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dimAirline\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[name]"
+                      length="100"
+                      lineageId="Package\dimAirline\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[name]"
+                      name="name"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\dimAirline\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[id_airline]"
+                      dataType="i4"
+                      name="id_airline" />
+                    <externalMetadataColumn
+                      refId="Package\dimAirline\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[name]"
+                      dataType="wstr"
+                      length="100"
+                      name="name" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\dimAirline\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dimAirline\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[id_airline]"
+                      dataType="i4"
+                      lineageId="Package\dimAirline\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[id_airline]"
+                      name="id_airline" />
+                    <outputColumn
+                      refId="Package\dimAirline\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[name]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\dimAirline\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[name]"
+                      name="name" />
+                    <outputColumn
+                      refId="Package\dimAirline\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dimAirline\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dimAirline\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dimAirline\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\dimAirline.Paths[Salida de origen de ADO NET]"
+              endId="Package\dimAirline\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]"
+              name="Salida de origen de ADO NET"
+              startId="Package\dimAirline\Origen de ADO NET.Outputs[Salida de origen de ADO NET]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\dimAirport"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{7D8A144B-B93C-43AB-BA48-EBA04A9E030D}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="dimAirport"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\dimAirport\Destino de ADO NET"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+              description="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC."
+              name="Destino de ADO NET"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de destino."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">[dbo].[dimAirport]</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas por lote. El valor predeterminado es 0, que utiliza el mismo tamaño que el búfer interno de SSIS. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica si se debe usar la interfaz SqlBulkCopy para mejorar el rendimiento de las operaciones de inserción masiva. No todos los proveedores admiten esta interfaz."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\dimAirport\Destino de ADO NET.Connections[IDbConnection]"
+                  connectionManagerID="{523C7B2E-108B-4CA1-9547-F3D5B654CA8D}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-BQCTAU4.martFlightPrueba.sa]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\dimAirport\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de ADO NET">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\dimAirport\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[id_flightNum]"
+                      cachedDataType="i4"
+                      cachedName="id_flightNum"
+                      externalMetadataColumnId="Package\dimAirport\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[id_flightNum]"
+                      lineageId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[id_flightNum]" />
+                    <inputColumn
+                      refId="Package\dimAirport\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[departureTime]"
+                      cachedDataType="wstr"
+                      cachedLength="16"
+                      cachedName="departureTime"
+                      externalMetadataColumnId="Package\dimAirport\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[departureTime]"
+                      lineageId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[departureTime]" />
+                    <inputColumn
+                      refId="Package\dimAirport\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[aeroExit]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="aeroExit"
+                      externalMetadataColumnId="Package\dimAirport\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[aeroExit]"
+                      lineageId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[aeroExit]" />
+                    <inputColumn
+                      refId="Package\dimAirport\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[aeroArrival]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="aeroArrival"
+                      externalMetadataColumnId="Package\dimAirport\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[aeroArrival]"
+                      lineageId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[aeroArrival]" />
+                    <inputColumn
+                      refId="Package\dimAirport\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[cityExit]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="cityExit"
+                      externalMetadataColumnId="Package\dimAirport\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[cityExit]"
+                      lineageId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[cityExit]" />
+                    <inputColumn
+                      refId="Package\dimAirport\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[cityArrival]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="cityArrival"
+                      externalMetadataColumnId="Package\dimAirport\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[cityArrival]"
+                      lineageId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[cityArrival]" />
+                    <inputColumn
+                      refId="Package\dimAirport\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[countryExit]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="countryExit"
+                      externalMetadataColumnId="Package\dimAirport\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[countryExit]"
+                      lineageId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[countryExit]" />
+                    <inputColumn
+                      refId="Package\dimAirport\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[countryArrival]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="countryArrival"
+                      externalMetadataColumnId="Package\dimAirport\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[countryArrival]"
+                      lineageId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[countryArrival]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\dimAirport\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[id]"
+                      dataType="i4"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\dimAirport\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[id_flightNum]"
+                      dataType="i4"
+                      name="id_flightNum" />
+                    <externalMetadataColumn
+                      refId="Package\dimAirport\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[departureTime]"
+                      dataType="wstr"
+                      length="8"
+                      name="departureTime" />
+                    <externalMetadataColumn
+                      refId="Package\dimAirport\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[aeroExit]"
+                      dataType="wstr"
+                      length="100"
+                      name="aeroExit" />
+                    <externalMetadataColumn
+                      refId="Package\dimAirport\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[aeroArrival]"
+                      dataType="wstr"
+                      length="100"
+                      name="aeroArrival" />
+                    <externalMetadataColumn
+                      refId="Package\dimAirport\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[cityExit]"
+                      dataType="wstr"
+                      length="50"
+                      name="cityExit" />
+                    <externalMetadataColumn
+                      refId="Package\dimAirport\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[cityArrival]"
+                      dataType="wstr"
+                      length="50"
+                      name="cityArrival" />
+                    <externalMetadataColumn
+                      refId="Package\dimAirport\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[countryExit]"
+                      dataType="wstr"
+                      length="50"
+                      name="countryExit" />
+                    <externalMetadataColumn
+                      refId="Package\dimAirport\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[countryArrival]"
+                      dataType="wstr"
+                      length="50"
+                      name="countryArrival" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\dimAirport\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de ADO NET"
+                  synchronousInputId="Package\dimAirport\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dimAirport\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dimAirport\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dimAirport\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dimAirport\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\dimAirport\Origen de ADO NET"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="Origen de ADO NET"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">--AIRPORT
+SELECT 
+	FN.id AS id_flightNum,
+    FN.Departure_Time AS departureTime,
+    ASal.Name AS aeroExit,
+    ALle.Name AS aeroArrival,
+    CSal.Name AS cityExit,
+    CLle.Name AS cityArrival,
+    PSal.Name AS countryExit,
+    PLle.Name AS countryArrival
+FROM 
+    Flight_Number FN INNER JOIN Airport ASal ON FN.Airport_Start = ASal.ID
+				INNER JOIN Airport ALle ON FN.Airport_Goal = ALle.ID
+				INNER JOIN City CSal ON ASal.City_ID = CSal.ID
+				INNER JOIN City CLle ON ALle.City_ID = CLle.ID
+				INNER JOIN Country PSal ON CSal.Country_ID = PSal.ID
+				INNER JOIN Country PLle ON CLle.Country_ID = PLle.ID
+WHERE FN.id NOT IN (SELECT id_flightNum FROM martFlightPrueba.dbo.dimAirport)</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\dimAirport\Origen de ADO NET.Connections[IDbConnection]"
+                  connectionManagerID="{E51ED9E4-836B-41F2-813F-CFB8AED1765B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-BQCTAU4.examen.sa]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[id_flightNum]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[id_flightNum]"
+                      lineageId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[id_flightNum]"
+                      name="id_flightNum"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[departureTime]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[departureTime]"
+                      length="16"
+                      lineageId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[departureTime]"
+                      name="departureTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[aeroExit]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[aeroExit]"
+                      length="100"
+                      lineageId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[aeroExit]"
+                      name="aeroExit"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[aeroArrival]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[aeroArrival]"
+                      length="100"
+                      lineageId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[aeroArrival]"
+                      name="aeroArrival"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[cityExit]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[cityExit]"
+                      length="30"
+                      lineageId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[cityExit]"
+                      name="cityExit"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[cityArrival]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[cityArrival]"
+                      length="30"
+                      lineageId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[cityArrival]"
+                      name="cityArrival"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[countryExit]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[countryExit]"
+                      length="30"
+                      lineageId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[countryExit]"
+                      name="countryExit"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[countryArrival]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[countryArrival]"
+                      length="30"
+                      lineageId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[countryArrival]"
+                      name="countryArrival"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[id_flightNum]"
+                      dataType="i4"
+                      name="id_flightNum" />
+                    <externalMetadataColumn
+                      refId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[departureTime]"
+                      dataType="wstr"
+                      length="16"
+                      name="departureTime" />
+                    <externalMetadataColumn
+                      refId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[aeroExit]"
+                      dataType="wstr"
+                      length="100"
+                      name="aeroExit" />
+                    <externalMetadataColumn
+                      refId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[aeroArrival]"
+                      dataType="wstr"
+                      length="100"
+                      name="aeroArrival" />
+                    <externalMetadataColumn
+                      refId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[cityExit]"
+                      dataType="wstr"
+                      length="30"
+                      name="cityExit" />
+                    <externalMetadataColumn
+                      refId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[cityArrival]"
+                      dataType="wstr"
+                      length="30"
+                      name="cityArrival" />
+                    <externalMetadataColumn
+                      refId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[countryExit]"
+                      dataType="wstr"
+                      length="30"
+                      name="countryExit" />
+                    <externalMetadataColumn
+                      refId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[countryArrival]"
+                      dataType="wstr"
+                      length="30"
+                      name="countryArrival" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[id_flightNum]"
+                      dataType="i4"
+                      lineageId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[id_flightNum]"
+                      name="id_flightNum" />
+                    <outputColumn
+                      refId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[departureTime]"
+                      dataType="wstr"
+                      length="16"
+                      lineageId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[departureTime]"
+                      name="departureTime" />
+                    <outputColumn
+                      refId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[aeroExit]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[aeroExit]"
+                      name="aeroExit" />
+                    <outputColumn
+                      refId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[aeroArrival]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[aeroArrival]"
+                      name="aeroArrival" />
+                    <outputColumn
+                      refId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[cityExit]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[cityExit]"
+                      name="cityExit" />
+                    <outputColumn
+                      refId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[cityArrival]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[cityArrival]"
+                      name="cityArrival" />
+                    <outputColumn
+                      refId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[countryExit]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[countryExit]"
+                      name="countryExit" />
+                    <outputColumn
+                      refId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[countryArrival]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[countryArrival]"
+                      name="countryArrival" />
+                    <outputColumn
+                      refId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\dimAirport.Paths[Salida de origen de ADO NET]"
+              endId="Package\dimAirport\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]"
+              name="Salida de origen de ADO NET"
+              startId="Package\dimAirport\Origen de ADO NET.Outputs[Salida de origen de ADO NET]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\dimCrewRole"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{2A895F15-4D5D-4107-AE61-9E24D429C5F1}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="dimCrewRole"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\dimCrewRole\Destino de ADO NET"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+              description="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC."
+              name="Destino de ADO NET"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de destino."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">[dbo].[dimCrewRole]</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas por lote. El valor predeterminado es 0, que utiliza el mismo tamaño que el búfer interno de SSIS. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica si se debe usar la interfaz SqlBulkCopy para mejorar el rendimiento de las operaciones de inserción masiva. No todos los proveedores admiten esta interfaz."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\dimCrewRole\Destino de ADO NET.Connections[IDbConnection]"
+                  connectionManagerID="{523C7B2E-108B-4CA1-9547-F3D5B654CA8D}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-BQCTAU4.martFlightPrueba.sa]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\dimCrewRole\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de ADO NET">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\dimCrewRole\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[crew_id]"
+                      cachedDataType="i4"
+                      cachedName="crew_id"
+                      externalMetadataColumnId="Package\dimCrewRole\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[crew_id]"
+                      lineageId="Package\dimCrewRole\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[crew_id]" />
+                    <inputColumn
+                      refId="Package\dimCrewRole\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[fligth_id]"
+                      cachedDataType="i4"
+                      cachedName="fligth_id"
+                      externalMetadataColumnId="Package\dimCrewRole\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[fligth_id]"
+                      lineageId="Package\dimCrewRole\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[fligth_id]" />
+                    <inputColumn
+                      refId="Package\dimCrewRole\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[Name]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="Name"
+                      externalMetadataColumnId="Package\dimCrewRole\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[name]"
+                      lineageId="Package\dimCrewRole\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Name]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\dimCrewRole\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[id]"
+                      dataType="i4"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\dimCrewRole\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[crew_id]"
+                      dataType="i4"
+                      name="crew_id" />
+                    <externalMetadataColumn
+                      refId="Package\dimCrewRole\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[fligth_id]"
+                      dataType="i4"
+                      name="fligth_id" />
+                    <externalMetadataColumn
+                      refId="Package\dimCrewRole\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[name]"
+                      dataType="wstr"
+                      length="30"
+                      name="name" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\dimCrewRole\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de ADO NET"
+                  synchronousInputId="Package\dimCrewRole\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dimCrewRole\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dimCrewRole\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dimCrewRole\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dimCrewRole\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\dimCrewRole\Origen de ADO NET"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="Origen de ADO NET"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT ca.ID as crew_id,f.ID as fligth_id, cr.Name
+FROM Crew_Rol cr 
+	INNER JOIN Crew_Assigment ca on cr.ID = ca.Crew_Rol_ID
+	INNER JOIN Flight f ON ca.Flight_ID = f.ID
+WHERE ca.ID NOT IN (SELECT crew_id FROM martFlightPrueba.dbo.dimCrewRole);</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\dimCrewRole\Origen de ADO NET.Connections[IDbConnection]"
+                  connectionManagerID="{E51ED9E4-836B-41F2-813F-CFB8AED1765B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-BQCTAU4.examen.sa]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\dimCrewRole\Origen de ADO NET.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dimCrewRole\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[crew_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dimCrewRole\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[crew_id]"
+                      lineageId="Package\dimCrewRole\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[crew_id]"
+                      name="crew_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dimCrewRole\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[fligth_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dimCrewRole\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[fligth_id]"
+                      lineageId="Package\dimCrewRole\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[fligth_id]"
+                      name="fligth_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dimCrewRole\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dimCrewRole\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Name]"
+                      length="30"
+                      lineageId="Package\dimCrewRole\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Name]"
+                      name="Name"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\dimCrewRole\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[crew_id]"
+                      dataType="i4"
+                      name="crew_id" />
+                    <externalMetadataColumn
+                      refId="Package\dimCrewRole\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[fligth_id]"
+                      dataType="i4"
+                      name="fligth_id" />
+                    <externalMetadataColumn
+                      refId="Package\dimCrewRole\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Name]"
+                      dataType="wstr"
+                      length="30"
+                      name="Name" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\dimCrewRole\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dimCrewRole\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[crew_id]"
+                      dataType="i4"
+                      lineageId="Package\dimCrewRole\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[crew_id]"
+                      name="crew_id" />
+                    <outputColumn
+                      refId="Package\dimCrewRole\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[fligth_id]"
+                      dataType="i4"
+                      lineageId="Package\dimCrewRole\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[fligth_id]"
+                      name="fligth_id" />
+                    <outputColumn
+                      refId="Package\dimCrewRole\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Name]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\dimCrewRole\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Name]"
+                      name="Name" />
+                    <outputColumn
+                      refId="Package\dimCrewRole\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dimCrewRole\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dimCrewRole\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dimCrewRole\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\dimCrewRole.Paths[Salida de origen de ADO NET]"
+              endId="Package\dimCrewRole\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]"
+              name="Salida de origen de ADO NET"
+              startId="Package\dimCrewRole\Origen de ADO NET.Outputs[Salida de origen de ADO NET]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\dimModelPlane"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{206B5A6B-86B9-414D-BB0D-AA4FA0823207}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="dimModelPlane"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\dimModelPlane\Destino de ADO NET"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+              description="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC."
+              name="Destino de ADO NET"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de destino."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">[dbo].[dimModelPlane]</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas por lote. El valor predeterminado es 0, que utiliza el mismo tamaño que el búfer interno de SSIS. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica si se debe usar la interfaz SqlBulkCopy para mejorar el rendimiento de las operaciones de inserción masiva. No todos los proveedores admiten esta interfaz."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\dimModelPlane\Destino de ADO NET.Connections[IDbConnection]"
+                  connectionManagerID="{523C7B2E-108B-4CA1-9547-F3D5B654CA8D}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-BQCTAU4.martFlightPrueba.sa]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\dimModelPlane\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de ADO NET">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\dimModelPlane\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[id_modelPlane]"
+                      cachedDataType="i4"
+                      cachedName="id_modelPlane"
+                      externalMetadataColumnId="Package\dimModelPlane\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[id_modelPlane]"
+                      lineageId="Package\dimModelPlane\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[id_modelPlane]" />
+                    <inputColumn
+                      refId="Package\dimModelPlane\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[Description]"
+                      cachedDataType="wstr"
+                      cachedLength="60"
+                      cachedName="Description"
+                      externalMetadataColumnId="Package\dimModelPlane\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[description]"
+                      lineageId="Package\dimModelPlane\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Description]" />
+                    <inputColumn
+                      refId="Package\dimModelPlane\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[Graphic]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Graphic"
+                      externalMetadataColumnId="Package\dimModelPlane\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[graphic]"
+                      lineageId="Package\dimModelPlane\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Graphic]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\dimModelPlane\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[id]"
+                      dataType="i4"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\dimModelPlane\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[id_modelPlane]"
+                      dataType="i4"
+                      name="id_modelPlane" />
+                    <externalMetadataColumn
+                      refId="Package\dimModelPlane\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[description]"
+                      dataType="wstr"
+                      length="60"
+                      name="description" />
+                    <externalMetadataColumn
+                      refId="Package\dimModelPlane\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[graphic]"
+                      dataType="wstr"
+                      length="50"
+                      name="graphic" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\dimModelPlane\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de ADO NET"
+                  synchronousInputId="Package\dimModelPlane\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dimModelPlane\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dimModelPlane\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dimModelPlane\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dimModelPlane\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\dimModelPlane\Origen de ADO NET"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="Origen de ADO NET"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DISTINCT 
+    ID AS id_modelPlane, 
+    Description, 
+    Graphic
+FROM Plane_Model
+WHERE ID NOT IN (SELECT id_modelPlane FROM martFlightPrueba.dbo.dimModelPlane);</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\dimModelPlane\Origen de ADO NET.Connections[IDbConnection]"
+                  connectionManagerID="{E51ED9E4-836B-41F2-813F-CFB8AED1765B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-BQCTAU4.examen.sa]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\dimModelPlane\Origen de ADO NET.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dimModelPlane\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[id_modelPlane]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dimModelPlane\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[id_modelPlane]"
+                      lineageId="Package\dimModelPlane\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[id_modelPlane]"
+                      name="id_modelPlane"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dimModelPlane\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Description]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dimModelPlane\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Description]"
+                      length="60"
+                      lineageId="Package\dimModelPlane\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Description]"
+                      name="Description"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dimModelPlane\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Graphic]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dimModelPlane\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Graphic]"
+                      length="50"
+                      lineageId="Package\dimModelPlane\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Graphic]"
+                      name="Graphic"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\dimModelPlane\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[id_modelPlane]"
+                      dataType="i4"
+                      name="id_modelPlane" />
+                    <externalMetadataColumn
+                      refId="Package\dimModelPlane\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Description]"
+                      dataType="wstr"
+                      length="60"
+                      name="Description" />
+                    <externalMetadataColumn
+                      refId="Package\dimModelPlane\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Graphic]"
+                      dataType="wstr"
+                      length="50"
+                      name="Graphic" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\dimModelPlane\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dimModelPlane\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[id_modelPlane]"
+                      dataType="i4"
+                      lineageId="Package\dimModelPlane\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[id_modelPlane]"
+                      name="id_modelPlane" />
+                    <outputColumn
+                      refId="Package\dimModelPlane\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Description]"
+                      dataType="wstr"
+                      length="60"
+                      lineageId="Package\dimModelPlane\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Description]"
+                      name="Description" />
+                    <outputColumn
+                      refId="Package\dimModelPlane\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Graphic]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\dimModelPlane\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Graphic]"
+                      name="Graphic" />
+                    <outputColumn
+                      refId="Package\dimModelPlane\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dimModelPlane\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dimModelPlane\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dimModelPlane\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\dimModelPlane.Paths[Salida de origen de ADO NET]"
+              endId="Package\dimModelPlane\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]"
+              name="Salida de origen de ADO NET"
+              startId="Package\dimModelPlane\Origen de ADO NET.Outputs[Salida de origen de ADO NET]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\dimTime"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{13BA8B87-097A-4091-9406-61B85EC95D22}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="dimTime"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\dimTime\Destino de ADO NET"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+              description="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC."
+              name="Destino de ADO NET"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de destino."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">[dbo].[dimTime]</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas por lote. El valor predeterminado es 0, que utiliza el mismo tamaño que el búfer interno de SSIS. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica si se debe usar la interfaz SqlBulkCopy para mejorar el rendimiento de las operaciones de inserción masiva. No todos los proveedores admiten esta interfaz."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\dimTime\Destino de ADO NET.Connections[IDbConnection]"
+                  connectionManagerID="{523C7B2E-108B-4CA1-9547-F3D5B654CA8D}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-BQCTAU4.martFlightPrueba.sa]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\dimTime\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de ADO NET">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\dimTime\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[FlightDate]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="FlightDate"
+                      externalMetadataColumnId="Package\dimTime\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[FlightDate]"
+                      lineageId="Package\dimTime\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[FlightDate]" />
+                    <inputColumn
+                      refId="Package\dimTime\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[Year]"
+                      cachedDataType="i4"
+                      cachedName="Year"
+                      externalMetadataColumnId="Package\dimTime\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[Year]"
+                      lineageId="Package\dimTime\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Year]" />
+                    <inputColumn
+                      refId="Package\dimTime\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[Month]"
+                      cachedDataType="i4"
+                      cachedName="Month"
+                      externalMetadataColumnId="Package\dimTime\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[Month]"
+                      lineageId="Package\dimTime\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Month]" />
+                    <inputColumn
+                      refId="Package\dimTime\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[MonthName]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="MonthName"
+                      externalMetadataColumnId="Package\dimTime\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[MonthName]"
+                      lineageId="Package\dimTime\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[MonthName]" />
+                    <inputColumn
+                      refId="Package\dimTime\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[Day]"
+                      cachedDataType="i4"
+                      cachedName="Day"
+                      externalMetadataColumnId="Package\dimTime\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[Day]"
+                      lineageId="Package\dimTime\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Day]" />
+                    <inputColumn
+                      refId="Package\dimTime\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[DayName]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="DayName"
+                      externalMetadataColumnId="Package\dimTime\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[DayName]"
+                      lineageId="Package\dimTime\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[DayName]" />
+                    <inputColumn
+                      refId="Package\dimTime\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[Week]"
+                      cachedDataType="i4"
+                      cachedName="Week"
+                      externalMetadataColumnId="Package\dimTime\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[Week]"
+                      lineageId="Package\dimTime\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Week]" />
+                    <inputColumn
+                      refId="Package\dimTime\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[Quarter]"
+                      cachedDataType="i4"
+                      cachedName="Quarter"
+                      externalMetadataColumnId="Package\dimTime\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[Quarter]"
+                      lineageId="Package\dimTime\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Quarter]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\dimTime\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[id]"
+                      dataType="i4"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\dimTime\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[FlightDate]"
+                      dataType="wstr"
+                      length="10"
+                      name="FlightDate" />
+                    <externalMetadataColumn
+                      refId="Package\dimTime\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[Year]"
+                      dataType="i4"
+                      name="Year" />
+                    <externalMetadataColumn
+                      refId="Package\dimTime\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[Month]"
+                      dataType="i4"
+                      name="Month" />
+                    <externalMetadataColumn
+                      refId="Package\dimTime\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[MonthName]"
+                      dataType="wstr"
+                      length="50"
+                      name="MonthName" />
+                    <externalMetadataColumn
+                      refId="Package\dimTime\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[Day]"
+                      dataType="i4"
+                      name="Day" />
+                    <externalMetadataColumn
+                      refId="Package\dimTime\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[DayName]"
+                      dataType="wstr"
+                      length="50"
+                      name="DayName" />
+                    <externalMetadataColumn
+                      refId="Package\dimTime\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[Week]"
+                      dataType="i4"
+                      name="Week" />
+                    <externalMetadataColumn
+                      refId="Package\dimTime\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[Quarter]"
+                      dataType="i4"
+                      name="Quarter" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\dimTime\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de ADO NET"
+                  synchronousInputId="Package\dimTime\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dimTime\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dimTime\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dimTime\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dimTime\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\dimTime\Origen de ADO NET"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="Origen de ADO NET"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
+    CONVERT(DATE, departureTime) AS FlightDate,
+    YEAR(CONVERT(DATE, departureTime)) AS Year,
+	MONTH(CONVERT(DATE, departureTime)) AS Month,
+    DATENAME(MONTH, CONVERT(DATE, departureTime)) AS MonthName,
+    DAY(CONVERT(DATE, departureTime)) AS Day,
+    DATENAME(WEEKDAY, CONVERT(DATE, departureTime)) AS DayName,
+    DATEPART(week, CONVERT(DATE, departureTime)) AS Week,
+    CASE 
+        WHEN MONTH(CONVERT(DATE, departureTime)) BETWEEN 1 AND 3 THEN 1
+        WHEN MONTH(CONVERT(DATE, departureTime)) BETWEEN 4 AND 6 THEN 2
+        WHEN MONTH(CONVERT(DATE, departureTime)) BETWEEN 7 AND 9 THEN 3
+        WHEN MONTH(CONVERT(DATE, departureTime)) BETWEEN 10 AND 12 THEN 4
+    END AS Quarter
+FROM Flight
+UNION
+SELECT 
+    arrivalDate AS FlightDate,
+    YEAR(arrivalDate) AS Year,
+	MONTH(arrivalDate) AS Month,
+    DATENAME(MONTH, arrivalDate) AS MonthName,
+	DAY(arrivalDate) AS Day,
+    DATENAME(WEEKDAY, arrivalDate) AS DayName,
+    DATEPART(week, arrivalDate) AS Week,
+    CASE 
+        WHEN MONTH(arrivalDate) BETWEEN 1 AND 3 THEN 1
+        WHEN MONTH(arrivalDate) BETWEEN 4 AND 6 THEN 2
+        WHEN MONTH(arrivalDate) BETWEEN 7 AND 9 THEN 3
+        WHEN MONTH(arrivalDate) BETWEEN 10 AND 12 THEN 4
+    END AS Quarter
+FROM Flight
+ORDER BY FlightDate;</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\dimTime\Origen de ADO NET.Connections[IDbConnection]"
+                  connectionManagerID="{E51ED9E4-836B-41F2-813F-CFB8AED1765B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-BQCTAU4.examen.sa]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\dimTime\Origen de ADO NET.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dimTime\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[FlightDate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dimTime\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[FlightDate]"
+                      length="10"
+                      lineageId="Package\dimTime\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[FlightDate]"
+                      name="FlightDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dimTime\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Year]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dimTime\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Year]"
+                      lineageId="Package\dimTime\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Year]"
+                      name="Year"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dimTime\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Month]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dimTime\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Month]"
+                      lineageId="Package\dimTime\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Month]"
+                      name="Month"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dimTime\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[MonthName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dimTime\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[MonthName]"
+                      length="30"
+                      lineageId="Package\dimTime\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[MonthName]"
+                      name="MonthName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dimTime\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Day]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dimTime\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Day]"
+                      lineageId="Package\dimTime\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Day]"
+                      name="Day"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dimTime\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[DayName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dimTime\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[DayName]"
+                      length="30"
+                      lineageId="Package\dimTime\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[DayName]"
+                      name="DayName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dimTime\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Week]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dimTime\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Week]"
+                      lineageId="Package\dimTime\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Week]"
+                      name="Week"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dimTime\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Quarter]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dimTime\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Quarter]"
+                      lineageId="Package\dimTime\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Quarter]"
+                      name="Quarter"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\dimTime\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[FlightDate]"
+                      dataType="wstr"
+                      length="10"
+                      name="FlightDate" />
+                    <externalMetadataColumn
+                      refId="Package\dimTime\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Year]"
+                      dataType="i4"
+                      name="Year" />
+                    <externalMetadataColumn
+                      refId="Package\dimTime\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Month]"
+                      dataType="i4"
+                      name="Month" />
+                    <externalMetadataColumn
+                      refId="Package\dimTime\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[MonthName]"
+                      dataType="wstr"
+                      length="30"
+                      name="MonthName" />
+                    <externalMetadataColumn
+                      refId="Package\dimTime\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Day]"
+                      dataType="i4"
+                      name="Day" />
+                    <externalMetadataColumn
+                      refId="Package\dimTime\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[DayName]"
+                      dataType="wstr"
+                      length="30"
+                      name="DayName" />
+                    <externalMetadataColumn
+                      refId="Package\dimTime\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Week]"
+                      dataType="i4"
+                      name="Week" />
+                    <externalMetadataColumn
+                      refId="Package\dimTime\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Quarter]"
+                      dataType="i4"
+                      name="Quarter" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\dimTime\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dimTime\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[FlightDate]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\dimTime\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[FlightDate]"
+                      name="FlightDate" />
+                    <outputColumn
+                      refId="Package\dimTime\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Year]"
+                      dataType="i4"
+                      lineageId="Package\dimTime\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Year]"
+                      name="Year" />
+                    <outputColumn
+                      refId="Package\dimTime\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Month]"
+                      dataType="i4"
+                      lineageId="Package\dimTime\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Month]"
+                      name="Month" />
+                    <outputColumn
+                      refId="Package\dimTime\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[MonthName]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\dimTime\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[MonthName]"
+                      name="MonthName" />
+                    <outputColumn
+                      refId="Package\dimTime\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Day]"
+                      dataType="i4"
+                      lineageId="Package\dimTime\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Day]"
+                      name="Day" />
+                    <outputColumn
+                      refId="Package\dimTime\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[DayName]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\dimTime\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[DayName]"
+                      name="DayName" />
+                    <outputColumn
+                      refId="Package\dimTime\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Week]"
+                      dataType="i4"
+                      lineageId="Package\dimTime\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Week]"
+                      name="Week" />
+                    <outputColumn
+                      refId="Package\dimTime\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Quarter]"
+                      dataType="i4"
+                      lineageId="Package\dimTime\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Quarter]"
+                      name="Quarter" />
+                    <outputColumn
+                      refId="Package\dimTime\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dimTime\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dimTime\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dimTime\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\dimTime.Paths[Salida de origen de ADO NET]"
+              endId="Package\dimTime\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]"
+              name="Salida de origen de ADO NET"
+              startId="Package\dimTime\Origen de ADO NET.Outputs[Salida de origen de ADO NET]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\factFlight"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{65164E93-A115-4704-9866-9B4DBD2A054C}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="factFlight"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\factFlight\Destino de ADO NET"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+              description="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC."
+              name="Destino de ADO NET"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de destino."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">[dbo].[factFlight]</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas por lote. El valor predeterminado es 0, que utiliza el mismo tamaño que el búfer interno de SSIS. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica si se debe usar la interfaz SqlBulkCopy para mejorar el rendimiento de las operaciones de inserción masiva. No todos los proveedores admiten esta interfaz."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\factFlight\Destino de ADO NET.Connections[IDbConnection]"
+                  connectionManagerID="{523C7B2E-108B-4CA1-9547-F3D5B654CA8D}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-BQCTAU4.martFlightPrueba.sa]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de ADO NET">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[time_id]"
+                      cachedDataType="i4"
+                      cachedName="time_id"
+                      externalMetadataColumnId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[time_id]"
+                      lineageId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[time_id]" />
+                    <inputColumn
+                      refId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[airline_id]"
+                      cachedDataType="i4"
+                      cachedName="airline_id"
+                      externalMetadataColumnId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[airline_id]"
+                      lineageId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[airline_id]" />
+                    <inputColumn
+                      refId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[modelPlane_id]"
+                      cachedDataType="i4"
+                      cachedName="modelPlane_id"
+                      externalMetadataColumnId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[modelPlane_id]"
+                      lineageId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[modelPlane_id]" />
+                    <inputColumn
+                      refId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[airport_id]"
+                      cachedDataType="i4"
+                      cachedName="airport_id"
+                      externalMetadataColumnId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[airport_id]"
+                      lineageId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[airport_id]" />
+                    <inputColumn
+                      refId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[flight_number]"
+                      cachedDataType="i4"
+                      cachedName="flight_number"
+                      externalMetadataColumnId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[flight_number]"
+                      lineageId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[flight_number]" />
+                    <inputColumn
+                      refId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[flight_date]"
+                      cachedDataType="wstr"
+                      cachedLength="4000"
+                      cachedName="flight_date"
+                      externalMetadataColumnId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[flight_date]"
+                      lineageId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[flight_date]" />
+                    <inputColumn
+                      refId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[departureTime]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="departureTime"
+                      externalMetadataColumnId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[departureTime]"
+                      lineageId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[departureTime]" />
+                    <inputColumn
+                      refId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[departureHour]"
+                      cachedDataType="wstr"
+                      cachedLength="8"
+                      cachedName="departureHour"
+                      externalMetadataColumnId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[departureHour]"
+                      lineageId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[departureHour]" />
+                    <inputColumn
+                      refId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[arrivalDate]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="arrivalDate"
+                      externalMetadataColumnId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[arrivalDate]"
+                      lineageId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[arrivalDate]" />
+                    <inputColumn
+                      refId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[arrivalHour]"
+                      cachedDataType="wstr"
+                      cachedLength="8"
+                      cachedName="arrivalHour"
+                      externalMetadataColumnId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[arrivalHour]"
+                      lineageId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[arrivalHour]" />
+                    <inputColumn
+                      refId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[flight_duration_hour]"
+                      cachedDataType="wstr"
+                      cachedLength="4000"
+                      cachedName="flight_duration_hour"
+                      externalMetadataColumnId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[flight_duration_hour]"
+                      lineageId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[flight_duration_hour]" />
+                    <inputColumn
+                      refId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[total_minutes]"
+                      cachedDataType="numeric"
+                      cachedName="total_minutes"
+                      cachedPrecision="17"
+                      cachedScale="6"
+                      externalMetadataColumnId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[total_minutes]"
+                      lineageId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[total_minutes]" />
+                    <inputColumn
+                      refId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[total_hours]"
+                      cachedDataType="numeric"
+                      cachedName="total_hours"
+                      cachedPrecision="17"
+                      cachedScale="6"
+                      externalMetadataColumnId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[total_hours]"
+                      lineageId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[total_hours]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[id]"
+                      dataType="i4"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[time_id]"
+                      dataType="i4"
+                      name="time_id" />
+                    <externalMetadataColumn
+                      refId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[airline_id]"
+                      dataType="i4"
+                      name="airline_id" />
+                    <externalMetadataColumn
+                      refId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[modelPlane_id]"
+                      dataType="i4"
+                      name="modelPlane_id" />
+                    <externalMetadataColumn
+                      refId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[airport_id]"
+                      dataType="i4"
+                      name="airport_id" />
+                    <externalMetadataColumn
+                      refId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[crewRole_id]"
+                      dataType="i4"
+                      name="crewRole_id" />
+                    <externalMetadataColumn
+                      refId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[flight_number]"
+                      dataType="i4"
+                      name="flight_number" />
+                    <externalMetadataColumn
+                      refId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[flight_date]"
+                      dataType="wstr"
+                      length="10"
+                      name="flight_date" />
+                    <externalMetadataColumn
+                      refId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[departureTime]"
+                      dataType="wstr"
+                      length="10"
+                      name="departureTime" />
+                    <externalMetadataColumn
+                      refId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[departureHour]"
+                      dataType="wstr"
+                      length="8"
+                      name="departureHour" />
+                    <externalMetadataColumn
+                      refId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[arrivalDate]"
+                      dataType="wstr"
+                      length="10"
+                      name="arrivalDate" />
+                    <externalMetadataColumn
+                      refId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[arrivalHour]"
+                      dataType="wstr"
+                      length="8"
+                      name="arrivalHour" />
+                    <externalMetadataColumn
+                      refId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[flight_duration_hour]"
+                      dataType="wstr"
+                      length="8"
+                      name="flight_duration_hour" />
+                    <externalMetadataColumn
+                      refId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[total_minutes]"
+                      dataType="numeric"
+                      name="total_minutes"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[total_hours]"
+                      dataType="numeric"
+                      name="total_hours"
+                      precision="10"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\factFlight\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de ADO NET"
+                  synchronousInputId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\factFlight\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\factFlight\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\factFlight\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\factFlight\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\factFlight\Origen de ADO NET"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="Origen de ADO NET"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">WITH FlightDates AS (
+    SELECT DISTINCT CONVERT(DATE, departureTime) AS FlightDate
+    FROM Flight
+    UNION
+    SELECT DISTINCT arrivalDate
+    FROM Flight
+),
+
+FlightSegments AS (
+    -- Vuelos en la misma fecha
+    SELECT DISTINCT
+        id,
+        FORMAT(departureTime, 'yyyy-MM-dd') AS fechaFligth,
+        departureTime AS fechaSalida,
+        departureHour AS horaSalida,
+        arrivalDate AS fechaLlegada,
+        arrivalHour AS horaLlegada,
+        DATEDIFF(SECOND, 
+                 CAST(departureHour AS DATETIME), 
+                 CAST(arrivalHour AS DATETIME)) AS total_seconds
+    FROM Flight
+    WHERE departureTime = arrivalDate
+
+    UNION ALL
+
+    -- Primer segmento: Desde la hora de salida hasta el final del día de salida
+    SELECT DISTINCT
+        id,
+        FORMAT(departureTime, 'yyyy-MM-dd') AS fechaFligth,
+        departureTime AS fechaSalida,
+        departureHour AS horaSalida,
+        departureTime AS fechaLlegada,
+        '23:59:59' AS horaLlegada,
+        DATEDIFF(SECOND, 
+                 CAST(departureHour AS DATETIME), 
+                 CAST('23:59:59' AS DATETIME)) AS total_seconds
+    FROM Flight
+    WHERE departureTime &lt;&gt; arrivalDate
+
+    UNION ALL
+
+    -- Segundo segmento: Desde el inicio del día de llegada hasta la hora de llegada
+    SELECT DISTINCT
+        id,
+        FORMAT(arrivalDate, 'yyyy-MM-dd') AS fechaFligth,
+        arrivalDate AS fechaSalida,
+        '00:00:00' AS horaSalida,
+        arrivalDate AS fechaLlegada,
+        arrivalHour AS horaLlegada,
+        DATEDIFF(SECOND, 
+                 CAST('00:00:00' AS DATETIME), 
+                 CAST(arrivalHour AS DATETIME)) AS total_seconds
+    FROM Flight
+    WHERE departureTime &lt;&gt; arrivalDate
+)
+
+SELECT 
+    dt.id AS time_id,
+    da.id AS airline_id,
+    dm.id AS modelPlane_id,
+    dai.id AS airport_id,
+    f.FlightNumber AS flight_number,
+    fs.fechaFligth AS flight_date,   
+    f.departureTime AS departureTime,
+    f.departureHour AS departureHour,
+    f.arrivalDate AS arrivalDate,
+    f.arrivalHour AS arrivalHour,
+    -- Duración del vuelo en formato HH:mm
+    FORMAT(DATEADD(SECOND, fs.total_seconds, '00:00:00'), 'HH:mm') AS flight_duration_hour,
+    -- Duración del vuelo en minutos
+    fs.total_seconds / 60.0 AS total_minutes,
+    -- Duración del vuelo en horas
+    fs.total_seconds / 3600.0 AS total_hours
+FROM 
+    Flight f
+    INNER JOIN Flight_Number fn ON f.Flight_Number_id = fn.ID
+    INNER JOIN martFlightPrueba.dbo.dimAirline da ON f.Airline_ID = da.id_airline
+    INNER JOIN martFlightPrueba.dbo.dimModelPlane dm ON f.Plane_ID = dm.id_modelPlane
+    INNER JOIN martFlightPrueba.dbo.dimAirport dai ON f.ID = dai.id_flightNum
+    INNER JOIN martFlightPrueba.dbo.dimCrewRole dc ON f.ID = dc.fligth_id
+    INNER JOIN FlightSegments fs ON fs.id = f.ID
+    INNER JOIN martFlightPrueba.dbo.dimTime dt 
+        ON dt.FlightDate = CONVERT(DATE, fs.fechaFligth) 
+WHERE 
+    dt.FlightDate IN (SELECT FlightDate FROM FlightDates)
+ORDER BY 
+    f.FlightNumber, dt.FlightDate;</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\factFlight\Origen de ADO NET.Connections[IDbConnection]"
+                  connectionManagerID="{E51ED9E4-836B-41F2-813F-CFB8AED1765B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-BQCTAU4.examen.sa]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[time_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[time_id]"
+                      lineageId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[time_id]"
+                      name="time_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[airline_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[airline_id]"
+                      lineageId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[airline_id]"
+                      name="airline_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[modelPlane_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[modelPlane_id]"
+                      lineageId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[modelPlane_id]"
+                      name="modelPlane_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[airport_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[airport_id]"
+                      lineageId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[airport_id]"
+                      name="airport_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[flight_number]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[flight_number]"
+                      lineageId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[flight_number]"
+                      name="flight_number"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[flight_date]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[flight_date]"
+                      length="4000"
+                      lineageId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[flight_date]"
+                      name="flight_date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[departureTime]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[departureTime]"
+                      length="10"
+                      lineageId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[departureTime]"
+                      name="departureTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[departureHour]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[departureHour]"
+                      length="8"
+                      lineageId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[departureHour]"
+                      name="departureHour"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[arrivalDate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[arrivalDate]"
+                      length="10"
+                      lineageId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[arrivalDate]"
+                      name="arrivalDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[arrivalHour]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[arrivalHour]"
+                      length="8"
+                      lineageId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[arrivalHour]"
+                      name="arrivalHour"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[flight_duration_hour]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[flight_duration_hour]"
+                      length="4000"
+                      lineageId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[flight_duration_hour]"
+                      name="flight_duration_hour"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[total_minutes]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[total_minutes]"
+                      lineageId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[total_minutes]"
+                      name="total_minutes"
+                      precision="17"
+                      scale="6"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[total_hours]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[total_hours]"
+                      lineageId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[total_hours]"
+                      name="total_hours"
+                      precision="17"
+                      scale="6"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[time_id]"
+                      dataType="i4"
+                      name="time_id" />
+                    <externalMetadataColumn
+                      refId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[airline_id]"
+                      dataType="i4"
+                      name="airline_id" />
+                    <externalMetadataColumn
+                      refId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[modelPlane_id]"
+                      dataType="i4"
+                      name="modelPlane_id" />
+                    <externalMetadataColumn
+                      refId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[airport_id]"
+                      dataType="i4"
+                      name="airport_id" />
+                    <externalMetadataColumn
+                      refId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[flight_number]"
+                      dataType="i4"
+                      name="flight_number" />
+                    <externalMetadataColumn
+                      refId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[flight_date]"
+                      dataType="wstr"
+                      length="4000"
+                      name="flight_date" />
+                    <externalMetadataColumn
+                      refId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[departureTime]"
+                      dataType="wstr"
+                      length="10"
+                      name="departureTime" />
+                    <externalMetadataColumn
+                      refId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[departureHour]"
+                      dataType="wstr"
+                      length="8"
+                      name="departureHour" />
+                    <externalMetadataColumn
+                      refId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[arrivalDate]"
+                      dataType="wstr"
+                      length="10"
+                      name="arrivalDate" />
+                    <externalMetadataColumn
+                      refId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[arrivalHour]"
+                      dataType="wstr"
+                      length="8"
+                      name="arrivalHour" />
+                    <externalMetadataColumn
+                      refId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[flight_duration_hour]"
+                      dataType="wstr"
+                      length="4000"
+                      name="flight_duration_hour" />
+                    <externalMetadataColumn
+                      refId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[total_minutes]"
+                      dataType="numeric"
+                      name="total_minutes"
+                      precision="17"
+                      scale="6" />
+                    <externalMetadataColumn
+                      refId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[total_hours]"
+                      dataType="numeric"
+                      name="total_hours"
+                      precision="17"
+                      scale="6" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\factFlight\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\factFlight\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[time_id]"
+                      dataType="i4"
+                      lineageId="Package\factFlight\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[time_id]"
+                      name="time_id" />
+                    <outputColumn
+                      refId="Package\factFlight\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[airline_id]"
+                      dataType="i4"
+                      lineageId="Package\factFlight\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[airline_id]"
+                      name="airline_id" />
+                    <outputColumn
+                      refId="Package\factFlight\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[modelPlane_id]"
+                      dataType="i4"
+                      lineageId="Package\factFlight\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[modelPlane_id]"
+                      name="modelPlane_id" />
+                    <outputColumn
+                      refId="Package\factFlight\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[airport_id]"
+                      dataType="i4"
+                      lineageId="Package\factFlight\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[airport_id]"
+                      name="airport_id" />
+                    <outputColumn
+                      refId="Package\factFlight\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[flight_number]"
+                      dataType="i4"
+                      lineageId="Package\factFlight\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[flight_number]"
+                      name="flight_number" />
+                    <outputColumn
+                      refId="Package\factFlight\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[flight_date]"
+                      dataType="wstr"
+                      length="4000"
+                      lineageId="Package\factFlight\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[flight_date]"
+                      name="flight_date" />
+                    <outputColumn
+                      refId="Package\factFlight\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[departureTime]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\factFlight\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[departureTime]"
+                      name="departureTime" />
+                    <outputColumn
+                      refId="Package\factFlight\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[departureHour]"
+                      dataType="wstr"
+                      length="8"
+                      lineageId="Package\factFlight\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[departureHour]"
+                      name="departureHour" />
+                    <outputColumn
+                      refId="Package\factFlight\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[arrivalDate]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\factFlight\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[arrivalDate]"
+                      name="arrivalDate" />
+                    <outputColumn
+                      refId="Package\factFlight\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[arrivalHour]"
+                      dataType="wstr"
+                      length="8"
+                      lineageId="Package\factFlight\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[arrivalHour]"
+                      name="arrivalHour" />
+                    <outputColumn
+                      refId="Package\factFlight\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[flight_duration_hour]"
+                      dataType="wstr"
+                      length="4000"
+                      lineageId="Package\factFlight\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[flight_duration_hour]"
+                      name="flight_duration_hour" />
+                    <outputColumn
+                      refId="Package\factFlight\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[total_minutes]"
+                      dataType="numeric"
+                      lineageId="Package\factFlight\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[total_minutes]"
+                      name="total_minutes"
+                      precision="17"
+                      scale="6" />
+                    <outputColumn
+                      refId="Package\factFlight\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[total_hours]"
+                      dataType="numeric"
+                      lineageId="Package\factFlight\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[total_hours]"
+                      name="total_hours"
+                      precision="17"
+                      scale="6" />
+                    <outputColumn
+                      refId="Package\factFlight\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\factFlight\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\factFlight\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\factFlight\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\factFlight.Paths[Salida de origen de ADO NET]"
+              endId="Package\factFlight\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]"
+              name="Salida de origen de ADO NET"
+              startId="Package\factFlight\Origen de ADO NET.Outputs[Salida de origen de ADO NET]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción]"
+      DTS:CreationName=""
+      DTS:DTSID="{7706723A-FAF8-49BD-BFAD-DB85E9BEBA4C}"
+      DTS:From="Package\dimTime"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción"
+      DTS:To="Package\dimAirline" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{0C3E3A28-4616-4398-9621-7CFB36C5FC2A}"
+      DTS:From="Package\dimAirline"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 1"
+      DTS:To="Package\dimModelPlane" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{5E88ECBC-DDDA-4C3C-8887-1CC338A08B3E}"
+      DTS:From="Package\dimModelPlane"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 2"
+      DTS:To="Package\dimAirport" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{32AA7D34-5448-47FF-A0C3-9C9D956DB1D5}"
+      DTS:From="Package\dimAirport"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 3"
+      DTS:To="Package\dimCrewRole" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{53AABCA5-A546-4643-B291-4BBEF569DD09}"
+      DTS:From="Package\dimCrewRole"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 4"
+      DTS:To="Package\factFlight" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="120,42"
+          Id="Package\dimTime"
+          TopLeft="347,60" />
+        <NodeLayout
+          Size="125,42"
+          Id="Package\dimAirline"
+          TopLeft="584,64" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\dimModelPlane"
+          TopLeft="786,75" />
+        <NodeLayout
+          Size="128,42"
+          Id="Package\dimAirport"
+          TopLeft="672,150" />
+        <NodeLayout
+          Size="141,42"
+          Id="Package\dimCrewRole"
+          TopLeft="476,157" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción]"
+          TopLeft="467,83">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="117,0"
+              Start="0,0"
+              End="109.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="109.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 1]"
+          TopLeft="709,85">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="77,11"
+              Start="0,0"
+              End="69.5,11">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="34.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="34.5,0"
+                    Point2="38.5,0"
+                    Point3="38.5,4" />
+                  <mssgle:LineSegment
+                    End="38.5,7" />
+                  <mssgle:CubicBezierSegment
+                    Point1="38.5,7"
+                    Point2="38.5,11"
+                    Point3="42.5,11" />
+                  <mssgle:LineSegment
+                    End="69.5,11" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 2]"
+          TopLeft="861,117">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-125,33"
+              Start="0,0"
+              End="-125,25.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.5"
+                    Point2="0,16.5"
+                    Point3="-4,16.5" />
+                  <mssgle:LineSegment
+                    End="-121,16.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-121,16.5"
+                    Point2="-125,16.5"
+                    Point3="-125,20.5" />
+                  <mssgle:LineSegment
+                    End="-125,25.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 3]"
+          TopLeft="672,174.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-55,0"
+              Start="0,0"
+              End="-47.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-47.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="122,42"
+          Id="Package\factFlight"
+          TopLeft="668,265" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 4]"
+          TopLeft="546.5,199">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="182.5,66"
+              Start="0,0"
+              End="182.5,58.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,29"
+                    Point2="0,33"
+                    Point3="4,33" />
+                  <mssgle:LineSegment
+                    End="178.5,33" />
+                  <mssgle:CubicBezierSegment
+                    Point1="178.5,33"
+                    Point2="182.5,33"
+                    Point3="182.5,37" />
+                  <mssgle:LineSegment
+                    End="182.5,58.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\dimTime">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="172,42"
+          Id="Package\dimTime\Origen de ADO NET"
+          TopLeft="413,115" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\dimTime\Destino de ADO NET"
+          TopLeft="688,108" />
+        <EdgeLayout
+          Id="Package\dimTime.Paths[Salida de origen de ADO NET]"
+          TopLeft="585,132.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="103,0"
+              Start="0,0"
+              End="95.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="95.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\dimTime\Origen de ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\dimTime\Destino de ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\dimAirline">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="172,42"
+          Id="Package\dimAirline\Origen de ADO NET"
+          TopLeft="349,112" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\dimAirline\Destino de ADO NET"
+          TopLeft="711,118" />
+        <EdgeLayout
+          Id="Package\dimAirline.Paths[Salida de origen de ADO NET]"
+          TopLeft="521,136">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="190,0"
+              Start="0,0"
+              End="182.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="182.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\dimAirline\Origen de ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\dimAirline\Destino de ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\dimModelPlane">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="172,42"
+          Id="Package\dimModelPlane\Origen de ADO NET"
+          TopLeft="353,82" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\dimModelPlane\Destino de ADO NET"
+          TopLeft="655,77" />
+        <EdgeLayout
+          Id="Package\dimModelPlane.Paths[Salida de origen de ADO NET]"
+          TopLeft="525,100.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="130,0"
+              Start="0,0"
+              End="122.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="122.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\dimModelPlane\Origen de ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\dimModelPlane\Destino de ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\dimAirport">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="172,42"
+          Id="Package\dimAirport\Origen de ADO NET"
+          TopLeft="320,103" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\dimAirport\Destino de ADO NET"
+          TopLeft="638,115" />
+        <EdgeLayout
+          Id="Package\dimAirport.Paths[Salida de origen de ADO NET]"
+          TopLeft="492,124">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="146,12"
+              Start="0,0"
+              End="138.5,12">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="69,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="69,0"
+                    Point2="73,0"
+                    Point3="73,4" />
+                  <mssgle:LineSegment
+                    End="73,8" />
+                  <mssgle:CubicBezierSegment
+                    Point1="73,8"
+                    Point2="73,12"
+                    Point3="77,12" />
+                  <mssgle:LineSegment
+                    End="138.5,12" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\dimAirport\Origen de ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\dimAirport\Destino de ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\dimCrewRole">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="172,42"
+          Id="Package\dimCrewRole\Origen de ADO NET"
+          TopLeft="344,176" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\dimCrewRole\Destino de ADO NET"
+          TopLeft="632,186" />
+        <EdgeLayout
+          Id="Package\dimCrewRole.Paths[Salida de origen de ADO NET]"
+          TopLeft="516,197">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="116,10"
+              Start="0,0"
+              End="108.5,10">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="54,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="54,0"
+                    Point2="58,0"
+                    Point3="58,4" />
+                  <mssgle:LineSegment
+                    End="58,6" />
+                  <mssgle:CubicBezierSegment
+                    Point1="58,6"
+                    Point2="58,10"
+                    Point3="62,10" />
+                  <mssgle:LineSegment
+                    End="108.5,10" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\dimCrewRole\Origen de ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\dimCrewRole\Destino de ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\factFlight">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="172,42"
+          Id="Package\factFlight\Origen de ADO NET"
+          TopLeft="423,60" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\factFlight\Destino de ADO NET"
+          TopLeft="673,80" />
+        <EdgeLayout
+          Id="Package\factFlight.Paths[Salida de origen de ADO NET]"
+          TopLeft="595,81">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="78,20"
+              Start="0,0"
+              End="70.5,20">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="35,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="35,0"
+                    Point2="39,0"
+                    Point3="39,4" />
+                  <mssgle:LineSegment
+                    End="39,16" />
+                  <mssgle:CubicBezierSegment
+                    Point1="39,16"
+                    Point2="39,20"
+                    Point3="43,20" />
+                  <mssgle:LineSegment
+                    End="70.5,20" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\factFlight\Origen de ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\factFlight\Destino de ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

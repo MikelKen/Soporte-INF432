@@ -90,7 +90,7 @@ if object_id('Flight_Number', 'U') is null
 begin
     create table Flight_Number(
         id int identity(1,1) primary key,
-        Departure_Time time not null,
+        Departure_Time time(0) not null,
         Type bit not null,
         Airport_Start int not null,
         Airport_Goal int not null,
@@ -123,7 +123,7 @@ if object_id('Airline', 'U') is null
 begin
     create table Airline(
         ID int identity(1,1) primary key,
-        Name varchar(100) not null check (len(Name) > 5),
+        Name varchar(100) not null ,
 		Country_ID int not null,
 		foreign key (Country_ID) references Country(ID) ON DELETE NO ACTION,
     );
@@ -136,16 +136,18 @@ if object_id('Flight', 'U') is null
 begin
     create table Flight(
         ID int identity(1,1) primary key,
-        Boarding_Time time not null,
+        Boarding_Time time(0) not null,
+		FlightNumber int not null,
         Flight_Date date not null check (Flight_Date >= CONVERT(DATE, GETDATE())),
         Gate tinyint not null check (Gate BETWEEN 1 AND 255),
         Check_In_Counter bit not null,
-        DepartureTime dateTime not null,
-        ArrivalTime dateTime not null,
+        departureTime date not null,  --fecha de salida
+		departureHour time(0) not null,  --hora de salida
+		arrivalDate date not null,	--fecha de llegada
+		arrivalHour time(0) not null,
         Flight_Number_id int not null,
         Plane_ID int not null,
         Airline_ID int not null,
-        State bit not null default 1, -- 1 para confirmado, 0 para cancelado
         foreign key (Flight_Number_ID) references Flight_Number(ID) ON DELETE NO ACTION,
         foreign key (Plane_ID) references Plane_Model(ID) ON DELETE NO ACTION,
         foreign key (Airline_ID) references Airline(ID) ON DELETE NO ACTION

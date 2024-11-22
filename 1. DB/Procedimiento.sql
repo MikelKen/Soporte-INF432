@@ -294,12 +294,12 @@ END;
 GO
 
 --===================================================================
-
 IF OBJECT_ID('InsertFlights', 'P') IS NOT NULL
 BEGIN
     DROP PROCEDURE InsertFlights;
 END;
-go
+GO
+
 CREATE PROCEDURE InsertFlights
     @NumberOfRows INT -- Cantidad a insertar
 AS
@@ -310,23 +310,34 @@ BEGIN
     BEGIN
         BEGIN TRY
             BEGIN TRANSACTION;   
-            
+
+            -- Generar valores aleatorios y coherentes para el vuelo
+            DECLARE @departureTime DATE = DATEADD(DAY, ABS(CHECKSUM(NEWID()) % 365), CONVERT(DATE, GETDATE())); -- Fecha de salida
+            DECLARE @departureHour TIME = CONVERT(TIME, DATEADD(MINUTE, ABS(CHECKSUM(NEWID()) % 1440), '00:00:00')); -- Hora de salida
+            DECLARE @arrivalDate DATE = DATEADD(DAY, ABS(CHECKSUM(NEWID()) % 3), @departureTime); -- Fecha de llegada (posterior o igual a la de salida)
+            DECLARE @arrivalHour TIME = 
+                CASE 
+                    WHEN @arrivalDate = @departureTime 
+                    THEN DATEADD(MINUTE, ABS(CHECKSUM(NEWID()) % 1440), @departureHour) -- Asegurar coherencia el mismo día
+                    ELSE CONVERT(TIME, DATEADD(MINUTE, ABS(CHECKSUM(NEWID()) % 1440), '00:00:00')) -- Hora aleatoria
+                END;
+
             -- Insertar en la tabla Flight
-            INSERT INTO Flight (Boarding_Time, Flight_Date, Gate, Check_In_Counter, DepartureTime, ArrivalTime, Flight_Number_ID, Plane_ID, Airline_ID, State)
+            INSERT INTO Flight (Boarding_Time, Flight_Date, Gate, Check_In_Counter, departureTime, departureHour, arrivalDate, arrivalHour, FlightNumber, Flight_Number_ID, Plane_ID, Airline_ID)
             SELECT
-                CONVERT(TIME, DATEADD(MINUTE, ABS(CHECKSUM(NEWID()) % 1440), '00:00:00')) AS Boarding_Time,
-                DATEADD(DAY, ABS(CHECKSUM(NEWID()) % 365), CONVERT(DATE, GETDATE())) AS Flight_Date,
-                ABS(CHECKSUM(NEWID()) % 255) + 1 AS Gate,
-                ABS(CHECKSUM(NEWID()) % 2) AS Check_In_Counter,
-                DATEADD(MINUTE, ABS(CHECKSUM(NEWID()) % 1440), 
-                    DATEADD(DAY, ABS(CHECKSUM(NEWID()) % 365), GETDATE())) AS DepartureTime,
-                DATEADD(MINUTE, ABS(CHECKSUM(NEWID()) % 300) + 30, 
-                    DATEADD(MINUTE, ABS(CHECKSUM(NEWID()) % 1440), 
-                    DATEADD(DAY, ABS(CHECKSUM(NEWID()) % 365), GETDATE()))) AS ArrivalTime,
-                (SELECT TOP 1 ID FROM Flight_Number ORDER BY NEWID()) AS Flight_Number_ID,
-                (SELECT TOP 1 ID FROM Plane_Model ORDER BY NEWID()) AS Plane_ID,
-                (SELECT TOP 1 ID FROM Airline ORDER BY NEWID()) AS Airline_ID,
-                ABS(CHECKSUM(NEWID()) % 2) AS State; -- Estado aleatorio, 0 o 1
+                CONVERT(TIME, DATEADD(MINUTE, ABS(CHECKSUM(NEWID()) % 1440), '00:00:00')) AS Boarding_Time, -- Hora de abordaje
+                @departureTime AS Flight_Date, -- Fecha de vuelo
+                ABS(CHECKSUM(NEWID()) % 255) + 1 AS Gate, -- Puerta aleatoria
+                ABS(CHECKSUM(NEWID()) % 2) AS Check_In_Counter, -- Check-in counter aleatorio
+                @departureTime AS departureTime, -- Fecha de salida
+                @departureHour AS departureHour, -- Hora de salida
+                @arrivalDate AS arrivalDate, -- Fecha de llegada
+                @arrivalHour AS arrivalHour, -- Hora de llegada
+                ABS(CHECKSUM(NEWID()) % 9999) + 1 AS FlightNumber, -- Número de vuelo aleatorio
+                (SELECT TOP 1 ID FROM Flight_Number ORDER BY NEWID()) AS Flight_Number_ID, -- ID de Flight_Number
+                (SELECT TOP 1 ID FROM Plane_Model ORDER BY NEWID()) AS Plane_ID, -- ID de Plane_Model
+                (SELECT TOP 1 ID FROM Airline ORDER BY NEWID()) AS Airline_ID; -- ID de Airline
+
             COMMIT TRANSACTION;
         END TRY
         BEGIN CATCH

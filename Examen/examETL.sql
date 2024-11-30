@@ -2,8 +2,8 @@ select * from Flight
 
 use master;
 
-create database martFlightPrueba;
-use martFlightPrueba;
+create database martFlightExamen;
+use martFlightExamen;
 
 ---------------------------------------------
 
@@ -71,15 +71,19 @@ create table factFlight(
 	modelPlane_id int,
 	airport_id int,
 	crewRole_id int,
-	flight_number int,
+	flight_number nvarchar(100),
 	flight_date date,
 	departureTime date,
 	departureHour time(0),
 	arrivalDate date,
 	arrivalHour time(0),
 	flight_duration_hour time(0),
-	total_minutes decimal(10,2),--flight_duration_by_time
-	total_hours decimal(10,2),
+	total_minutes float,--flight_duration_by_time
+	total_hours float,
+	crew_count_by_role int,
+	crew_count_by_airline int,
+	crew_count_by_model_plane int,
+	crew_count_by_city_destination int,
 	foreign key (time_id) references dimTime(id),
 	foreign key (airline_id) references dimAirline(id),
 	foreign key (modelPlane_id) references dimModelPlane(id), 

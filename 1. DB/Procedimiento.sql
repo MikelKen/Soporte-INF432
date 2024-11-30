@@ -1,4 +1,4 @@
-use airport;
+use airportBase;
 go
 --Procedure for country
 
